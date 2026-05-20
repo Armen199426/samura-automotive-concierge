@@ -1,26 +1,685 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import {
+  ShieldCheck, Search, PiggyBank, Truck, FileLock2, Camera,
+  ArrowRight, Phone, MessageCircle, MapPin, Menu, X, Plus, Minus,
+  AlertTriangle, Gauge, FileWarning, History, CreditCard, AlertOctagon,
+  ChevronLeft, ChevronRight, Send,
+} from "lucide-react";
+import logo from "@/assets/logo.png";
+import heroCar from "@/assets/hero-car.jpg";
+import ctaCar from "@/assets/cta-car.jpg";
+import car1 from "@/assets/car-1.jpg";
+import car2 from "@/assets/car-2.jpg";
+import car3 from "@/assets/car-3.jpg";
+import car4 from "@/assets/car-4.jpg";
+import car5 from "@/assets/car-5.jpg";
+import car6 from "@/assets/car-6.jpg";
+import { useReveal } from "@/hooks/use-reveal";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "SAMURA AUTO — Автомобили из Азии, Европы и США под заказ" },
+      { name: "description", content: "Подбор, проверка, выкуп и доставка автомобилей под ключ. Прозрачная сделка на каждом этапе." },
+      { property: "og:title", content: "SAMURA AUTO — Импорт автомобилей под заказ" },
+      { property: "og:description", content: "Импорт · Уверенность · Под ключ" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
+const NAV = [
+  { label: "Каталог", href: "#catalog" },
+  { label: "Процесс", href: "#process" },
+  { label: "Преимущества", href: "#advantages" },
+  { label: "Отзывы", href: "#reviews" },
+  { label: "Контакты", href: "#contacts" },
+];
+
+function Header() {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+        scrolled ? "backdrop-blur-xl bg-background/70 border-b border-border" : ""
+      }`}
     >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
+      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 lg:px-10">
+        <a href="#top" className="flex items-center gap-3">
+          <img src={logo} alt="SAMURA AUTO" className="h-11 w-11 object-contain" width={44} height={44} />
+          <div className="leading-tight">
+            <div className="text-sm font-semibold tracking-[0.28em] text-metal">SAMURA</div>
+            <div className="text-[10px] tracking-[0.42em] text-blood">AUTO</div>
+          </div>
+        </a>
+        <nav className="hidden items-center gap-10 lg:flex">
+          {NAV.map((n) => (
+            <a key={n.href} href={n.href}
+              className="group relative text-sm tracking-wide text-silver-dim transition-colors hover:text-foreground">
+              {n.label}
+              <span className="absolute -bottom-1 left-0 h-px w-0 bg-blood transition-all duration-300 group-hover:w-full" />
+            </a>
+          ))}
+        </nav>
+        <a href="#hero-form" className="hidden lg:inline-flex items-center gap-2 border border-border bg-graphite/60 px-5 py-2.5 text-xs tracking-[0.2em] text-foreground transition-all hover:border-blood hover:text-blood">
+          СВЯЗАТЬСЯ <ArrowRight className="h-3.5 w-3.5" />
+        </a>
+        <button onClick={() => setOpen(!open)} className="lg:hidden text-foreground" aria-label="Menu">
+          {open ? <X /> : <Menu />}
+        </button>
+      </div>
+      {open && (
+        <div className="lg:hidden border-t border-border bg-background/95 backdrop-blur-xl">
+          <div className="flex flex-col px-6 py-6">
+            {NAV.map((n) => (
+              <a key={n.href} href={n.href} onClick={() => setOpen(false)}
+                className="border-b border-border/40 py-4 text-sm tracking-wide text-silver-dim hover:text-foreground">
+                {n.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+    </header>
+  );
+}
+
+function Hero() {
+  return (
+    <section id="top" className="relative min-h-screen overflow-hidden bg-grain">
+      <div className="absolute inset-0">
+        <img src={heroCar} alt="" className="absolute inset-0 h-full w-full object-cover opacity-50" width={1920} height={1080} />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
+      </div>
+      <div className="relative mx-auto flex min-h-screen max-w-[1400px] flex-col justify-center px-6 pt-32 pb-20 lg:px-10">
+        <div className="max-w-3xl">
+          <div className="mb-8 flex items-center gap-4">
+            <span className="h-px w-12 bg-blood" />
+            <span className="text-[11px] tracking-[0.5em] text-silver-dim">EST. 2018 — IMPORT BUREAU</span>
+          </div>
+          <h1 className="text-5xl font-light leading-[1.05] tracking-tight md:text-6xl lg:text-[88px]">
+            Автомобили из <span className="text-metal font-semibold">Азии, Европы</span><br />
+            и США <span className="text-blood font-semibold">под заказ</span>
+          </h1>
+          <p className="mt-8 max-w-xl text-lg leading-relaxed text-silver-dim">
+            Подбираем, проверяем, выкупаем и доставляем ваш автомобиль под ключ —
+            с полной прозрачностью на каждом этапе.
+          </p>
+          <div className="mt-10 flex flex-wrap items-center gap-4">
+            <a href="#hero-form" className="group inline-flex items-center gap-3 bg-blood px-8 py-4 text-sm font-medium tracking-[0.2em] text-primary-foreground shadow-red transition-all hover:bg-blood/90">
+              ПОДОБРАТЬ АВТО
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </a>
+            <a href="#catalog" className="inline-flex items-center gap-3 border border-border bg-background/40 px-8 py-4 text-sm tracking-[0.2em] text-foreground backdrop-blur transition-all hover:border-silver/40">
+              ОТКРЫТЬ КАТАЛОГ
+            </a>
+          </div>
+          <div className="mt-16 flex items-center gap-6">
+            <div className="text-[10px] tracking-[0.4em] text-silver-dim">ИМПОРТ</div>
+            <div className="h-px w-8 bg-border" />
+            <div className="text-[10px] tracking-[0.4em] text-silver">УВЕРЕННОСТЬ</div>
+            <div className="h-px w-8 bg-border" />
+            <div className="text-[10px] tracking-[0.4em] text-blood">ПОД КЛЮЧ</div>
+          </div>
+        </div>
+      </div>
+      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blood/40 to-transparent" />
+    </section>
+  );
+}
+
+function HeroForm() {
+  return (
+    <section id="hero-form" className="relative border-y border-border bg-graphite/40 py-24 lg:py-32">
+      <div className="mx-auto grid max-w-[1400px] gap-16 px-6 lg:grid-cols-[1fr_1.1fr] lg:gap-24 lg:px-10">
+        <div className="reveal">
+          <div className="mb-6 flex items-center gap-4">
+            <span className="h-px w-10 bg-blood" />
+            <span className="text-[11px] tracking-[0.5em] text-silver-dim">ЗАЯВКА</span>
+          </div>
+          <h2 className="text-4xl font-light leading-tight md:text-5xl lg:text-[56px]">
+            Какой автомобиль<br />хотите <span className="text-blood font-semibold">привезти?</span>
+          </h2>
+          <p className="mt-6 max-w-md text-silver-dim">
+            Эксперт SAMURA AUTO рассчитает стоимость, сроки доставки и реальную выгоду
+            по сравнению с рынком РФ.
+          </p>
+          <div className="mt-12 glass-card p-8">
+            <div className="flex items-start gap-4">
+              <div className="red-bar h-12" />
+              <div>
+                <div className="text-xs tracking-[0.3em] text-silver-dim">ПЕРСОНАЛЬНЫЙ ЭКСПЕРТ</div>
+                <p className="mt-3 text-lg leading-relaxed text-foreground">
+                  «Мы подбираем автомобиль так, как выбирали бы себе — с полной проверкой,
+                  честным расчётом и отчётами на каждом шаге».
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form
+          onSubmit={(e) => { e.preventDefault(); alert("Заявка отправлена. Мы свяжемся с вами."); }}
+          className="reveal glass-card p-8 lg:p-12"
+        >
+          <div className="grid gap-6 md:grid-cols-2">
+            <Field label="Марка авто" placeholder="Toyota, BMW, Lexus..." />
+            <Field label="Бюджет" placeholder="до 5 000 000 ₽" />
+            <Field label="Страна покупки" placeholder="Япония, Корея, Китай..." />
+            <Field label="Имя" placeholder="Ваше имя" />
+            <div className="md:col-span-2">
+              <Field label="Телефон" type="tel" placeholder="+7 (___) ___-__-__" />
+            </div>
+          </div>
+          <button type="submit" className="group mt-8 inline-flex w-full items-center justify-center gap-3 bg-blood px-8 py-4 text-sm font-medium tracking-[0.25em] text-primary-foreground shadow-red transition-all hover:bg-blood/90">
+            ПОЛУЧИТЬ РАСЧЁТ
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </button>
+          <p className="mt-4 text-center text-[11px] tracking-wider text-silver-dim">
+            Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
+          </p>
+        </form>
+      </div>
+    </section>
+  );
+}
+
+function Field({ label, placeholder, type = "text" }: { label: string; placeholder: string; type?: string }) {
+  return (
+    <label className="block">
+      <span className="block text-[10px] tracking-[0.3em] text-silver-dim mb-2">{label.toUpperCase()}</span>
+      <input
+        type={type}
+        placeholder={placeholder}
+        className="w-full border-0 border-b border-border bg-transparent py-3 text-foreground placeholder:text-silver-dim/60 outline-none transition-colors focus:border-blood"
       />
+    </label>
+  );
+}
+
+const ADVANTAGES = [
+  { icon: ShieldCheck, title: "Прозрачная сделка", text: "Вы понимаете каждый этап: от подбора до передачи ключей." },
+  { icon: Search, title: "Проверка авто", text: "Кузов, двигатель, подвеска, документы и история автомобиля." },
+  { icon: PiggyBank, title: "Выгода покупки", text: "Находим автомобили с реальной экономией относительно рынка РФ." },
+  { icon: Truck, title: "Доставка под ключ", text: "Логистика, документы, таможня и полное сопровождение сделки." },
+  { icon: FileLock2, title: "Защита клиента", text: "Работаем по договору и фиксируем все условия до начала сделки." },
+  { icon: Camera, title: "Отчёты на каждом этапе", text: "Фото, видео и статусы без неопределённости и догадок." },
+];
+
+function Advantages() {
+  return (
+    <section id="advantages" className="py-24 lg:py-40">
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+        <SectionHead eyebrow="ПРЕИМУЩЕСТВА" title={<>Почему клиенты выбирают<br /><span className="text-blood font-semibold">SAMURA AUTO</span></>} />
+        <div className="mt-20 grid gap-px bg-border md:grid-cols-2 lg:grid-cols-3">
+          {ADVANTAGES.map((a, i) => (
+            <div key={i} className="reveal group relative bg-background p-10 transition-all duration-500 hover:bg-graphite/60">
+              <div className="absolute left-0 top-0 h-0 w-px bg-blood transition-all duration-500 group-hover:h-full" />
+              <a.icon className="h-8 w-8 text-blood" strokeWidth={1.2} />
+              <h3 className="mt-8 text-xl font-medium text-foreground">{a.title}</h3>
+              <p className="mt-4 text-sm leading-relaxed text-silver-dim">{a.text}</p>
+              <div className="mt-8 text-[10px] tracking-[0.4em] text-silver-dim">0{i + 1}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const STEPS = [
+  ["Заявка и консультация", "Уточняем задачу, бюджет и пожелания к авто."],
+  ["Подбор автомобиля", "Анализируем аукционы и площадки в выбранной стране."],
+  ["Осмотр и согласование", "Делаем фото- и видеоотчёт, обсуждаем с клиентом."],
+  ["Выкуп", "Покупаем автомобиль от вашего имени, фиксируем сделку."],
+  ["Логистика и документы", "Транспортировка, таможня, оформление всех документов."],
+  ["Доставка в город", "Привозим автомобиль к терминалу или к клиенту."],
+  ["Передача и ключи", "Финальная проверка и передача автомобиля владельцу."],
+];
+
+function Process() {
+  return (
+    <section id="process" className="relative overflow-hidden bg-graphite/40 py-24 lg:py-40">
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+        <SectionHead eyebrow="ПРОЦЕСС" title={<>Семь этапов <span className="text-blood font-semibold">до ваших ключей</span></>} />
+        <div className="mt-20 grid gap-px bg-border lg:grid-cols-7">
+          {STEPS.map(([title, text], i) => (
+            <div key={i} className="reveal relative bg-background p-8 transition-colors hover:bg-graphite/60">
+              <div className="flex items-baseline justify-between border-b border-border pb-4">
+                <span className="text-3xl font-light text-metal">0{i + 1}</span>
+                <span className="text-[9px] tracking-[0.3em] text-blood">ЭТАП</span>
+              </div>
+              <h3 className="mt-6 text-base font-medium leading-snug text-foreground">{title}</h3>
+              <p className="mt-3 text-xs leading-relaxed text-silver-dim">{text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const CARS = [
+  { img: car1, brand: "BMW", model: "5 Series", year: 2023, mileage: "18 000 км", country: "Германия", price: "6 480 000 ₽", flag: "Европа" },
+  { img: car2, brand: "Toyota", model: "Land Cruiser 300", year: 2024, mileage: "5 200 км", country: "Япония", price: "12 900 000 ₽", flag: "Япония" },
+  { img: car3, brand: "Porsche", model: "911 Carrera", year: 2022, mileage: "22 400 км", country: "США", price: "14 200 000 ₽", flag: "США" },
+  { img: car4, brand: "Lexus", model: "RX 500h", year: 2024, mileage: "3 800 км", country: "Корея", price: "9 350 000 ₽", flag: "Корея" },
+  { img: car5, brand: "Toyota", model: "GR Supra", year: 2023, mileage: "9 600 км", country: "Япония", price: "7 800 000 ₽", flag: "Япония" },
+  { img: car6, brand: "Mercedes-Benz", model: "E-Class", year: 2024, mileage: "6 100 км", country: "Китай", price: "8 100 000 ₽", flag: "Китай" },
+];
+
+const FILTERS = ["Все", "Китай", "Япония", "Корея", "Европа", "США"];
+
+function Catalog() {
+  const [filter, setFilter] = useState("Все");
+  const filtered = filter === "Все" ? CARS : CARS.filter((c) => c.flag === filter);
+  return (
+    <section id="catalog" className="py-24 lg:py-40">
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+        <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+          <SectionHead eyebrow="КАТАЛОГ" title={<>Автомобили <span className="text-blood font-semibold">на доставку</span></>} className="lg:max-w-2xl" />
+          <div className="flex flex-wrap gap-2">
+            {FILTERS.map((f) => (
+              <button key={f} onClick={() => setFilter(f)}
+                className={`border px-5 py-2.5 text-[11px] tracking-[0.25em] transition-all ${
+                  filter === f
+                    ? "border-blood bg-blood text-primary-foreground"
+                    : "border-border text-silver-dim hover:border-silver/40 hover:text-foreground"
+                }`}>
+                {f.toUpperCase()}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {filtered.map((c, i) => (
+            <article key={i} className="reveal group hover-lift overflow-hidden border border-border bg-graphite/40">
+              <div className="relative aspect-[4/3] overflow-hidden bg-background">
+                <img src={c.img} alt={`${c.brand} ${c.model}`} loading="lazy" width={1024} height={768}
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+                <span className="absolute left-4 top-4 border border-silver/20 bg-background/70 px-3 py-1 text-[10px] tracking-[0.3em] text-silver backdrop-blur">
+                  {c.flag.toUpperCase()}
+                </span>
+              </div>
+              <div className="p-7">
+                <div className="flex items-baseline justify-between">
+                  <div>
+                    <div className="text-[10px] tracking-[0.3em] text-silver-dim">{c.brand.toUpperCase()}</div>
+                    <h3 className="mt-1 text-xl font-medium text-foreground">{c.model}</h3>
+                  </div>
+                  <div className="text-right text-[11px] tracking-wider text-silver-dim">{c.year}</div>
+                </div>
+                <div className="mt-6 flex justify-between border-t border-border pt-4 text-xs text-silver-dim">
+                  <span>{c.mileage}</span>
+                  <span>{c.country}</span>
+                </div>
+                <div className="mt-6 flex items-end justify-between">
+                  <div>
+                    <div className="text-[10px] tracking-[0.3em] text-silver-dim">ОТ</div>
+                    <div className="text-2xl font-light text-metal">{c.price}</div>
+                  </div>
+                </div>
+                <div className="mt-7 flex gap-2">
+                  <button className="flex-1 border border-border px-4 py-3 text-[10px] tracking-[0.25em] text-foreground transition-colors hover:border-silver/40">
+                    ПОДРОБНЕЕ
+                  </button>
+                  <button className="flex-1 bg-blood px-4 py-3 text-[10px] tracking-[0.25em] text-primary-foreground transition-colors hover:bg-blood/90">
+                    РАСЧЁТ
+                  </button>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const STATS = [
+  { num: "21", suf: "дн", label: "Сроки доставки от" },
+  { num: "100", suf: "%", label: "Сопровождение сделки" },
+  { num: "6+", suf: "лет", label: "Опыта работы" },
+  { num: "900+", suf: "", label: "Довольных клиентов" },
+  { num: "30", suf: "%", label: "Экономия до" },
+];
+
+function Numbers() {
+  return (
+    <section className="relative overflow-hidden border-y border-border bg-background py-24 lg:py-32">
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute -top-32 left-1/2 h-96 w-[80%] -translate-x-1/2 rounded-full bg-blood/20 blur-3xl" />
+      </div>
+      <div className="relative mx-auto max-w-[1400px] px-6 lg:px-10">
+        <div className="grid gap-12 md:grid-cols-3 lg:grid-cols-5">
+          {STATS.map((s, i) => (
+            <div key={i} className="reveal text-center">
+              <div className="flex items-baseline justify-center gap-1">
+                <div className="num-metal text-6xl font-extralight tracking-tighter md:text-7xl">{s.num}</div>
+                {s.suf && <div className="text-2xl font-light text-blood">{s.suf}</div>}
+              </div>
+              <div className="mt-4 text-[11px] tracking-[0.3em] text-silver-dim">{s.label.toUpperCase()}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function About() {
+  return (
+    <section className="py-24 lg:py-40">
+      <div className="mx-auto grid max-w-[1400px] gap-16 px-6 lg:grid-cols-[1fr_1.3fr] lg:gap-24 lg:px-10">
+        <div className="reveal">
+          <div className="mb-6 flex items-center gap-4">
+            <span className="h-px w-10 bg-blood" />
+            <span className="text-[11px] tracking-[0.5em] text-silver-dim">О КОМПАНИИ</span>
+          </div>
+          <h2 className="text-4xl font-light leading-tight md:text-5xl">
+            Команда, которая<br />берёт <span className="text-blood font-semibold">ответственность</span>
+          </h2>
+        </div>
+        <div className="reveal">
+          <p className="text-lg leading-relaxed text-silver">
+            <span className="font-semibold text-foreground">SAMURA AUTO</span> — команда,
+            которая помогает клиентам покупать автомобили за рубежом спокойно,
+            прозрачно и выгодно.
+          </p>
+          <p className="mt-6 leading-relaxed text-silver-dim">
+            Мы берём на себя подбор, проверку, выкуп, доставку и оформление, чтобы
+            клиент получал не просто автомобиль, а уверенность в каждом решении.
+            Каждая сделка ведётся по договору, каждое решение согласовывается
+            с владельцем.
+          </p>
+          <a href="#contacts" className="mt-10 inline-flex items-center gap-3 border border-border px-8 py-4 text-sm tracking-[0.25em] text-foreground transition-all hover:border-blood hover:text-blood">
+            СВЯЗАТЬСЯ С НАМИ
+            <ArrowRight className="h-4 w-4" />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const RISKS = [
+  { icon: AlertTriangle, title: "Скрытые повреждения" },
+  { icon: Gauge, title: "Скрученный пробег" },
+  { icon: FileWarning, title: "Проблемы с документами" },
+  { icon: History, title: "Непонятная история авто" },
+  { icon: CreditCard, title: "Ошибки в оплате и доставке" },
+  { icon: AlertOctagon, title: "Неожиданные расходы" },
+];
+
+function Risks() {
+  return (
+    <section className="bg-graphite/40 py-24 lg:py-40">
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+        <SectionHead eyebrow="РИСКИ" title={<>Почему самостоятельная покупка<br /><span className="text-blood font-semibold">может быть опасной</span></>} />
+        <div className="mt-20 grid gap-px bg-border md:grid-cols-2 lg:grid-cols-3">
+          {RISKS.map((r, i) => (
+            <div key={i} className="reveal flex items-center gap-6 bg-background p-8">
+              <r.icon className="h-7 w-7 shrink-0 text-blood" strokeWidth={1.2} />
+              <span className="text-lg font-light text-foreground">{r.title}</span>
+            </div>
+          ))}
+        </div>
+        <div className="reveal mt-16 relative overflow-hidden border border-border bg-background p-12 lg:p-16">
+          <div className="absolute left-0 top-0 h-full w-1 bg-blood" />
+          <p className="text-2xl font-light leading-snug text-foreground md:text-3xl">
+            <span className="text-blood">SAMURA AUTO</span> берёт эти риски на себя
+            и ведёт сделку до момента передачи ключей.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const REVIEWS = [
+  { name: "Алексей Воронов", city: "Москва", car: "Lexus LX 600", text: "Полное сопровождение от и до. Машина соответствует заявленному состоянию на 100%. Команда на связи 24/7." },
+  { name: "Дмитрий Курсков", city: "Санкт-Петербург", car: "BMW X7", text: "Сэкономил около 1,8 млн ₽ по сравнению с рынком РФ. Все этапы прозрачны, отчёты приходили вовремя." },
+  { name: "Наталья Симонова", city: "Екатеринбург", car: "Toyota Land Cruiser 300", text: "Доставили за 24 дня. Очень довольна подходом — никаких сюрпризов, всё чётко по договору." },
+  { name: "Игорь Васнецов", city: "Краснодар", car: "Porsche Cayenne", text: "Профессиональный осмотр на аукционе спас меня от плохой покупки. Подобрали другой вариант — идеальный." },
+];
+
+function Reviews() {
+  const [idx, setIdx] = useState(0);
+  const total = REVIEWS.length;
+  return (
+    <section id="reviews" className="py-24 lg:py-40">
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+        <SectionHead eyebrow="ОТЗЫВЫ" title={<>Что говорят <span className="text-blood font-semibold">клиенты</span></>} />
+        <div className="reveal mt-16 grid gap-12 lg:grid-cols-[1.4fr_1fr]">
+          <div className="glass-card relative p-10 lg:p-16">
+            <div className="absolute left-10 top-10 text-7xl font-light text-blood/30">"</div>
+            <p className="relative text-2xl font-light leading-snug text-foreground md:text-3xl">
+              {REVIEWS[idx].text}
+            </p>
+            <div className="mt-10 flex items-end justify-between border-t border-border pt-8">
+              <div>
+                <div className="text-lg font-medium text-foreground">{REVIEWS[idx].name}</div>
+                <div className="mt-1 text-xs tracking-[0.25em] text-silver-dim">
+                  {REVIEWS[idx].city.toUpperCase()} · {REVIEWS[idx].car.toUpperCase()}
+                </div>
+              </div>
+              <div className="flex gap-2">
+                <button onClick={() => setIdx((idx - 1 + total) % total)}
+                  className="border border-border p-3 transition-colors hover:border-blood hover:text-blood">
+                  <ChevronLeft className="h-4 w-4" />
+                </button>
+                <button onClick={() => setIdx((idx + 1) % total)}
+                  className="border border-border p-3 transition-colors hover:border-blood hover:text-blood">
+                  <ChevronRight className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col justify-between gap-6">
+            <div className="space-y-4">
+              {REVIEWS.map((r, i) => (
+                <button key={i} onClick={() => setIdx(i)}
+                  className={`flex w-full items-center gap-4 border px-6 py-4 text-left transition-all ${
+                    idx === i ? "border-blood bg-graphite/60" : "border-border hover:border-silver/40"
+                  }`}>
+                  <span className={`text-xs tracking-[0.3em] ${idx === i ? "text-blood" : "text-silver-dim"}`}>0{i+1}</span>
+                  <span className="flex-1 text-sm text-foreground">{r.name}</span>
+                  <span className="text-[10px] tracking-[0.2em] text-silver-dim">{r.car}</span>
+                </button>
+              ))}
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <a href="#" className="border border-border px-5 py-4 text-center text-[11px] tracking-[0.25em] text-foreground transition-colors hover:border-blood hover:text-blood">
+                ОТЗЫВЫ ВК
+              </a>
+              <a href="#" className="border border-border px-5 py-4 text-center text-[11px] tracking-[0.25em] text-foreground transition-colors hover:border-blood hover:text-blood">
+                ОТЗЫВЫ 2GIS
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const FAQ = [
+  ["Как происходит процесс покупки автомобиля?", "Мы фиксируем задачу, подбираем варианты на зарубежных аукционах, проводим осмотр и согласование с вами, выкупаем автомобиль, оформляем документы и доставляем в ваш город."],
+  ["Сколько занимает доставка?", "От 21 дня. Точный срок зависит от страны происхождения, способа доставки и текущей загрузки логистики."],
+  ["Как происходит оплата?", "Все этапы фиксируются договором. Оплата производится поэтапно: предоплата за подбор, оплата за автомобиль и финальный расчёт за доставку и услуги."],
+  ["Можно ли заказать автомобиль в свой город?", "Да. Мы организуем доставку автомобиля до терминала или до адреса в любом городе России."],
+  ["Какие гарантии я получаю?", "Договор с фиксацией условий, отчёты на каждом этапе, проверка автомобиля профильным экспертом, прозрачная финансовая модель."],
+  ["Что входит в услугу под ключ?", "Подбор, проверка, выкуп, оплата, логистика, таможня, оформление документов и передача автомобиля клиенту."],
+];
+
+function Faq() {
+  const [open, setOpen] = useState<number | null>(0);
+  return (
+    <section className="bg-graphite/40 py-24 lg:py-40">
+      <div className="mx-auto max-w-[1100px] px-6 lg:px-10">
+        <SectionHead eyebrow="FAQ" title={<>Частые <span className="text-blood font-semibold">вопросы</span></>} center />
+        <div className="mt-16 divide-y divide-border border-y border-border">
+          {FAQ.map(([q, a], i) => (
+            <div key={i} className="reveal">
+              <button onClick={() => setOpen(open === i ? null : i)}
+                className="flex w-full items-center justify-between gap-6 py-7 text-left transition-colors hover:text-blood">
+                <span className="text-lg font-light text-foreground md:text-xl">{q}</span>
+                {open === i ? <Minus className="h-5 w-5 text-blood shrink-0" /> : <Plus className="h-5 w-5 text-silver-dim shrink-0" />}
+              </button>
+              <div className={`grid transition-all duration-500 ${open === i ? "grid-rows-[1fr] pb-8 opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+                <div className="overflow-hidden">
+                  <p className="max-w-3xl text-base leading-relaxed text-silver-dim">{a}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FinalCta() {
+  return (
+    <section id="contacts" className="relative overflow-hidden">
+      <div className="absolute inset-0">
+        <img src={ctaCar} alt="" loading="lazy" width={1920} height={900} className="absolute inset-0 h-full w-full object-cover opacity-40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/60" />
+      </div>
+      <div className="relative mx-auto grid max-w-[1400px] gap-16 px-6 py-28 lg:grid-cols-[1.1fr_1fr] lg:gap-20 lg:px-10 lg:py-40">
+        <div className="reveal">
+          <div className="mb-6 flex items-center gap-4">
+            <span className="h-px w-10 bg-blood" />
+            <span className="text-[11px] tracking-[0.5em] text-silver-dim">КОНТАКТЫ</span>
+          </div>
+          <h2 className="text-4xl font-light leading-[1.05] md:text-5xl lg:text-6xl">
+            Хотите привезти авто<br />
+            <span className="text-blood font-semibold">без лишних рисков?</span>
+          </h2>
+          <p className="mt-8 max-w-lg text-lg text-silver-dim">
+            Оставьте заявку — рассчитаем стоимость, сроки и лучшие варианты под ваш бюджет.
+          </p>
+          <div className="mt-12 space-y-6">
+            <ContactRow icon={Phone} label="ТЕЛЕФОН" value="+7 (800) 555-00-00" />
+            <ContactRow icon={Send} label="TELEGRAM" value="@samura_auto" />
+            <ContactRow icon={MessageCircle} label="WHATSAPP" value="+7 (914) 000-00-00" />
+            <ContactRow icon={MapPin} label="АДРЕС" value="Владивосток, ул. Светланская, 1" />
+          </div>
+        </div>
+        <form onSubmit={(e) => { e.preventDefault(); alert("Заявка отправлена."); }}
+          className="reveal glass-card p-8 lg:p-12">
+          <div className="space-y-6">
+            <Field label="Имя" placeholder="Ваше имя" />
+            <Field label="Телефон" type="tel" placeholder="+7 (___) ___-__-__" />
+            <Field label="Желаемый авто" placeholder="Марка / модель" />
+          </div>
+          <button type="submit" className="group mt-10 inline-flex w-full items-center justify-center gap-3 bg-blood px-8 py-4 text-sm font-medium tracking-[0.25em] text-primary-foreground shadow-red transition-all hover:bg-blood/90">
+            ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </button>
+        </form>
+      </div>
+    </section>
+  );
+}
+
+function ContactRow({ icon: Icon, label, value }: { icon: typeof Phone; label: string; value: string }) {
+  return (
+    <div className="flex items-center gap-6 border-b border-border pb-5">
+      <Icon className="h-5 w-5 text-blood" strokeWidth={1.4} />
+      <div>
+        <div className="text-[10px] tracking-[0.3em] text-silver-dim">{label}</div>
+        <div className="mt-1 text-lg text-foreground">{value}</div>
+      </div>
+    </div>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="border-t border-border bg-background">
+      <div className="mx-auto max-w-[1400px] px-6 py-16 lg:px-10">
+        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+          <div>
+            <div className="flex items-center gap-3">
+              <img src={logo} alt="" className="h-10 w-10 object-contain" width={40} height={40} loading="lazy" />
+              <div>
+                <div className="text-sm font-semibold tracking-[0.28em] text-metal">SAMURA</div>
+                <div className="text-[10px] tracking-[0.42em] text-blood">AUTO</div>
+              </div>
+            </div>
+            <p className="mt-6 max-w-sm text-sm leading-relaxed text-silver-dim">
+              Импорт автомобилей из Азии, Европы и США. Подбор, проверка, выкуп и доставка под ключ.
+            </p>
+          </div>
+          <FooterCol title="НАВИГАЦИЯ" items={NAV.map(n => n.label)} />
+          <FooterCol title="КОНТАКТЫ" items={["+7 (800) 555-00-00", "@samura_auto", "Владивосток"]} />
+          <FooterCol title="ДОКУМЕНТЫ" items={["Политика конфиденциальности", "Реквизиты компании", "Договор оферты"]} />
+        </div>
+        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-border pt-8 text-xs text-silver-dim md:flex-row md:items-center">
+          <div>© {new Date().getFullYear()} SAMURA AUTO. Все права защищены.</div>
+          <div className="tracking-[0.3em]">ИМПОРТ · УВЕРЕННОСТЬ · ПОД КЛЮЧ</div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function FooterCol({ title, items }: { title: string; items: string[] }) {
+  return (
+    <div>
+      <div className="text-[10px] tracking-[0.4em] text-silver">{title}</div>
+      <ul className="mt-6 space-y-3">
+        {items.map((i) => (
+          <li key={i}><a href="#" className="text-sm text-silver-dim transition-colors hover:text-blood">{i}</a></li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function SectionHead({ eyebrow, title, center, className = "" }: { eyebrow: string; title: React.ReactNode; center?: boolean; className?: string }) {
+  return (
+    <div className={`reveal ${center ? "text-center" : ""} ${className}`}>
+      <div className={`mb-6 flex items-center gap-4 ${center ? "justify-center" : ""}`}>
+        <span className="h-px w-10 bg-blood" />
+        <span className="text-[11px] tracking-[0.5em] text-silver-dim">{eyebrow}</span>
+        {center && <span className="h-px w-10 bg-blood" />}
+      </div>
+      <h2 className="text-4xl font-light leading-[1.05] md:text-5xl lg:text-[64px]">{title}</h2>
     </div>
   );
 }
 
 function Index() {
-  return <PlaceholderIndex />;
+  useReveal();
+  return (
+    <div className="min-h-screen bg-background text-foreground">
+      <Header />
+      <main>
+        <Hero />
+        <HeroForm />
+        <Advantages />
+        <Process />
+        <Catalog />
+        <Numbers />
+        <About />
+        <Risks />
+        <Reviews />
+        <Faq />
+        <FinalCta />
+      </main>
+      <Footer />
+    </div>
+  );
 }
