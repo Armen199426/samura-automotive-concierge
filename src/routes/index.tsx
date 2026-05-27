@@ -593,16 +593,25 @@ function FinalCta() {
   );
 }
 
-function ContactRow({ icon: Icon, label, value }: { icon: typeof Phone; label: string; value: string }) {
-  return (
-    <div className="flex items-center gap-6 border-b border-border pb-5">
+function ContactRow({ icon: Icon, label, value, href }: { icon: typeof Phone; label: string; value: string; href?: string }) {
+  const content = (
+    <>
       <Icon className="h-5 w-5 text-blood" strokeWidth={1.4} />
       <div>
         <div className="text-[10px] tracking-[0.3em] text-silver-dim">{label}</div>
         <div className="mt-1 text-lg text-foreground">{value}</div>
       </div>
-    </div>
+    </>
   );
+  if (href) {
+    return (
+      <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+        className="flex items-center gap-6 border-b border-border pb-5 transition-colors hover:text-blood">
+        {content}
+      </a>
+    );
+  }
+  return <div className="flex items-center gap-6 border-b border-border pb-5">{content}</div>;
 }
 
 function Footer() {
