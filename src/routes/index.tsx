@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
-  ShieldCheck, Search, PiggyBank, Truck, FileLock2, Camera,
+  ShieldCheck, Search, Banknote, Truck, FileLock2, Camera,
   ArrowRight, Phone, MessageCircle, MapPin, Menu, X, Plus, Minus,
   AlertTriangle, Gauge, FileWarning, History, CreditCard, AlertOctagon,
   ChevronLeft, ChevronRight, Send,
@@ -104,10 +104,10 @@ function Hero() {
         <div className="max-w-3xl">
           <div className="mb-8 flex items-center gap-4">
             <span className="h-px w-12 bg-blood" />
-            <span className="text-[11px] tracking-[0.5em] text-silver-dim">EST. 2018 — IMPORT BUREAU</span>
+            <span className="text-[11px] tracking-[0.5em] text-silver-dim">EST. 2019</span>
           </div>
           <h1 className="text-5xl font-light leading-[1.05] tracking-tight md:text-6xl lg:text-[88px]">
-            Автомобили из <span className="text-metal font-semibold">Азии, Европы</span><br />
+            Автомобили из <span className="text-metal font-semibold">Китая, Японии, Южной Кореи, Европы</span><br />
             и США <span className="text-blood font-semibold">под заказ</span>
           </h1>
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-silver-dim">
@@ -209,7 +209,7 @@ function Field({ label, placeholder, type = "text" }: { label: string; placehold
 const ADVANTAGES = [
   { icon: ShieldCheck, title: "Прозрачная сделка", text: "Вы понимаете каждый этап: от подбора до передачи ключей." },
   { icon: Search, title: "Проверка авто", text: "Кузов, двигатель, подвеска, документы и история автомобиля." },
-  { icon: PiggyBank, title: "Выгода покупки", text: "Находим автомобили с реальной экономией относительно рынка РФ." },
+  { icon: Banknote, title: "Выгода покупки", text: "Находим автомобили с реальной экономией относительно рынка РФ." },
   { icon: Truck, title: "Доставка под ключ", text: "Логистика, документы, таможня и полное сопровождение сделки." },
   { icon: FileLock2, title: "Защита клиента", text: "Работаем по договору и фиксируем все условия до начала сделки." },
   { icon: Camera, title: "Отчёты на каждом этапе", text: "Фото, видео и статусы без неопределённости и догадок." },
@@ -238,11 +238,11 @@ function Advantages() {
 
 const STEPS = [
   ["Заявка и консультация", "Уточняем задачу, бюджет и пожелания к авто."],
-  ["Подбор автомобиля", "Анализируем аукционы и площадки в выбранной стране."],
-  ["Осмотр и согласование", "Делаем фото- и видеоотчёт, обсуждаем с клиентом."],
-  ["Выкуп", "Покупаем автомобиль от вашего имени, фиксируем сделку."],
+  ["Подбор автомобиля и заключение договора", "Анализируем аукционы и площадки в выбранной стране."],
+  ["Осмотр и согласование", "Делаем полную диагностику авто с фото- и видеоотчётом, обсуждаем с клиентом."],
+  ["Выкуп", "Покупаем автомобиль с аукциона или площадки в выбранной стране."],
   ["Логистика и документы", "Транспортировка, таможня, оформление всех документов."],
-  ["Доставка в город", "Привозим автомобиль к терминалу или к клиенту."],
+  ["Доставка в город", "Привозим автомобиль на стоянку или к клиенту."],
   ["Передача и ключи", "Финальная проверка и передача автомобиля владельцу."],
 ];
 
@@ -330,12 +330,12 @@ function Catalog() {
                   </div>
                 </div>
                 <div className="mt-7 flex gap-2">
-                  <button className="flex-1 border border-border px-4 py-3 text-[10px] tracking-[0.25em] text-foreground transition-colors hover:border-silver/40">
+                  <a href="#contacts" className="flex-1 border border-border px-4 py-3 text-center text-[10px] tracking-[0.25em] text-foreground transition-colors hover:border-silver/40">
                     ПОДРОБНЕЕ
-                  </button>
-                  <button className="flex-1 bg-blood px-4 py-3 text-[10px] tracking-[0.25em] text-primary-foreground transition-colors hover:bg-blood/90">
+                  </a>
+                  <a href="#hero-form" className="flex-1 bg-blood px-4 py-3 text-center text-[10px] tracking-[0.25em] text-primary-foreground transition-colors hover:bg-blood/90">
                     РАСЧЁТ
-                  </button>
+                  </a>
                 </div>
               </div>
             </article>
@@ -570,10 +570,10 @@ function FinalCta() {
             Оставьте заявку — рассчитаем стоимость, сроки и лучшие варианты под ваш бюджет.
           </p>
           <div className="mt-12 space-y-6">
-            <ContactRow icon={Phone} label="ТЕЛЕФОН" value="+7 (800) 555-00-00" />
-            <ContactRow icon={Send} label="TELEGRAM" value="@samura_auto" />
-            <ContactRow icon={MessageCircle} label="WHATSAPP" value="+7 (914) 000-00-00" />
-            <ContactRow icon={MapPin} label="АДРЕС" value="Владивосток, ул. Светланская, 1" />
+            <ContactRow icon={Phone} label="ТЕЛЕФОН" value="8 950 060 51 80" href="tel:+79500605180" />
+            <ContactRow icon={Send} label="TELEGRAM" value="@samurauto" href="https://t.me/samurauto" />
+            <ContactRow icon={MessageCircle} label="MAX" value="8 950 060 51 80" href="tel:+79500605180" />
+            <ContactRow icon={MapPin} label="АДРЕС" value="г. Иркутск, ул. Угольный проезд 68/3" />
           </div>
         </div>
         <form onSubmit={(e) => { e.preventDefault(); alert("Заявка отправлена."); }}
@@ -593,16 +593,25 @@ function FinalCta() {
   );
 }
 
-function ContactRow({ icon: Icon, label, value }: { icon: typeof Phone; label: string; value: string }) {
-  return (
-    <div className="flex items-center gap-6 border-b border-border pb-5">
+function ContactRow({ icon: Icon, label, value, href }: { icon: typeof Phone; label: string; value: string; href?: string }) {
+  const content = (
+    <>
       <Icon className="h-5 w-5 text-blood" strokeWidth={1.4} />
       <div>
         <div className="text-[10px] tracking-[0.3em] text-silver-dim">{label}</div>
         <div className="mt-1 text-lg text-foreground">{value}</div>
       </div>
-    </div>
+    </>
   );
+  if (href) {
+    return (
+      <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+        className="flex items-center gap-6 border-b border-border pb-5 transition-colors hover:text-blood">
+        {content}
+      </a>
+    );
+  }
+  return <div className="flex items-center gap-6 border-b border-border pb-5">{content}</div>;
 }
 
 function Footer() {
