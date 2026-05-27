@@ -330,12 +330,12 @@ function Catalog() {
                   </div>
                 </div>
                 <div className="mt-7 flex gap-2">
-                  <button className="flex-1 border border-border px-4 py-3 text-[10px] tracking-[0.25em] text-foreground transition-colors hover:border-silver/40">
+                  <a href="#contacts" className="flex-1 border border-border px-4 py-3 text-center text-[10px] tracking-[0.25em] text-foreground transition-colors hover:border-silver/40">
                     ПОДРОБНЕЕ
-                  </button>
-                  <button className="flex-1 bg-blood px-4 py-3 text-[10px] tracking-[0.25em] text-primary-foreground transition-colors hover:bg-blood/90">
+                  </a>
+                  <a href="#hero-form" className="flex-1 bg-blood px-4 py-3 text-center text-[10px] tracking-[0.25em] text-primary-foreground transition-colors hover:bg-blood/90">
                     РАСЧЁТ
-                  </button>
+                  </a>
                 </div>
               </div>
             </article>
