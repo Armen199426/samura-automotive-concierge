@@ -104,10 +104,10 @@ function Hero() {
         <div className="max-w-3xl">
           <div className="mb-8 flex items-center gap-4">
             <span className="h-px w-12 bg-blood" />
-            <span className="text-[11px] tracking-[0.5em] text-silver-dim">EST. 2018 — IMPORT BUREAU</span>
+            <span className="text-[11px] tracking-[0.5em] text-silver-dim">EST. 2019</span>
           </div>
           <h1 className="text-5xl font-light leading-[1.05] tracking-tight md:text-6xl lg:text-[88px]">
-            Автомобили из <span className="text-metal font-semibold">Азии, Европы</span><br />
+            Автомобили из <span className="text-metal font-semibold">Китая, Японии, Южной Кореи, Европы</span><br />
             и США <span className="text-blood font-semibold">под заказ</span>
           </h1>
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-silver-dim">
