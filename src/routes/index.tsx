@@ -341,7 +341,7 @@ function Catalog() {
 
         <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {shown.map((c, i) => (
-            <article key={i} className="reveal group relative overflow-hidden border border-border bg-graphite/40 transition-all duration-500 hover:border-blood/60 hover:shadow-red">
+            <article key={i} className="group relative overflow-hidden border border-border bg-graphite/40 transition-all duration-500 hover:border-blood/60 hover:shadow-red">
               <div className="relative aspect-[4/3] overflow-hidden bg-background">
                 <img
                   src={c.img}
@@ -357,28 +357,29 @@ function Catalog() {
                   {c.year}
                 </span>
               </div>
-              <div className="p-7">
+              <div className="p-6 pb-5">
                 <div className="text-[10px] tracking-[0.3em] text-silver-dim">{c.brand}</div>
-                <h3 className="mt-1 text-xl font-medium text-foreground">{c.model}</h3>
-                <div className="mt-5 grid grid-cols-2 gap-y-2 border-t border-border pt-4 text-[11px] text-silver-dim">
-                  <span>Пробег: <span className="text-silver">{c.mileage} км</span></span>
-                  <span>КПП: <span className="text-silver">{c.transmission}</span></span>
+                <h3 className="mt-1 text-lg font-medium text-foreground line-clamp-1">{c.model}</h3>
+                <div className="mt-3 grid grid-cols-2 gap-y-1.5 border-t border-border pt-3 text-[11px] text-silver-dim">
+                  {c.mileage && c.mileage !== "—" && <span>Пробег: <span className="text-silver">{c.mileage}</span></span>}
+                  {c.transmission && <span>КПП: <span className="text-silver">{c.transmission}</span></span>}
                   {c.displacement && <span>Объём: <span className="text-silver">{c.displacement}</span></span>}
-                  <span>Топливо: <span className="text-silver">{c.fuel}</span></span>
-                  <span>Привод: <span className="text-silver">{c.drivetrain}</span></span>
+                  {c.fuel && <span>Топливо: <span className="text-silver">{c.fuel}</span></span>}
+                  {c.drivetrain && <span>Привод: <span className="text-silver">{c.drivetrain}</span></span>}
+                  {c.body && <span>Кузов: <span className="text-silver">{c.body}</span></span>}
                 </div>
-                <div className="mt-6">
-                  <div className="text-[10px] tracking-[0.3em] text-silver-dim">ОТ</div>
-                  <div className="text-2xl font-light text-metal">{c.price} ₽</div>
+                <div className="mt-3">
+                  <div className="text-[9px] tracking-[0.3em] text-silver-dim">ОТ</div>
+                  <div className="text-lg font-light text-metal leading-tight">{c.price} ₽</div>
                 </div>
               </div>
-              {/* Hover overlay button */}
+              {/* Hover overlay button — compact, anchored bottom-right so it doesn't cover the price */}
               <a
                 href="#hero-form"
-                className="pointer-events-none absolute inset-x-0 bottom-0 flex translate-y-full items-center justify-center gap-3 bg-blood px-6 py-4 text-[11px] font-medium tracking-[0.3em] text-primary-foreground opacity-0 transition-all duration-500 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100"
+                className="pointer-events-none absolute bottom-3 right-3 flex translate-y-2 items-center gap-2 bg-blood px-4 py-2 text-[10px] font-medium tracking-[0.25em] text-primary-foreground opacity-0 shadow-red transition-all duration-300 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100"
               >
                 ПОДРОБНЕЕ
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-3.5 w-3.5" />
               </a>
             </article>
           ))}
@@ -387,10 +388,10 @@ function Catalog() {
         {visible < filtered.length && (
           <div className="mt-12 flex justify-center">
             <button
-              onClick={() => setVisible((v) => v + 9)}
+              onClick={() => setVisible((v) => v + 12)}
               className="border border-border px-8 py-4 text-[11px] tracking-[0.3em] text-foreground transition-all hover:border-blood hover:text-blood"
             >
-              ПОКАЗАТЬ ЕЩЁ
+              ПОКАЗАТЬ ЕЩЁ <span className="ml-2 text-silver-dim">({filtered.length - visible})</span>
             </button>
           </div>
         )}
