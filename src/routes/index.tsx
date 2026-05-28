@@ -271,7 +271,7 @@ function Catalog() {
   const [brand, setBrand] = useState<string>("Все");
   const [fuel, setFuel] = useState<string>("Все");
   const [yearFrom, setYearFrom] = useState<string>("");
-  const [visible, setVisible] = useState(9);
+  const [visible, setVisible] = useState(12);
 
   const brands = ["Все", ...Array.from(new Set(ALL_CARS.map((c) => c.brand))).sort()];
   const fuels = ["Все", ...Array.from(new Set(ALL_CARS.map((c) => c.fuel).filter(Boolean)))];
