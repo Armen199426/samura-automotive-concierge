@@ -299,7 +299,7 @@ function Catalog() {
             {COUNTRIES.map((f) => (
               <button
                 key={f}
-                onClick={() => { setCountry(f); setVisible(9); }}
+                onClick={() => { setCountry(f); setVisible(12); }}
                 className={`border px-5 py-2.5 text-[11px] tracking-[0.25em] transition-all ${
                   country === f
                     ? "border-blood bg-blood text-primary-foreground"
@@ -314,15 +314,15 @@ function Catalog() {
 
         {/* Filters bar */}
         <div className="mt-12 grid gap-4 border border-border bg-graphite/40 p-6 md:grid-cols-4">
-          <SelectField label="Марка" value={brand} onChange={(v) => { setBrand(v); setVisible(9); }} options={brands} />
-          <SelectField label="Топливо" value={fuel} onChange={(v) => { setFuel(v); setVisible(9); }} options={fuels} />
+          <SelectField label="Марка" value={brand} onChange={(v) => { setBrand(v); setVisible(12); }} options={brands} />
+          <SelectField label="Топливо" value={fuel} onChange={(v) => { setFuel(v); setVisible(12); }} options={fuels} />
           <label className="block">
             <span className="block text-[10px] tracking-[0.3em] text-silver-dim mb-2">ГОД ОТ</span>
             <input
               type="number"
               placeholder="2018"
               value={yearFrom}
-              onChange={(e) => { setYearFrom(e.target.value); setVisible(9); }}
+              onChange={(e) => { setYearFrom(e.target.value); setVisible(12); }}
               className="w-full border-0 border-b border-border bg-transparent py-2 text-foreground placeholder:text-silver-dim/60 outline-none focus:border-blood"
             />
           </label>
@@ -331,7 +331,7 @@ function Catalog() {
               НАЙДЕНО<br /><span className="text-2xl font-light text-metal">{filtered.length}</span>
             </div>
             <button
-              onClick={() => { setBrand("Все"); setFuel("Все"); setYearFrom(""); setVisible(9); }}
+              onClick={() => { setBrand("Все"); setFuel("Все"); setYearFrom(""); setVisible(12); }}
               className="border border-border px-4 py-2 text-[10px] tracking-[0.25em] text-silver-dim transition-colors hover:border-blood hover:text-blood"
             >
               СБРОСИТЬ
