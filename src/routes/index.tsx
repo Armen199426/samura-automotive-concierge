@@ -9,12 +9,7 @@ import {
 import logo from "@/assets/logo.png";
 import heroCar from "@/assets/hero-car.jpg";
 import ctaCar from "@/assets/cta-car.jpg";
-import car1 from "@/assets/car-1.jpg";
-import car2 from "@/assets/car-2.jpg";
-import car3 from "@/assets/car-3.jpg";
-import car4 from "@/assets/car-4.jpg";
-import car5 from "@/assets/car-5.jpg";
-import car6 from "@/assets/car-6.jpg";
+import { CARS as ALL_CARS } from "@/data/cars";
 import { useReveal } from "@/hooks/use-reveal";
 
 export const Route = createFileRoute("/")({
