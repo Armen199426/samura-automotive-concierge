@@ -9,12 +9,7 @@ import {
 import logo from "@/assets/logo.png";
 import heroCar from "@/assets/hero-car.jpg";
 import ctaCar from "@/assets/cta-car.jpg";
-import car1 from "@/assets/car-1.jpg";
-import car2 from "@/assets/car-2.jpg";
-import car3 from "@/assets/car-3.jpg";
-import car4 from "@/assets/car-4.jpg";
-import car5 from "@/assets/car-5.jpg";
-import car6 from "@/assets/car-6.jpg";
+import { CARS as ALL_CARS } from "@/data/cars";
 import { useReveal } from "@/hooks/use-reveal";
 
 export const Route = createFileRoute("/")({
@@ -268,81 +263,162 @@ function Process() {
   );
 }
 
-const CARS = [
-  { img: car1, brand: "BMW", model: "5 Series", year: 2023, mileage: "18 000 км", country: "Германия", price: "6 480 000 ₽", flag: "Европа" },
-  { img: car2, brand: "Toyota", model: "Land Cruiser 300", year: 2024, mileage: "5 200 км", country: "Япония", price: "12 900 000 ₽", flag: "Япония" },
-  { img: car3, brand: "Porsche", model: "911 Carrera", year: 2022, mileage: "22 400 км", country: "США", price: "14 200 000 ₽", flag: "США" },
-  { img: car4, brand: "Lexus", model: "RX 500h", year: 2024, mileage: "3 800 км", country: "Корея", price: "9 350 000 ₽", flag: "Корея" },
-  { img: car5, brand: "Toyota", model: "GR Supra", year: 2023, mileage: "9 600 км", country: "Япония", price: "7 800 000 ₽", flag: "Япония" },
-  { img: car6, brand: "Mercedes-Benz", model: "E-Class", year: 2024, mileage: "6 100 км", country: "Китай", price: "8 100 000 ₽", flag: "Китай" },
-];
-
-const FILTERS = ["Все", "Китай", "Япония", "Корея", "Европа", "США"];
+const COUNTRIES = ["Все", "Япония", "Китай", "Корея"] as const;
+type Country = (typeof COUNTRIES)[number];
 
 function Catalog() {
-  const [filter, setFilter] = useState("Все");
-  const filtered = filter === "Все" ? CARS : CARS.filter((c) => c.flag === filter);
+  const [country, setCountry] = useState<Country>("Все");
+  const [brand, setBrand] = useState<string>("Все");
+  const [fuel, setFuel] = useState<string>("Все");
+  const [yearFrom, setYearFrom] = useState<string>("");
+  const [visible, setVisible] = useState(9);
+
+  const brands = ["Все", ...Array.from(new Set(ALL_CARS.map((c) => c.brand))).sort()];
+  const fuels = ["Все", ...Array.from(new Set(ALL_CARS.map((c) => c.fuel).filter(Boolean)))];
+
+  const filtered = ALL_CARS.filter((c) => {
+    if (country !== "Все" && c.country !== country) return false;
+    if (brand !== "Все" && c.brand !== brand) return false;
+    if (fuel !== "Все" && c.fuel !== fuel) return false;
+    if (yearFrom && c.year < parseInt(yearFrom)) return false;
+    return true;
+  });
+
+  const shown = filtered.slice(0, visible);
+
   return (
     <section id="catalog" className="py-24 lg:py-40">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
-          <SectionHead eyebrow="КАТАЛОГ" title={<>Автомобили <span className="text-blood font-semibold">на доставку</span></>} className="lg:max-w-2xl" />
+          <SectionHead
+            eyebrow="КАТАЛОГ"
+            title={<>Автомобили <span className="text-blood font-semibold">на доставку</span></>}
+            className="lg:max-w-2xl"
+          />
           <div className="flex flex-wrap gap-2">
-            {FILTERS.map((f) => (
-              <button key={f} onClick={() => setFilter(f)}
+            {COUNTRIES.map((f) => (
+              <button
+                key={f}
+                onClick={() => { setCountry(f); setVisible(9); }}
                 className={`border px-5 py-2.5 text-[11px] tracking-[0.25em] transition-all ${
-                  filter === f
+                  country === f
                     ? "border-blood bg-blood text-primary-foreground"
                     : "border-border text-silver-dim hover:border-silver/40 hover:text-foreground"
-                }`}>
+                }`}
+              >
                 {f.toUpperCase()}
               </button>
             ))}
           </div>
         </div>
-        <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((c, i) => (
-            <article key={i} className="reveal group hover-lift overflow-hidden border border-border bg-graphite/40">
+
+        {/* Filters bar */}
+        <div className="mt-12 grid gap-4 border border-border bg-graphite/40 p-6 md:grid-cols-4">
+          <SelectField label="Марка" value={brand} onChange={(v) => { setBrand(v); setVisible(9); }} options={brands} />
+          <SelectField label="Топливо" value={fuel} onChange={(v) => { setFuel(v); setVisible(9); }} options={fuels} />
+          <label className="block">
+            <span className="block text-[10px] tracking-[0.3em] text-silver-dim mb-2">ГОД ОТ</span>
+            <input
+              type="number"
+              placeholder="2018"
+              value={yearFrom}
+              onChange={(e) => { setYearFrom(e.target.value); setVisible(9); }}
+              className="w-full border-0 border-b border-border bg-transparent py-2 text-foreground placeholder:text-silver-dim/60 outline-none focus:border-blood"
+            />
+          </label>
+          <div className="flex items-end justify-between gap-3">
+            <div className="text-[10px] tracking-[0.3em] text-silver-dim">
+              НАЙДЕНО<br /><span className="text-2xl font-light text-metal">{filtered.length}</span>
+            </div>
+            <button
+              onClick={() => { setBrand("Все"); setFuel("Все"); setYearFrom(""); setVisible(9); }}
+              className="border border-border px-4 py-2 text-[10px] tracking-[0.25em] text-silver-dim transition-colors hover:border-blood hover:text-blood"
+            >
+              СБРОСИТЬ
+            </button>
+          </div>
+        </div>
+
+        <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {shown.map((c, i) => (
+            <article key={i} className="reveal group relative overflow-hidden border border-border bg-graphite/40 transition-all duration-500 hover:border-blood/60 hover:shadow-red">
               <div className="relative aspect-[4/3] overflow-hidden bg-background">
-                <img src={c.img} alt={`${c.brand} ${c.model}`} loading="lazy" width={1024} height={768}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+                <img
+                  src={c.img}
+                  alt={`${c.brand} ${c.model}`}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/10 to-transparent" />
                 <span className="absolute left-4 top-4 border border-silver/20 bg-background/70 px-3 py-1 text-[10px] tracking-[0.3em] text-silver backdrop-blur">
-                  {c.flag.toUpperCase()}
+                  {c.country.toUpperCase()}
+                </span>
+                <span className="absolute right-4 top-4 border border-blood/40 bg-background/70 px-3 py-1 text-[10px] tracking-[0.3em] text-blood backdrop-blur">
+                  {c.year}
                 </span>
               </div>
               <div className="p-7">
-                <div className="flex items-baseline justify-between">
-                  <div>
-                    <div className="text-[10px] tracking-[0.3em] text-silver-dim">{c.brand.toUpperCase()}</div>
-                    <h3 className="mt-1 text-xl font-medium text-foreground">{c.model}</h3>
-                  </div>
-                  <div className="text-right text-[11px] tracking-wider text-silver-dim">{c.year}</div>
+                <div className="text-[10px] tracking-[0.3em] text-silver-dim">{c.brand}</div>
+                <h3 className="mt-1 text-xl font-medium text-foreground">{c.model}</h3>
+                <div className="mt-5 grid grid-cols-2 gap-y-2 border-t border-border pt-4 text-[11px] text-silver-dim">
+                  <span>Пробег: <span className="text-silver">{c.mileage} км</span></span>
+                  <span>КПП: <span className="text-silver">{c.transmission}</span></span>
+                  {c.displacement && <span>Объём: <span className="text-silver">{c.displacement}</span></span>}
+                  <span>Топливо: <span className="text-silver">{c.fuel}</span></span>
+                  <span>Привод: <span className="text-silver">{c.drivetrain}</span></span>
                 </div>
-                <div className="mt-6 flex justify-between border-t border-border pt-4 text-xs text-silver-dim">
-                  <span>{c.mileage}</span>
-                  <span>{c.country}</span>
-                </div>
-                <div className="mt-6 flex items-end justify-between">
-                  <div>
-                    <div className="text-[10px] tracking-[0.3em] text-silver-dim">ОТ</div>
-                    <div className="text-2xl font-light text-metal">{c.price}</div>
-                  </div>
-                </div>
-                <div className="mt-7 flex gap-2">
-                  <a href="#contacts" className="flex-1 border border-border px-4 py-3 text-center text-[10px] tracking-[0.25em] text-foreground transition-colors hover:border-silver/40">
-                    ПОДРОБНЕЕ
-                  </a>
-                  <a href="#hero-form" className="flex-1 bg-blood px-4 py-3 text-center text-[10px] tracking-[0.25em] text-primary-foreground transition-colors hover:bg-blood/90">
-                    РАСЧЁТ
-                  </a>
+                <div className="mt-6">
+                  <div className="text-[10px] tracking-[0.3em] text-silver-dim">ОТ</div>
+                  <div className="text-2xl font-light text-metal">{c.price} ₽</div>
                 </div>
               </div>
+              {/* Hover overlay button */}
+              <a
+                href="#hero-form"
+                className="pointer-events-none absolute inset-x-0 bottom-0 flex translate-y-full items-center justify-center gap-3 bg-blood px-6 py-4 text-[11px] font-medium tracking-[0.3em] text-primary-foreground opacity-0 transition-all duration-500 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100"
+              >
+                ПОДРОБНЕЕ
+                <ArrowRight className="h-4 w-4" />
+              </a>
             </article>
           ))}
         </div>
+
+        {visible < filtered.length && (
+          <div className="mt-12 flex justify-center">
+            <button
+              onClick={() => setVisible((v) => v + 9)}
+              className="border border-border px-8 py-4 text-[11px] tracking-[0.3em] text-foreground transition-all hover:border-blood hover:text-blood"
+            >
+              ПОКАЗАТЬ ЕЩЁ
+            </button>
+          </div>
+        )}
+
+        {filtered.length === 0 && (
+          <div className="mt-12 border border-border bg-graphite/30 p-16 text-center">
+            <p className="text-silver-dim">По выбранным фильтрам ничего не найдено.</p>
+          </div>
+        )}
       </div>
     </section>
+  );
+}
+
+function SelectField({ label, value, onChange, options }: { label: string; value: string; onChange: (v: string) => void; options: string[] }) {
+  return (
+    <label className="block">
+      <span className="block text-[10px] tracking-[0.3em] text-silver-dim mb-2">{label.toUpperCase()}</span>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full appearance-none border-0 border-b border-border bg-transparent py-2 text-foreground outline-none focus:border-blood cursor-pointer"
+      >
+        {options.map((o) => (
+          <option key={o} value={o} className="bg-background text-foreground">{o}</option>
+        ))}
+      </select>
+    </label>
   );
 }
 
