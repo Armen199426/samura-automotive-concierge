@@ -103,9 +103,8 @@ function Hero() {
           </div>
           <h1 className="text-5xl font-light leading-[1.05] tracking-tight md:text-6xl lg:text-[88px]">
             Автомобили из <span className="text-metal font-semibold">Китая, Японии, Южной Кореи, Европы</span><br />
-            и США <span className="text-blood font-semibold">под заказ</span>
+            и США под заказ
           </h1>
-          {/* note: "и США" intentionally plain weight/color per request */}
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-silver-dim">
             Подбираем, проверяем, выкупаем и доставляем ваш автомобиль под ключ —
             с полной прозрачностью на каждом этапе.
