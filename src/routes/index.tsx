@@ -11,6 +11,7 @@ import heroCar from "@/assets/hero-car.jpg";
 import ctaCar from "@/assets/cta-car.jpg";
 import { CARS as ALL_CARS } from "@/data/cars";
 import { useReveal } from "@/hooks/use-reveal";
+import { CookieBanner } from "@/components/CookieBanner";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -64,7 +65,7 @@ function Header() {
             </a>
           ))}
         </nav>
-        <a href="#hero-form" className="hidden lg:inline-flex items-center gap-2 border border-border bg-graphite/60 px-5 py-2.5 text-xs tracking-[0.2em] text-foreground transition-all hover:border-blood hover:text-blood">
+        <a href="#hero-form" className="hidden lg:inline-flex items-center gap-2 border border-blood bg-blood px-5 py-2.5 text-xs tracking-[0.2em] text-foreground shadow-[0_0_24px_-6px_var(--color-blood)] transition-all hover:bg-blood/90 hover:shadow-[0_0_36px_-4px_var(--color-blood)]">
           СВЯЗАТЬСЯ <ArrowRight className="h-3.5 w-3.5" />
         </a>
         <button onClick={() => setOpen(!open)} className="lg:hidden text-foreground" aria-label="Menu">
@@ -525,10 +526,11 @@ function Risks() {
 }
 
 const REVIEWS = [
-  { name: "Алексей Воронов", city: "Москва", car: "Lexus LX 600", text: "Полное сопровождение от и до. Машина соответствует заявленному состоянию на 100%. Команда на связи 24/7." },
-  { name: "Дмитрий Курсков", city: "Санкт-Петербург", car: "BMW X7", text: "Сэкономил около 1,8 млн ₽ по сравнению с рынком РФ. Все этапы прозрачны, отчёты приходили вовремя." },
-  { name: "Наталья Симонова", city: "Екатеринбург", car: "Toyota Land Cruiser 300", text: "Доставили за 24 дня. Очень довольна подходом — никаких сюрпризов, всё чётко по договору." },
-  { name: "Игорь Васнецов", city: "Краснодар", car: "Porsche Cayenne", text: "Профессиональный осмотр на аукционе спас меня от плохой покупки. Подобрали другой вариант — идеальный." },
+  { name: "Ольга Лазуткина", city: "Иркутск", car: "Volkswagen Golf", text: "Сделка прошла очень быстро и максимально комфортно — ребята всегда были на связи, отвечали мгновенно и по делу. Отдельное спасибо за дружелюбное и человеческое отношение: чувствуешь, что тебе действительно хотят помочь, а не просто продать. Машину получила точно в срок и в идеальном состоянии. Команда — большие профессионалы своего дела!" },
+  { name: "Елена Калабина", city: "Иркутск", car: "Toyota Sienta", text: "Всё чётко, прозрачно и по-человечески. Машина — огонь, состояние идеальное, как и обещали. Спасибо команде за терпение и заботу!" },
+  { name: "Ваге Оганнесян", city: "Краснодар", car: "Geely Coolray", text: "Хотел Coolray давно, но боялся связываться с пригоном самостоятельно. Ребята всё взяли на себя: подбор, проверку, выкуп, доставку. На каждом этапе — фото, видео, отчёты. Никаких сюрпризов, никаких «доплатите ещё». Цена оказалась даже немного ниже первоначального расчёта. Машина приехала ровно тогда, когда обещали. Очень доволен, рекомендую всем своим друзьям!" },
+  { name: "Пётр Смирнов", city: "Москва", car: "Honda Vezel", text: "Эмоции переполняют! Vezel пришёл свежий, ухоженный, ровно такой, как на фото с аукциона. Парни — молодцы, всё объяснили простым языком, провели за руку через каждый этап. Спасибо, ребята, вы лучшие!" },
+  { name: "Евгений Прохоров", city: "Хабаровск", car: "Toyota Corolla Fielder", text: "Заказывал Fielder для семьи. Понравился системный подход — расчёт до рубля, договор, прозрачные сроки. Команда отвечала на любые вопросы, даже самые глупые, и ни разу не дала повода усомниться. Машина в отличном состоянии, документы оформили без нервов. Спасибо за честную работу." },
 ];
 
 function Reviews() {
@@ -711,7 +713,14 @@ function Footer() {
           </div>
           <FooterCol title="НАВИГАЦИЯ" items={NAV.map(n => n.label)} />
           <FooterCol title="КОНТАКТЫ" items={["+7 (800) 555-00-00", "@samura_auto", "Владивосток"]} />
-          <FooterCol title="ДОКУМЕНТЫ" items={["Политика конфиденциальности", "Реквизиты компании", "Договор оферты"]} />
+          <div>
+            <div className="text-[10px] tracking-[0.4em] text-silver">ДОКУМЕНТЫ</div>
+            <ul className="mt-6 space-y-3">
+              <li><a href="/privacy" className="text-sm text-silver-dim transition-colors hover:text-blood">Политика конфиденциальности</a></li>
+              <li><a href="#" className="text-sm text-silver-dim transition-colors hover:text-blood">Реквизиты компании</a></li>
+              <li><a href="#" className="text-sm text-silver-dim transition-colors hover:text-blood">Договор оферты</a></li>
+            </ul>
+          </div>
         </div>
         <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-border pt-8 text-xs text-silver-dim md:flex-row md:items-center">
           <div>© {new Date().getFullYear()} SAMURA AUTO. Все права защищены.</div>
@@ -767,6 +776,7 @@ function Index() {
         <FinalCta />
       </main>
       <Footer />
+      <CookieBanner />
     </div>
   );
 }
