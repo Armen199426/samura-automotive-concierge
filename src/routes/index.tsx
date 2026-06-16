@@ -368,9 +368,18 @@ function Catalog() {
                   {c.drivetrain && <span>Привод: <span className="text-silver">{c.drivetrain}</span></span>}
                   {c.body && <span>Кузов: <span className="text-silver">{c.body}</span></span>}
                 </div>
-                <div className="mt-3">
-                  <div className="text-[9px] tracking-[0.3em] text-silver-dim">ОТ</div>
-                  <div className="text-lg font-light text-metal leading-tight">{c.price} ₽</div>
+                <div className="mt-3 flex items-end justify-between gap-3">
+                  <div>
+                    <div className="text-[9px] tracking-[0.3em] text-silver-dim">ОТ</div>
+                    <div className="text-lg font-light text-metal leading-tight">{c.price} ₽</div>
+                  </div>
+                  <a
+                    href="#hero-form"
+                    className="inline-flex items-center gap-1.5 border border-blood/60 bg-blood/10 px-3 py-2 text-[10px] font-medium tracking-[0.2em] text-blood transition-all hover:bg-blood hover:text-primary-foreground"
+                  >
+                    РАССЧИТАТЬ
+                    <ArrowRight className="h-3 w-3" />
+                  </a>
                 </div>
               </div>
               {/* Hover overlay button — compact, anchored bottom-right so it doesn't cover the price */}
