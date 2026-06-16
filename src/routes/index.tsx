@@ -103,7 +103,7 @@ function Hero() {
           </div>
           <h1 className="text-5xl font-light leading-[1.05] tracking-tight md:text-6xl lg:text-[88px]">
             Автомобили из <span className="text-metal font-semibold">Китая, Японии, Южной Кореи, Европы</span><br />
-            и США <span className="text-blood font-semibold">под заказ</span>
+            и США под заказ
           </h1>
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-silver-dim">
             Подбираем, проверяем, выкупаем и доставляем ваш автомобиль под ключ —
@@ -154,8 +154,8 @@ function HeroForm() {
               <div>
                 <div className="text-xs tracking-[0.3em] text-silver-dim">ПЕРСОНАЛЬНЫЙ ЭКСПЕРТ</div>
                 <p className="mt-3 text-lg leading-relaxed text-foreground">
-                  «Мы подбираем автомобиль так, как выбирали бы себе — с полной проверкой,
-                  честным расчётом и отчётами на каждом шаге».
+                  «Мы подберём автомобиль индивидуально и исключительно под ваши требования,
+                  с полной проверкой, честным расчётом и отчётами на каждом шагу».
                 </p>
               </div>
             </div>
@@ -202,7 +202,7 @@ function Field({ label, placeholder, type = "text" }: { label: string; placehold
 }
 
 const ADVANTAGES = [
-  { icon: ShieldCheck, title: "Прозрачная сделка", text: "Вы понимаете каждый этап: от подбора до передачи ключей." },
+  { icon: ShieldCheck, title: "Прозрачная сделка", text: "Вам предоставляются все отчёты об операциях и действиях по поиску, проверке, покупке и перевозке авто до вас." },
   { icon: Search, title: "Проверка авто", text: "Кузов, двигатель, подвеска, документы и история автомобиля." },
   { icon: Banknote, title: "Выгода покупки", text: "Находим автомобили с реальной экономией относительно рынка РФ." },
   { icon: Truck, title: "Доставка под ключ", text: "Логистика, документы, таможня и полное сопровождение сделки." },
@@ -245,7 +245,7 @@ function Process() {
   return (
     <section id="process" className="relative overflow-hidden bg-graphite/40 py-24 lg:py-40">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-        <SectionHead eyebrow="ПРОЦЕСС" title={<>Семь этапов <span className="text-blood font-semibold">до ваших ключей</span></>} />
+        <SectionHead eyebrow="ПРОЦЕСС" title={<>Семь этапов <span className="text-foreground font-semibold">до авто вашей мечты</span></>} />
         <div className="mt-20 grid gap-px bg-border lg:grid-cols-7">
           {STEPS.map(([title, text], i) => (
             <div key={i} className="reveal relative bg-background p-8 transition-colors hover:bg-graphite/60">
@@ -292,7 +292,7 @@ function Catalog() {
         <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
           <SectionHead
             eyebrow="КАТАЛОГ"
-            title={<>Автомобили <span className="text-blood font-semibold">на доставку</span></>}
+            title={<>Автомобили <span className="text-foreground font-semibold">на доставку</span></>}
             className="lg:max-w-2xl"
           />
           <div className="flex flex-wrap gap-2">
@@ -368,9 +368,18 @@ function Catalog() {
                   {c.drivetrain && <span>Привод: <span className="text-silver">{c.drivetrain}</span></span>}
                   {c.body && <span>Кузов: <span className="text-silver">{c.body}</span></span>}
                 </div>
-                <div className="mt-3">
-                  <div className="text-[9px] tracking-[0.3em] text-silver-dim">ОТ</div>
-                  <div className="text-lg font-light text-metal leading-tight">{c.price} ₽</div>
+                <div className="mt-3 flex items-end justify-between gap-3">
+                  <div>
+                    <div className="text-[9px] tracking-[0.3em] text-silver-dim">ОТ</div>
+                    <div className="text-lg font-light text-metal leading-tight">{c.price} ₽</div>
+                  </div>
+                  <a
+                    href="#hero-form"
+                    className="inline-flex items-center gap-1.5 border border-blood/60 bg-blood/10 px-3 py-2 text-[10px] font-medium tracking-[0.2em] text-blood transition-all hover:bg-blood hover:text-primary-foreground"
+                  >
+                    РАССЧИТАТЬ
+                    <ArrowRight className="h-3 w-3" />
+                  </a>
                 </div>
               </div>
               {/* Hover overlay button — compact, anchored bottom-right so it doesn't cover the price */}
