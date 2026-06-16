@@ -245,7 +245,7 @@ function Process() {
   return (
     <section id="process" className="relative overflow-hidden bg-graphite/40 py-24 lg:py-40">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-        <SectionHead eyebrow="ПРОЦЕСС" title={<>Семь этапов <span className="text-foreground font-semibold">до авто вашей мечты</span></>} />
+        <SectionHead eyebrow="ПРОЦЕСС" title={<>Семь этапов <span className="text-blood font-semibold">до ваших ключей</span></>} />
         <div className="mt-20 grid gap-px bg-border lg:grid-cols-7">
           {STEPS.map(([title, text], i) => (
             <div key={i} className="reveal relative bg-background p-8 transition-colors hover:bg-graphite/60">
