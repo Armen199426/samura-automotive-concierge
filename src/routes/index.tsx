@@ -292,7 +292,7 @@ function Catalog() {
         <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
           <SectionHead
             eyebrow="КАТАЛОГ"
-            title={<>Автомобили <span className="text-blood font-semibold">на доставку</span></>}
+            title={<>Автомобили <span className="text-foreground font-semibold">на доставку</span></>}
             className="lg:max-w-2xl"
           />
           <div className="flex flex-wrap gap-2">
