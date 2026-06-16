@@ -103,7 +103,7 @@ function Hero() {
           </div>
           <h1 className="text-5xl font-light leading-[1.05] tracking-tight md:text-6xl lg:text-[88px]">
             Автомобили из <span className="text-metal font-semibold">Китая, Японии, Южной Кореи, Европы</span><br />
-            и США под заказ
+            и США <span className="text-blood font-semibold">под заказ</span>
           </h1>
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-silver-dim">
             Подбираем, проверяем, выкупаем и доставляем ваш автомобиль под ключ —
@@ -245,7 +245,7 @@ function Process() {
   return (
     <section id="process" className="relative overflow-hidden bg-graphite/40 py-24 lg:py-40">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-        <SectionHead eyebrow="ПРОЦЕСС" title={<>Семь этапов <span className="text-foreground font-semibold">до авто вашей мечты</span></>} />
+        <SectionHead eyebrow="ПРОЦЕСС" title={<>Семь этапов <span className="text-blood font-semibold">до ваших ключей</span></>} />
         <div className="mt-20 grid gap-px bg-border lg:grid-cols-7">
           {STEPS.map(([title, text], i) => (
             <div key={i} className="reveal relative bg-background p-8 transition-colors hover:bg-graphite/60">
@@ -292,7 +292,7 @@ function Catalog() {
         <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
           <SectionHead
             eyebrow="КАТАЛОГ"
-            title={<>Автомобили <span className="text-foreground font-semibold">на доставку</span></>}
+            title={<>Автомобили <span className="text-blood font-semibold">на доставку</span></>}
             className="lg:max-w-2xl"
           />
           <div className="flex flex-wrap gap-2">
@@ -382,14 +382,6 @@ function Catalog() {
                   </a>
                 </div>
               </div>
-              {/* Hover overlay button — compact, anchored bottom-right so it doesn't cover the price */}
-              <a
-                href="#hero-form"
-                className="pointer-events-none absolute bottom-3 right-3 flex translate-y-2 items-center gap-2 bg-blood px-4 py-2 text-[10px] font-medium tracking-[0.25em] text-primary-foreground opacity-0 shadow-red transition-all duration-300 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100"
-              >
-                ПОДРОБНЕЕ
-                <ArrowRight className="h-3.5 w-3.5" />
-              </a>
             </article>
           ))}
         </div>
