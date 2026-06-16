@@ -382,14 +382,6 @@ function Catalog() {
                   </a>
                 </div>
               </div>
-              {/* Hover overlay button — compact, anchored bottom-right so it doesn't cover the price */}
-              <a
-                href="#hero-form"
-                className="pointer-events-none absolute bottom-3 right-3 flex translate-y-2 items-center gap-2 bg-blood px-4 py-2 text-[10px] font-medium tracking-[0.25em] text-primary-foreground opacity-0 shadow-red transition-all duration-300 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100"
-              >
-                ПОДРОБНЕЕ
-                <ArrowRight className="h-3.5 w-3.5" />
-              </a>
             </article>
           ))}
         </div>
