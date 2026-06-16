@@ -11,6 +11,7 @@ import heroCar from "@/assets/hero-car.jpg";
 import ctaCar from "@/assets/cta-car.jpg";
 import { CARS as ALL_CARS } from "@/data/cars";
 import { useReveal } from "@/hooks/use-reveal";
+import { CookieBanner } from "@/components/CookieBanner";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -712,7 +713,14 @@ function Footer() {
           </div>
           <FooterCol title="НАВИГАЦИЯ" items={NAV.map(n => n.label)} />
           <FooterCol title="КОНТАКТЫ" items={["+7 (800) 555-00-00", "@samura_auto", "Владивосток"]} />
-          <FooterCol title="ДОКУМЕНТЫ" items={["Политика конфиденциальности", "Реквизиты компании", "Договор оферты"]} />
+          <div>
+            <div className="text-[10px] tracking-[0.4em] text-silver">ДОКУМЕНТЫ</div>
+            <ul className="mt-6 space-y-3">
+              <li><a href="/privacy" className="text-sm text-silver-dim transition-colors hover:text-blood">Политика конфиденциальности</a></li>
+              <li><a href="#" className="text-sm text-silver-dim transition-colors hover:text-blood">Реквизиты компании</a></li>
+              <li><a href="#" className="text-sm text-silver-dim transition-colors hover:text-blood">Договор оферты</a></li>
+            </ul>
+          </div>
         </div>
         <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-border pt-8 text-xs text-silver-dim md:flex-row md:items-center">
           <div>© {new Date().getFullYear()} SAMURA AUTO. Все права защищены.</div>
@@ -768,6 +776,7 @@ function Index() {
         <FinalCta />
       </main>
       <Footer />
+      <CookieBanner />
     </div>
   );
 }
