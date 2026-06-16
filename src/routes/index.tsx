@@ -64,7 +64,7 @@ function Header() {
             </a>
           ))}
         </nav>
-        <a href="#hero-form" className="hidden lg:inline-flex items-center gap-2 border border-border bg-graphite/60 px-5 py-2.5 text-xs tracking-[0.2em] text-foreground transition-all hover:border-blood hover:text-blood">
+        <a href="#hero-form" className="hidden lg:inline-flex items-center gap-2 border border-blood bg-blood px-5 py-2.5 text-xs tracking-[0.2em] text-foreground shadow-[0_0_24px_-6px_var(--color-blood)] transition-all hover:bg-blood/90 hover:shadow-[0_0_36px_-4px_var(--color-blood)]">
           СВЯЗАТЬСЯ <ArrowRight className="h-3.5 w-3.5" />
         </a>
         <button onClick={() => setOpen(!open)} className="lg:hidden text-foreground" aria-label="Menu">
