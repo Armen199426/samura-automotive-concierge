@@ -263,7 +263,7 @@ function LeadForm({
 
     try {
       const { submitLead } = await import("@/lib/leads");
-      const res = await submitLead(payload);
+      const res = await submitLead(payload as { form_name: string } & Record<string, string>);
       if (res.ok) {
         form.reset();
         alert(successMessage);
