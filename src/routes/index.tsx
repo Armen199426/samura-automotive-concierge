@@ -167,44 +167,128 @@ function HeroForm() {
           </div>
         </div>
 
-        <form
-          onSubmit={(e) => { e.preventDefault(); alert("Заявка отправлена. Мы свяжемся с вами."); }}
+        <LeadForm
+          formName="hero_calculation"
+          successMessage="Заявка отправлена. Мы свяжемся с вами."
           className="reveal glass-card p-8 lg:p-12"
         >
           <div className="grid gap-6 md:grid-cols-2">
-            <Field label="Марка авто" placeholder="Toyota, BMW, Lexus..." />
-            <Field label="Бюджет" placeholder="до 5 000 000 ₽" />
-            <Field label="Страна покупки" placeholder="Япония, Корея, Китай..." />
-            <Field label="Имя" placeholder="Ваше имя" />
+            <Field name="vehicle" label="Марка авто" placeholder="Toyota, BMW, Lexus..." />
+            <Field name="budget" label="Бюджет" placeholder="до 5 000 000 ₽" />
+            <Field name="country" label="Страна покупки" placeholder="Япония, Корея, Китай..." />
+            <Field name="name" label="Имя" placeholder="Ваше имя" required />
             <div className="md:col-span-2">
-              <Field label="Телефон" type="tel" placeholder="+7 (___) ___-__-__" />
+              <Field name="phone" label="Телефон" type="tel" placeholder="+7 (___) ___-__-__" required />
             </div>
           </div>
-          <button type="submit" className="group mt-8 inline-flex w-full items-center justify-center gap-3 bg-blood px-8 py-4 text-sm font-medium tracking-[0.25em] text-primary-foreground shadow-red transition-all hover:bg-blood/90">
-            ПОЛУЧИТЬ РАСЧЁТ
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </button>
+          <SubmitButton label="ПОЛУЧИТЬ РАСЧЁТ" loadingLabel="ОТПРАВКА..." className="mt-8" />
           <p className="mt-4 text-center text-[11px] tracking-wider text-silver-dim">
             Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
           </p>
-        </form>
+        </LeadForm>
       </div>
     </section>
   );
 }
 
-function Field({ label, placeholder, type = "text" }: { label: string; placeholder: string; type?: string }) {
+function Field({ name, label, placeholder, type = "text", required }: { name?: string; label: string; placeholder: string; type?: string; required?: boolean }) {
   return (
     <label className="block">
       <span className="block text-[10px] tracking-[0.3em] text-silver-dim mb-2">{label.toUpperCase()}</span>
       <input
+        name={name}
         type={type}
+        required={required}
         placeholder={placeholder}
         className="w-full border-0 border-b border-border bg-transparent py-3 text-foreground placeholder:text-silver-dim/60 outline-none transition-colors focus:border-blood"
       />
     </label>
   );
 }
+
+function SubmitButton({ label, loadingLabel, className = "" }: { label: string; loadingLabel: string; className?: string }) {
+  const [loading, setLoading] = useState(false);
+  // Read submitting state from the closest form via a custom event.
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const target = e.target as HTMLFormElement;
+      if (!target?.dataset) return;
+      setLoading(target.dataset.submitting === "true");
+    };
+    document.addEventListener("lead-form-state", handler);
+    return () => document.removeEventListener("lead-form-state", handler);
+  }, []);
+  return (
+    <button
+      type="submit"
+      disabled={loading}
+      className={`group inline-flex w-full items-center justify-center gap-3 bg-blood px-8 py-4 text-sm font-medium tracking-[0.25em] text-primary-foreground shadow-red transition-all hover:bg-blood/90 disabled:opacity-60 disabled:cursor-not-allowed ${className}`}
+    >
+      {loading ? loadingLabel : label}
+      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+    </button>
+  );
+}
+
+function LeadForm({
+  formName,
+  successMessage,
+  className,
+  children,
+}: {
+  formName: string;
+  successMessage: string;
+  className?: string;
+  children: React.ReactNode;
+}) {
+  const [submitting, setSubmitting] = useState(false);
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    if (submitting) return;
+    setSubmitting(true);
+    form.dataset.submitting = "true";
+    document.dispatchEvent(new CustomEvent("lead-form-state", { bubbles: false }) as Event);
+    // Notify the SubmitButton:
+    const evt = new Event("lead-form-state");
+    Object.defineProperty(evt, "target", { value: form });
+    document.dispatchEvent(evt);
+
+    const fd = new FormData(form);
+    const payload: Record<string, string> = { form_name: formName };
+    fd.forEach((v, k) => {
+      if (typeof v === "string") payload[k] = v;
+    });
+
+    try {
+      const { submitLead } = await import("@/lib/leads");
+      const res = await submitLead(payload as { form_name: string } & Record<string, string>);
+      if (res.ok) {
+        form.reset();
+        alert(successMessage);
+      } else {
+        alert("Ошибка отправки: " + (res.error ?? "повторите попытку"));
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Ошибка отправки. Пожалуйста, повторите попытку.");
+    } finally {
+      setSubmitting(false);
+      form.dataset.submitting = "false";
+      const evt2 = new Event("lead-form-state");
+      Object.defineProperty(evt2, "target", { value: form });
+      document.dispatchEvent(evt2);
+    }
+  };
+
+  return (
+    <form onSubmit={onSubmit} className={className} data-submitting="false">
+      {children}
+    </form>
+  );
+}
+
 
 const ADVANTAGES = [
   { icon: ShieldCheck, title: "Прозрачная сделка", text: "Вам предоставляются все отчёты об операциях и действиях по поиску, проверке, покупке и перевозке авто до вас." },
@@ -672,19 +756,19 @@ function FinalCta() {
             <ContactRow icon={MapPin} label="АДРЕС" value="г. Иркутск, ул. Угольный проезд 68/3" />
           </div>
         </div>
-        <form onSubmit={(e) => { e.preventDefault(); alert("Заявка отправлена."); }}
-          className="reveal glass-card p-8 lg:p-12">
+        <LeadForm
+          formName="contact_consultation"
+          successMessage="Заявка отправлена."
+          className="reveal glass-card p-8 lg:p-12"
+        >
           <div className="space-y-6">
-            <Field label="Имя" placeholder="Ваше имя" />
-            <Field label="Телефон" type="tel" placeholder="+7 (___) ___-__-__" />
-            <Field label="Желаемый авто" placeholder="Марка / модель" />
-            <Field label="Желаемый бюджет" placeholder="до 5 000 000 ₽" />
+            <Field name="name" label="Имя" placeholder="Ваше имя" required />
+            <Field name="phone" label="Телефон" type="tel" placeholder="+7 (___) ___-__-__" required />
+            <Field name="vehicle" label="Желаемый авто" placeholder="Марка / модель" />
+            <Field name="budget" label="Желаемый бюджет" placeholder="до 5 000 000 ₽" />
           </div>
-          <button type="submit" className="group mt-10 inline-flex w-full items-center justify-center gap-3 bg-blood px-8 py-4 text-sm font-medium tracking-[0.25em] text-primary-foreground shadow-red transition-all hover:bg-blood/90">
-            ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </button>
-        </form>
+          <SubmitButton label="ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ" loadingLabel="ОТПРАВКА..." className="mt-10" />
+        </LeadForm>
       </div>
     </section>
   );
