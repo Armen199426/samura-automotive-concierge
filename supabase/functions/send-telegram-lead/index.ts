@@ -11,8 +11,6 @@ const corsHeaders = {
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
-const BOT_TOKEN = Deno.env.get("TELEGRAM_BOT_TOKEN");
-const CHAT_ID = Deno.env.get("TELEGRAM_CHAT_ID");
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SERVICE_ROLE = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
@@ -82,6 +80,12 @@ async function markStatus(leadId: string | undefined, sent: boolean, error: stri
   }).eq("id", leadId);
 }
 
+function maskToken(token: string | undefined): string {
+  if (!token) return "[missing]";
+  if (token.length <= 12) return "[masked]";
+  return `${token.slice(0, 6)}...[masked]...${token.slice(-4)}`;
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
@@ -104,7 +108,23 @@ Deno.serve(async (req) => {
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
-    if (!BOT_TOKEN || !CHAT_ID) {
+    const botTokenSource = "TELEGRAM_BOT_TOKEN";
+    const chatIdSource = "TELEGRAM_CHAT_ID";
+    const botToken = Deno.env.get(botTokenSource);
+    const chatId = Deno.env.get(chatIdSource);
+
+    console.log("telegram runtime env check", JSON.stringify({
+      botTokenSource,
+      hasBotToken: Boolean(botToken),
+      botTokenMasked: maskToken(botToken),
+      chatIdSource,
+      hasChatId: chatId !== null && chatId !== undefined && chatId !== "",
+      chatIdValue: chatId ?? null,
+      usesFallbackValues: false,
+      usesHardcodedValues: false,
+    }));
+
+    if (!botToken || !chatId) {
       await markStatus(leadId, false, "Telegram secrets not configured");
       return new Response(JSON.stringify({ error: "Telegram secrets not configured" }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
@@ -112,20 +132,50 @@ Deno.serve(async (req) => {
 
     if (!lead.created_at) lead.created_at = new Date().toISOString();
     const text = buildMessage(lead);
+    const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+    const telegramUrlMasked = `https://api.telegram.org/bot${maskToken(botToken)}/sendMessage`;
+    const telegramPayload = {
+      chat_id: chatId, text, parse_mode: "HTML", disable_web_page_preview: true,
+    };
 
-    const tgRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+    console.log("telegram request debug", JSON.stringify({
+      leadId: leadId ?? lead.id ?? null,
+      finalRequestUrl: telegramUrlMasked,
+      finalPayloadSentToTelegram: telegramPayload,
+      chatIdValue: chatId,
+      botTokenValueSource: botTokenSource,
+      tokenMasked: maskToken(botToken),
+      note: "Token is passed only in the URL and is masked in logs; no fallback or hardcoded values are used.",
+    }));
+
+    const tgRes = await fetch(telegramUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: CHAT_ID, text, parse_mode: "HTML", disable_web_page_preview: true,
-      }),
+      body: JSON.stringify(telegramPayload),
     });
-    const tgJson = await tgRes.json().catch(() => ({}));
+    const tgResponseBody = await tgRes.text();
+    console.log("telegram response debug", JSON.stringify({
+      leadId: leadId ?? lead.id ?? null,
+      finalRequestUrl: telegramUrlMasked,
+      httpStatus: tgRes.status,
+      httpOk: tgRes.ok,
+      fullTelegramResponseBody: tgResponseBody,
+    }));
+    let tgJson: Record<string, unknown> = {};
+    try { tgJson = JSON.parse(tgResponseBody); } catch { tgJson = {}; }
 
     if (!tgRes.ok || tgJson?.ok === false) {
-      const errMsg = tgJson?.description ?? `Telegram HTTP ${tgRes.status}`;
+      const errMsg = tgJson?.description ?? tgResponseBody ?? `Telegram HTTP ${tgRes.status}`;
       await markStatus(leadId, false, String(errMsg));
-      return new Response(JSON.stringify({ ok: false, error: errMsg }),
+      return new Response(JSON.stringify({ ok: false, error: errMsg, debug: {
+        finalRequestUrl: telegramUrlMasked,
+        finalPayloadSentToTelegram: telegramPayload,
+        chatIdValue: chatId,
+        botTokenValueSource: botTokenSource,
+        fullTelegramResponseBody: tgResponseBody,
+        usesFallbackValues: false,
+        usesHardcodedValues: false,
+      } }),
         { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
