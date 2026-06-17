@@ -124,11 +124,11 @@ function Hero() {
             </a>
           </div>
           <div className="mt-16 flex items-center gap-6">
-            <div className="text-[10px] tracking-[0.4em] text-silver-dim">ИМПОРТ</div>
+            <div className="text-[10px] tracking-[0.4em] text-silver-dim">НАЙДЁМ</div>
             <div className="h-px w-8 bg-border" />
-            <div className="text-[10px] tracking-[0.4em] text-silver">УВЕРЕННОСТЬ</div>
+            <div className="text-[10px] tracking-[0.4em] text-silver">ПРОВЕРИМ</div>
             <div className="h-px w-8 bg-border" />
-            <div className="text-[10px] tracking-[0.4em] text-blood">ПОД КЛЮЧ</div>
+            <div className="text-[10px] tracking-[0.4em] text-blood">ПРИВЕЗЁМ</div>
           </div>
         </div>
       </div>
