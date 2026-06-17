@@ -729,7 +729,7 @@ function Footer() {
             </p>
           </div>
           <FooterCol title="НАВИГАЦИЯ" items={NAV.map(n => n.label)} />
-          <FooterCol title="КОНТАКТЫ" items={["+7 (800) 555-00-00", "@samura_auto", "Владивосток"]} />
+          <FooterCol title="КОНТАКТЫ" items={["+7 (800) 555-00-00", "@samura_auto", "Иркутск"]} />
           <div>
             <div className="text-[10px] tracking-[0.4em] text-silver">ДОКУМЕНТЫ</div>
             <ul className="mt-6 space-y-3">
