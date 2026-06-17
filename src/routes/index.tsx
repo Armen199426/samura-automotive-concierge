@@ -247,10 +247,27 @@ function LeadForm({
     e.preventDefault();
     const form = e.currentTarget;
     if (submitting) return;
+
+    const toastId = `lead-${formName}`;
+    const { toast } = await import("sonner");
+
+    // Manual validation — bypass native browser popups (the "old desktop alert")
+    const requiredFields = Array.from(
+      form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>("[required]"),
+    );
+    const missing = requiredFields.find((el) => !el.value.trim());
+    if (missing) {
+      missing.focus();
+      toast.error("Заполните обязательные поля", {
+        id: toastId,
+        description: "Пожалуйста, укажите имя и телефон.",
+      });
+      return;
+    }
+
     setSubmitting(true);
     form.dataset.submitting = "true";
     document.dispatchEvent(new CustomEvent("lead-form-state", { bubbles: false }) as Event);
-    // Notify the SubmitButton:
     const evt = new Event("lead-form-state");
     Object.defineProperty(evt, "target", { value: form });
     document.dispatchEvent(evt);
@@ -261,10 +278,8 @@ function LeadForm({
       if (typeof v === "string") payload[k] = v;
     });
 
-    const toastId = `lead-${formName}`;
     try {
       const { submitLead } = await import("@/lib/leads");
-      const { toast } = await import("sonner");
       const res = await submitLead(payload as { form_name: string } & Record<string, string>);
       if (res.ok) {
         form.reset();
@@ -280,7 +295,6 @@ function LeadForm({
       }
     } catch (err) {
       console.error(err);
-      const { toast } = await import("sonner");
       toast.error("Ошибка отправки", {
         id: toastId,
         description: "Проверьте соединение и повторите попытку.",
@@ -295,7 +309,7 @@ function LeadForm({
   };
 
   return (
-    <form onSubmit={onSubmit} className={className} data-submitting="false">
+    <form onSubmit={onSubmit} noValidate className={className} data-submitting="false">
       {children}
     </form>
   );
