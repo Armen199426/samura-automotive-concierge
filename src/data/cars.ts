@@ -73,7 +73,7 @@ export const CARS: Car[] = [
     "body": "Кроссовер",
     "wheel": "Левый",
     "price": "3 630 016",
-    "img": "https://static.tildacdn.com/stor3731-3532-4834-a365-356163633963/8204f6279f0c543197314db94ca61f28.png",
+    "img": "/__l5e/assets-v1/dc80ee22-8786-4ae3-afd5-5445ef6cf368/car-b2-01.jpg",
     "country": "Корея"
   },
   {
@@ -148,7 +148,7 @@ export const CARS: Car[] = [
     "body": "Хэтчбек",
     "wheel": "Правый",
     "price": "1 050 000",
-    "img": "https://static.tildacdn.com/stor3137-6662-4934-b434-623733306137/df669e51521ef23aef40cabf8180ffbd.jpg",
+    "img": "/__l5e/assets-v1/994e7dc5-9daf-4b5e-8667-92be323121fa/car-b2-02.jpg",
     "country": "Япония"
   },
   {
@@ -328,7 +328,7 @@ export const CARS: Car[] = [
     "body": "Кроссовер",
     "wheel": "Левый",
     "price": "1 600 000",
-    "img": "https://static.tildacdn.com/stor3166-3439-4432-b063-383235363436/67c25437badea4278cf27627d809d338.jpg",
+    "img": "/__l5e/assets-v1/b91ea6ca-aff4-49e0-953a-26a9c58f4f2f/car-b2-03.jpg",
     "country": "Китай"
   },
   {
@@ -358,7 +358,7 @@ export const CARS: Car[] = [
     "body": "Кроссовер",
     "wheel": "Левый",
     "price": "1 291 084",
-    "img": "https://static.tildacdn.com/stor6539-3135-4434-b562-333065653936/b2eb7e5af966163459dc036789c77386.png",
+    "img": "/__l5e/assets-v1/3b616bcc-8221-4928-86fb-498cc2ef0f9f/car-b2-04.jpg",
     "country": "Корея"
   },
   {
@@ -418,7 +418,7 @@ export const CARS: Car[] = [
     "body": "Седан",
     "wheel": "Левый",
     "price": "1 200 000",
-    "img": "https://static.tildacdn.com/stor3936-3065-4235-a436-616165653237/f751c4506a489d02111b7cdd9398495e.jpg",
+    "img": "/__l5e/assets-v1/6c576b3d-f8b0-41e8-876e-0f63a32cf303/car-b2-05.jpg",
     "country": "Китай"
   },
   {
@@ -538,7 +538,7 @@ export const CARS: Car[] = [
     "body": "Кроссовер",
     "wheel": "Левый",
     "price": "2 000 000",
-    "img": "https://static.tildacdn.com/stor3933-6236-4261-b161-613566393766/1879f538eefe04f74f62fae4c46ba579.jpg",
+    "img": "/__l5e/assets-v1/ce4633f4-03b5-49f8-9a0e-5af000318a7e/car-b2-06.jpg",
     "country": "Китай"
   },
   {
@@ -598,7 +598,7 @@ export const CARS: Car[] = [
     "body": "Кроссовер",
     "wheel": "Левый",
     "price": "1 600 000",
-    "img": "https://static.tildacdn.com/stor3266-3733-4139-a336-653265653133/eca6f8c8681366cd2aee658b755116df.jpg",
+    "img": "/__l5e/assets-v1/0ec9126a-6490-45ab-8b18-8416f29292ca/car-b2-07.jpg",
     "country": "Китай"
   },
   {
@@ -613,7 +613,7 @@ export const CARS: Car[] = [
     "body": "Хэтчбек",
     "wheel": "Левый",
     "price": "1 300 000",
-    "img": "https://static.tildacdn.com/stor3365-3534-4264-b238-616363306537/09e6ca2e7b5f58f2f448504be5e65d16.jpg",
+    "img": "/__l5e/assets-v1/8e61cb5e-95c7-4a54-bec2-4ae6754f5481/car-b2-08.jpg",
     "country": "Китай"
   },
   {
@@ -673,7 +673,7 @@ export const CARS: Car[] = [
     "body": "Минивен",
     "wheel": "Правый",
     "price": "820 000",
-    "img": "https://static.tildacdn.com/stor3664-3634-4465-b936-333632663462/e670ebca8eade1d2de617eaa5811e42d.jpg",
+    "img": "/__l5e/assets-v1/37651c9f-7602-45d0-b277-8ce07cbd5775/car-b2-09.jpg",
     "country": "Япония"
   },
   {
@@ -688,7 +688,7 @@ export const CARS: Car[] = [
     "body": "Минивен",
     "wheel": "Правый",
     "price": "2 400 000",
-    "img": "https://static.tildacdn.com/stor6165-6339-4132-b232-396533626235/33eccb380444d8c34c60957996ebb667.jpg",
+    "img": "/__l5e/assets-v1/189ea821-5219-4d07-922d-7551e70a57f8/car-b2-10.jpg",
     "country": "Япония"
   },
   {
@@ -763,7 +763,7 @@ export const CARS: Car[] = [
     "body": "Минивен",
     "wheel": "Правый",
     "price": "890 000",
-    "img": "https://static.tildacdn.com/stor3031-3533-4662-a466-643534346563/01a0cb43c0674143b3301cb1844cf633.jpg",
+    "img": "/__l5e/assets-v1/6fc6dc2b-7f8c-4ecc-9604-cddec33f2af5/car-b2-11.jpg",
     "country": "Япония"
   },
   {
@@ -778,7 +778,7 @@ export const CARS: Car[] = [
     "body": "Универсал",
     "wheel": "Правый",
     "price": "800 000",
-    "img": "https://static.tildacdn.com/stor3461-3730-4333-a632-613365306538/d53c13cd1765590dbd4fb00e6e1871aa.jpg",
+    "img": "/__l5e/assets-v1/b10fb1c5-052e-49e2-898a-2e43a276fe5e/car-b2-12.png",
     "country": "Япония"
   },
   {
@@ -793,7 +793,7 @@ export const CARS: Car[] = [
     "body": "Универсал",
     "wheel": "Правый",
     "price": "1 150 000",
-    "img": "https://static.tildacdn.com/stor3462-6431-4432-a131-663539313131/d05fc38b9449e439ab6ecc7f308e85e2.jpg",
+    "img": "/__l5e/assets-v1/808bcb47-b34d-4391-a30a-5a7117dba30c/car-b2-13.jpg",
     "country": "Япония"
   },
   {
@@ -1783,7 +1783,7 @@ export const CARS: Car[] = [
     "body": "Кроссовер",
     "wheel": "Правый",
     "price": "1 590 000",
-    "img": "https://static.tildacdn.com/stor3732-6362-4730-a665-653838373937/aedd85043b927ed4eab7a04cfa350f8c.jpg",
+    "img": "/__l5e/assets-v1/96e69ded-b92c-4578-8296-cc89cb5fadfe/car-b2-14.jpg",
     "country": "Япония"
   },
   {
@@ -2218,7 +2218,7 @@ export const CARS: Car[] = [
     "body": "Хэтчбек",
     "wheel": "Левый",
     "price": "2 592 367",
-    "img": "https://static.tildacdn.com/stor3033-3434-4563-b763-366632386539/d6824d5b89922d787edb7f0a97cc9b3e.jpg",
+    "img": "/__l5e/assets-v1/89fe1270-41a0-4af9-b773-176de7c8f720/car-b2-15.jpg",
     "country": "Корея"
   },
   {
@@ -2548,7 +2548,7 @@ export const CARS: Car[] = [
     "body": "Кроссовер",
     "wheel": "Левый",
     "price": "1 560 000",
-    "img": "https://static.tildacdn.com/stor3532-3437-4533-a138-613565656437/4022b93e1bd5f9afa0985acc096d70c2.jpg",
+    "img": "/__l5e/assets-v1/58abb6a1-b13f-4fb4-8f8c-9098b40a3d3e/car-b2-16.jpg",
     "country": "Китай"
   },
   {
