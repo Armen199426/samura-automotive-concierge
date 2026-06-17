@@ -602,14 +602,6 @@ function Reviews() {
                 </button>
               ))}
             </div>
-            <div className="grid grid-cols-2 gap-3">
-              <a href="#" className="border border-border px-5 py-4 text-center text-[11px] tracking-[0.25em] text-foreground transition-colors hover:border-blood hover:text-blood">
-                ОТЗЫВЫ ВК
-              </a>
-              <a href="#" className="border border-border px-5 py-4 text-center text-[11px] tracking-[0.25em] text-foreground transition-colors hover:border-blood hover:text-blood">
-                ОТЗЫВЫ 2GIS
-              </a>
-            </div>
           </div>
         </div>
       </div>
