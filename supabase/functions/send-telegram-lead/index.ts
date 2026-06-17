@@ -110,16 +110,20 @@ Deno.serve(async (req) => {
 
     const botTokenSource = "TELEGRAM_BOT_TOKEN";
     const chatIdSource = "TELEGRAM_CHAT_ID";
-    const botToken = Deno.env.get(botTokenSource);
-    const chatId = Deno.env.get(chatIdSource);
+    const botTokenRaw = Deno.env.get(botTokenSource);
+    const chatIdRaw = Deno.env.get(chatIdSource);
+    const botToken = botTokenRaw?.trim();
+    const chatId = chatIdRaw?.trim();
 
     console.log("telegram runtime env check", JSON.stringify({
       botTokenSource,
       hasBotToken: Boolean(botToken),
       botTokenMasked: maskToken(botToken),
+      botTokenWasTrimmed: botTokenRaw !== botToken,
       chatIdSource,
       hasChatId: chatId !== null && chatId !== undefined && chatId !== "",
       chatIdValue: chatId ?? null,
+      chatIdWasTrimmed: chatIdRaw !== chatId,
       usesFallbackValues: false,
       usesHardcodedValues: false,
     }));
