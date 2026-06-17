@@ -167,27 +167,25 @@ function HeroForm() {
           </div>
         </div>
 
-        <form
-          onSubmit={(e) => { e.preventDefault(); alert("Заявка отправлена. Мы свяжемся с вами."); }}
+        <LeadForm
+          formName="hero_calculation"
+          successMessage="Заявка отправлена. Мы свяжемся с вами."
           className="reveal glass-card p-8 lg:p-12"
         >
           <div className="grid gap-6 md:grid-cols-2">
-            <Field label="Марка авто" placeholder="Toyota, BMW, Lexus..." />
-            <Field label="Бюджет" placeholder="до 5 000 000 ₽" />
-            <Field label="Страна покупки" placeholder="Япония, Корея, Китай..." />
-            <Field label="Имя" placeholder="Ваше имя" />
+            <Field name="vehicle" label="Марка авто" placeholder="Toyota, BMW, Lexus..." />
+            <Field name="budget" label="Бюджет" placeholder="до 5 000 000 ₽" />
+            <Field name="country" label="Страна покупки" placeholder="Япония, Корея, Китай..." />
+            <Field name="name" label="Имя" placeholder="Ваше имя" required />
             <div className="md:col-span-2">
-              <Field label="Телефон" type="tel" placeholder="+7 (___) ___-__-__" />
+              <Field name="phone" label="Телефон" type="tel" placeholder="+7 (___) ___-__-__" required />
             </div>
           </div>
-          <button type="submit" className="group mt-8 inline-flex w-full items-center justify-center gap-3 bg-blood px-8 py-4 text-sm font-medium tracking-[0.25em] text-primary-foreground shadow-red transition-all hover:bg-blood/90">
-            ПОЛУЧИТЬ РАСЧЁТ
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </button>
+          <SubmitButton label="ПОЛУЧИТЬ РАСЧЁТ" loadingLabel="ОТПРАВКА..." className="mt-8" />
           <p className="mt-4 text-center text-[11px] tracking-wider text-silver-dim">
             Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
           </p>
-        </form>
+        </LeadForm>
       </div>
     </section>
   );
