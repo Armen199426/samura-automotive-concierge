@@ -1,5 +1,13 @@
 import { createServerFn } from "@tanstack/react-start";
 
+type JsonValue =
+  | string
+  | number
+  | boolean
+  | null
+  | JsonValue[]
+  | { [k: string]: JsonValue };
+
 type Lead = {
   id: string;
   created_at: string;
@@ -12,7 +20,7 @@ type Lead = {
   message: string | null;
   service: string | null;
   vehicle: string | null;
-  submission_json: Record<string, unknown>;
+  submission_json: JsonValue;
   utm_source: string | null;
   utm_medium: string | null;
   utm_campaign: string | null;
