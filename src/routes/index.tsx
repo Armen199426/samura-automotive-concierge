@@ -124,11 +124,11 @@ function Hero() {
             </a>
           </div>
           <div className="mt-16 flex items-center gap-6">
-            <div className="text-[10px] tracking-[0.4em] text-silver-dim">ИМПОРТ</div>
+            <div className="text-[10px] tracking-[0.4em] text-silver-dim">НАЙДЁМ</div>
             <div className="h-px w-8 bg-border" />
-            <div className="text-[10px] tracking-[0.4em] text-silver">УВЕРЕННОСТЬ</div>
+            <div className="text-[10px] tracking-[0.4em] text-silver">ПРОВЕРИМ</div>
             <div className="h-px w-8 bg-border" />
-            <div className="text-[10px] tracking-[0.4em] text-blood">ПОД КЛЮЧ</div>
+            <div className="text-[10px] tracking-[0.4em] text-blood">ПРИВЕЗЁМ</div>
           </div>
         </div>
       </div>
@@ -250,7 +250,7 @@ function Process() {
   return (
     <section id="process" className="relative overflow-hidden bg-graphite/40 py-24 lg:py-40">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-        <SectionHead eyebrow="ПРОЦЕСС" title={<>Семь этапов <span className="text-blood font-semibold">до ваших ключей</span></>} />
+        <SectionHead eyebrow="ПРОЦЕСС" title={<>Семь этапов <span className="text-white font-semibold">до авто вашей мечты</span></>} />
         <div className="mt-20 grid gap-px bg-border lg:grid-cols-7">
           {STEPS.map(([title, text], i) => (
             <div key={i} className="reveal relative bg-background p-8 transition-colors hover:bg-graphite/60">
@@ -602,14 +602,6 @@ function Reviews() {
                 </button>
               ))}
             </div>
-            <div className="grid grid-cols-2 gap-3">
-              <a href="#" className="border border-border px-5 py-4 text-center text-[11px] tracking-[0.25em] text-foreground transition-colors hover:border-blood hover:text-blood">
-                ОТЗЫВЫ ВК
-              </a>
-              <a href="#" className="border border-border px-5 py-4 text-center text-[11px] tracking-[0.25em] text-foreground transition-colors hover:border-blood hover:text-blood">
-                ОТЗЫВЫ 2GIS
-              </a>
-            </div>
           </div>
         </div>
       </div>
@@ -686,6 +678,7 @@ function FinalCta() {
             <Field label="Имя" placeholder="Ваше имя" />
             <Field label="Телефон" type="tel" placeholder="+7 (___) ___-__-__" />
             <Field label="Желаемый авто" placeholder="Марка / модель" />
+            <Field label="Желаемый бюджет" placeholder="до 5 000 000 ₽" />
           </div>
           <button type="submit" className="group mt-10 inline-flex w-full items-center justify-center gap-3 bg-blood px-8 py-4 text-sm font-medium tracking-[0.25em] text-primary-foreground shadow-red transition-all hover:bg-blood/90">
             ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ
@@ -736,7 +729,7 @@ function Footer() {
             </p>
           </div>
           <FooterCol title="НАВИГАЦИЯ" items={NAV.map(n => n.label)} />
-          <FooterCol title="КОНТАКТЫ" items={["+7 (800) 555-00-00", "@samura_auto", "Владивосток"]} />
+          <FooterCol title="КОНТАКТЫ" items={["+7 (800) 555-00-00", "@samura_auto", "Иркутск"]} />
           <div>
             <div className="text-[10px] tracking-[0.4em] text-silver">ДОКУМЕНТЫ</div>
             <ul className="mt-6 space-y-3">
