@@ -261,18 +261,30 @@ function LeadForm({
       if (typeof v === "string") payload[k] = v;
     });
 
+    const toastId = `lead-${formName}`;
     try {
       const { submitLead } = await import("@/lib/leads");
+      const { toast } = await import("sonner");
       const res = await submitLead(payload as { form_name: string } & Record<string, string>);
       if (res.ok) {
         form.reset();
-        alert(successMessage);
+        toast.success(successMessage, {
+          id: toastId,
+          description: "Мы свяжемся с вами в ближайшее время.",
+        });
       } else {
-        alert("Ошибка отправки: " + (res.error ?? "повторите попытку"));
+        toast.error("Не удалось отправить заявку", {
+          id: toastId,
+          description: res.error ?? "Пожалуйста, повторите попытку.",
+        });
       }
     } catch (err) {
       console.error(err);
-      alert("Ошибка отправки. Пожалуйста, повторите попытку.");
+      const { toast } = await import("sonner");
+      toast.error("Ошибка отправки", {
+        id: toastId,
+        description: "Проверьте соединение и повторите попытку.",
+      });
     } finally {
       setSubmitting(false);
       form.dataset.submitting = "false";
