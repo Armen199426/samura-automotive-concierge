@@ -21,8 +21,10 @@ export type Database = {
           form_name: string | null
           id: string
           ip_address: string | null
+          is_hot: boolean
           message: string | null
           name: string | null
+          notes: string | null
           page_url: string | null
           phone: string | null
           referrer: string | null
@@ -44,8 +46,10 @@ export type Database = {
           form_name?: string | null
           id?: string
           ip_address?: string | null
+          is_hot?: boolean
           message?: string | null
           name?: string | null
+          notes?: string | null
           page_url?: string | null
           phone?: string | null
           referrer?: string | null
@@ -67,8 +71,10 @@ export type Database = {
           form_name?: string | null
           id?: string
           ip_address?: string | null
+          is_hot?: boolean
           message?: string | null
           name?: string | null
+          notes?: string | null
           page_url?: string | null
           phone?: string | null
           referrer?: string | null
