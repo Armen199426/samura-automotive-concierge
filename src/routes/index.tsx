@@ -295,7 +295,6 @@ function LeadForm({
       }
     } catch (err) {
       console.error(err);
-      const { toast } = await import("sonner");
       toast.error("Ошибка отправки", {
         id: toastId,
         description: "Проверьте соединение и повторите попытку.",
@@ -310,7 +309,7 @@ function LeadForm({
   };
 
   return (
-    <form onSubmit={onSubmit} className={className} data-submitting="false">
+    <form onSubmit={onSubmit} noValidate className={className} data-submitting="false">
       {children}
     </form>
   );
