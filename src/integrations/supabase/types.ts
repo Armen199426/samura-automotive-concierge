@@ -14,7 +14,78 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      leads: {
+        Row: {
+          created_at: string
+          email: string | null
+          form_name: string | null
+          id: string
+          ip_address: string | null
+          message: string | null
+          name: string | null
+          page_url: string | null
+          phone: string | null
+          referrer: string | null
+          service: string | null
+          status: string
+          submission_json: Json
+          telegram_error: string | null
+          telegram_sent: boolean
+          updated_at: string
+          user_agent: string | null
+          utm_campaign: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          vehicle: string | null
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          form_name?: string | null
+          id?: string
+          ip_address?: string | null
+          message?: string | null
+          name?: string | null
+          page_url?: string | null
+          phone?: string | null
+          referrer?: string | null
+          service?: string | null
+          status?: string
+          submission_json?: Json
+          telegram_error?: string | null
+          telegram_sent?: boolean
+          updated_at?: string
+          user_agent?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          vehicle?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          form_name?: string | null
+          id?: string
+          ip_address?: string | null
+          message?: string | null
+          name?: string | null
+          page_url?: string | null
+          phone?: string | null
+          referrer?: string | null
+          service?: string | null
+          status?: string
+          submission_json?: Json
+          telegram_error?: string | null
+          telegram_sent?: boolean
+          updated_at?: string
+          user_agent?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          vehicle?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
