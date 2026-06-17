@@ -756,19 +756,19 @@ function FinalCta() {
             <ContactRow icon={MapPin} label="АДРЕС" value="г. Иркутск, ул. Угольный проезд 68/3" />
           </div>
         </div>
-        <form onSubmit={(e) => { e.preventDefault(); alert("Заявка отправлена."); }}
-          className="reveal glass-card p-8 lg:p-12">
+        <LeadForm
+          formName="contact_consultation"
+          successMessage="Заявка отправлена."
+          className="reveal glass-card p-8 lg:p-12"
+        >
           <div className="space-y-6">
-            <Field label="Имя" placeholder="Ваше имя" />
-            <Field label="Телефон" type="tel" placeholder="+7 (___) ___-__-__" />
-            <Field label="Желаемый авто" placeholder="Марка / модель" />
-            <Field label="Желаемый бюджет" placeholder="до 5 000 000 ₽" />
+            <Field name="name" label="Имя" placeholder="Ваше имя" required />
+            <Field name="phone" label="Телефон" type="tel" placeholder="+7 (___) ___-__-__" required />
+            <Field name="vehicle" label="Желаемый авто" placeholder="Марка / модель" />
+            <Field name="budget" label="Желаемый бюджет" placeholder="до 5 000 000 ₽" />
           </div>
-          <button type="submit" className="group mt-10 inline-flex w-full items-center justify-center gap-3 bg-blood px-8 py-4 text-sm font-medium tracking-[0.25em] text-primary-foreground shadow-red transition-all hover:bg-blood/90">
-            ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </button>
-        </form>
+          <SubmitButton label="ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ" loadingLabel="ОТПРАВКА..." className="mt-10" />
+        </LeadForm>
       </div>
     </section>
   );
