@@ -95,7 +95,7 @@ export const crmUpdateLead = createServerFn({ method: "POST" })
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { data: row, error } = await supabaseAdmin
       .from("leads")
-      .update(data.patch)
+      .update(data.patch as never)
       .eq("id", data.id)
       .select("*")
       .single();
