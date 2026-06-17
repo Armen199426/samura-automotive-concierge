@@ -69,13 +69,7 @@ export async function submitLead(submission: LeadSubmission): Promise<{
     return { ok: false, error: error.message };
   }
 
-  // Fire-and-forget Telegram notification — never block the user on it.
-  // Anonymous visitors cannot SELECT rows back, so pass the payload directly.
-  supabase.functions
-    .invoke("send-telegram-lead", { body: { lead: row } })
-    .catch((e) => {
-      console.warn("Telegram notify failed:", e);
-    });
-
+  // Telegram notification is dispatched server-side by an AFTER INSERT trigger
+  // on public.leads (pg_net → send-telegram-lead Edge Function).
   return { ok: true };
 }

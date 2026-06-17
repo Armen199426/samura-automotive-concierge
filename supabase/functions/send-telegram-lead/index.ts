@@ -1,6 +1,6 @@
 // Edge function: send-telegram-lead
-// Fetches a lead from the `leads` table, formats it, posts it to Telegram,
-// and updates telegram_sent / telegram_error on the row.
+// Invoked by an AFTER INSERT trigger on public.leads via pg_net.
+// Loads the lead, posts to Telegram, updates telegram_sent / telegram_error.
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 
@@ -16,48 +16,28 @@ const CHAT_ID = Deno.env.get("TELEGRAM_CHAT_ID");
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SERVICE_ROLE = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
+const admin = createClient(SUPABASE_URL, SERVICE_ROLE, {
+  auth: { persistSession: false, autoRefreshToken: false },
+});
+
 const KNOWN_FIELDS = new Set([
-  "id",
-  "created_at",
-  "updated_at",
-  "form_name",
-  "page_url",
-  "name",
-  "phone",
-  "email",
-  "message",
-  "service",
-  "vehicle",
-  "submission_json",
-  "utm_source",
-  "utm_medium",
-  "utm_campaign",
-  "referrer",
-  "ip_address",
-  "user_agent",
-  "status",
-  "telegram_sent",
-  "telegram_error",
+  "id", "created_at", "updated_at", "form_name", "page_url", "name", "phone",
+  "email", "message", "service", "vehicle", "submission_json", "utm_source",
+  "utm_medium", "utm_campaign", "referrer", "ip_address", "user_agent",
+  "status", "telegram_sent", "telegram_error",
 ]);
 
 function esc(v: unknown): string {
   if (v === null || v === undefined || v === "") return "—";
-  return String(v)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
+  return String(v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
 function formatDate(iso: string): string {
   try {
     return new Date(iso).toLocaleString("ru-RU", {
-      timeZone: "Asia/Irkutsk",
-      dateStyle: "medium",
-      timeStyle: "short",
+      timeZone: "Asia/Irkutsk", dateStyle: "medium", timeStyle: "short",
     });
-  } catch {
-    return iso;
-  }
+  } catch { return iso; }
 }
 
 function buildMessage(lead: Record<string, unknown>): string {
@@ -68,7 +48,6 @@ function buildMessage(lead: Record<string, unknown>): string {
     if (v === null || v === undefined || v === "") continue;
     extras.push(`<b>${esc(k)}:</b> ${esc(v)}`);
   }
-
   const extraBlock = extras.length
     ? `\n━━━━━━━━━━━━━━\n\n📎 <b>Additional Information</b>\n\n${extras.join("\n")}\n`
     : "";
@@ -95,67 +74,69 @@ function buildMessage(lead: Record<string, unknown>): string {
   );
 }
 
-Deno.serve(async (req) => {
-  if (req.method === "OPTIONS") {
-    return new Response(null, { headers: corsHeaders });
-  }
+async function markStatus(leadId: string | undefined, sent: boolean, error: string | null) {
+  if (!leadId) return;
+  await admin.from("leads").update({
+    telegram_sent: sent,
+    telegram_error: error,
+  }).eq("id", leadId);
+}
 
+Deno.serve(async (req) => {
+  if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
+
+  let leadId: string | undefined;
   try {
     const body = await req.json();
-    const lead = (body?.lead ?? null) as Record<string, unknown> | null;
+    leadId = body?.lead_id ?? body?.lead?.id;
+
+    let lead: Record<string, unknown> | null = body?.lead ?? null;
+
+    // If trigger passed only lead_id, fetch the row with service role.
+    if (!lead && leadId) {
+      const { data, error } = await admin.from("leads").select("*").eq("id", leadId).maybeSingle();
+      if (error) throw new Error(`load lead failed: ${error.message}`);
+      lead = data as Record<string, unknown> | null;
+    }
 
     if (!lead) {
-      return new Response(
-        JSON.stringify({ error: "lead payload required" }),
-        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
-      );
+      return new Response(JSON.stringify({ error: "lead payload required" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
     if (!BOT_TOKEN || !CHAT_ID) {
-      return new Response(
-        JSON.stringify({ error: "Telegram secrets not configured" }),
-        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
-      );
+      await markStatus(leadId, false, "Telegram secrets not configured");
+      return new Response(JSON.stringify({ error: "Telegram secrets not configured" }),
+        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
     if (!lead.created_at) lead.created_at = new Date().toISOString();
-
     const text = buildMessage(lead);
 
-    const tgRes = await fetch(
-      `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: CHAT_ID,
-          text,
-          parse_mode: "HTML",
-          disable_web_page_preview: true,
-        }),
-      },
-    );
-
+    const tgRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: CHAT_ID, text, parse_mode: "HTML", disable_web_page_preview: true,
+      }),
+    });
     const tgJson = await tgRes.json().catch(() => ({}));
 
     if (!tgRes.ok || tgJson?.ok === false) {
       const errMsg = tgJson?.description ?? `Telegram HTTP ${tgRes.status}`;
-      return new Response(
-        JSON.stringify({ ok: false, error: errMsg }),
-        { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } },
-      );
+      await markStatus(leadId, false, String(errMsg));
+      return new Response(JSON.stringify({ ok: false, error: errMsg }),
+        { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
-    return new Response(
-      JSON.stringify({ ok: true }),
-      { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } },
-    );
+    await markStatus(leadId, true, null);
+    return new Response(JSON.stringify({ ok: true }),
+      { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } });
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
     console.error("send-telegram-lead error:", msg);
-    return new Response(
-      JSON.stringify({ ok: false, error: msg }),
-      { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } },
-    );
+    await markStatus(leadId, false, msg);
+    return new Response(JSON.stringify({ ok: false, error: msg }),
+      { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } });
   }
 });
