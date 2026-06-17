@@ -678,6 +678,7 @@ function FinalCta() {
             <Field label="Имя" placeholder="Ваше имя" />
             <Field label="Телефон" type="tel" placeholder="+7 (___) ___-__-__" />
             <Field label="Желаемый авто" placeholder="Марка / модель" />
+            <Field label="Желаемый бюджет" placeholder="до 5 000 000 ₽" />
           </div>
           <button type="submit" className="group mt-10 inline-flex w-full items-center justify-center gap-3 bg-blood px-8 py-4 text-sm font-medium tracking-[0.25em] text-primary-foreground shadow-red transition-all hover:bg-blood/90">
             ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ
