@@ -63,19 +63,16 @@ export async function submitLead(submission: LeadSubmission): Promise<{
     // Already covered by submission_json, but keep for clarity.
   }
 
-  const { data, error } = await supabase
-    .from("leads")
-    .insert(row as never)
-    .select("id")
-    .single();
+  const { error } = await supabase.from("leads").insert(row as never);
 
-  if (error || !data) {
-    return { ok: false, error: error?.message ?? "Не удалось сохранить заявку" };
+  if (error) {
+    return { ok: false, error: error.message };
   }
 
   // Fire-and-forget Telegram notification — never block the user on it.
+  // Anonymous visitors cannot SELECT rows back, so pass the payload directly.
   supabase.functions
-    .invoke("send-telegram-lead", { body: { lead_id: (data as { id: string }).id } })
+    .invoke("send-telegram-lead", { body: { lead: row } })
     .catch((e) => {
       console.warn("Telegram notify failed:", e);
     });

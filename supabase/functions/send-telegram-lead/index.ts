@@ -101,10 +101,12 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const { lead_id } = await req.json();
-    if (!lead_id) {
+    const body = await req.json();
+    const lead = (body?.lead ?? null) as Record<string, unknown> | null;
+
+    if (!lead) {
       return new Response(
-        JSON.stringify({ error: "lead_id required" }),
+        JSON.stringify({ error: "lead payload required" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
       );
     }
@@ -116,24 +118,9 @@ Deno.serve(async (req) => {
       );
     }
 
-    const admin = createClient(SUPABASE_URL, SERVICE_ROLE, {
-      auth: { persistSession: false, autoRefreshToken: false },
-    });
+    if (!lead.created_at) lead.created_at = new Date().toISOString();
 
-    const { data: lead, error: fetchErr } = await admin
-      .from("leads")
-      .select("*")
-      .eq("id", lead_id)
-      .single();
-
-    if (fetchErr || !lead) {
-      return new Response(
-        JSON.stringify({ error: fetchErr?.message ?? "Lead not found" }),
-        { status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" } },
-      );
-    }
-
-    const text = buildMessage(lead as Record<string, unknown>);
+    const text = buildMessage(lead);
 
     const tgRes = await fetch(
       `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
@@ -152,22 +139,12 @@ Deno.serve(async (req) => {
     const tgJson = await tgRes.json().catch(() => ({}));
 
     if (!tgRes.ok || tgJson?.ok === false) {
-      const errMsg =
-        tgJson?.description ?? `Telegram HTTP ${tgRes.status}`;
-      await admin
-        .from("leads")
-        .update({ telegram_sent: false, telegram_error: errMsg })
-        .eq("id", lead_id);
+      const errMsg = tgJson?.description ?? `Telegram HTTP ${tgRes.status}`;
       return new Response(
         JSON.stringify({ ok: false, error: errMsg }),
         { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } },
       );
     }
-
-    await admin
-      .from("leads")
-      .update({ telegram_sent: true, telegram_error: null })
-      .eq("id", lead_id);
 
     return new Response(
       JSON.stringify({ ok: true }),
