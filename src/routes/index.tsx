@@ -40,10 +40,9 @@ export const Route = createFileRoute("/")({
           logo: "https://samura-auto.ru/logo.png",
           image: "https://samura-auto.ru/logo.png",
           description: "Импорт и подбор автомобилей под заказ из Японии, Кореи, Китая, Европы и США. Подбор, проверка, выкуп и доставка под ключ.",
-          telephone: "+7 950 060 51 80",
+          telephone: "+7 950 090 17 56",
           address: {
             "@type": "PostalAddress",
-            streetAddress: "Угольный проезд 68/3",
             addressLocality: "Иркутск",
             addressCountry: "RU",
           },
