@@ -28,6 +28,7 @@ export const Route = createFileRoute("/")({
     ],
     links: [
       { rel: "canonical", href: "https://samura-auto.ru/" },
+      { rel: "preload", as: "image", href: heroCar, fetchpriority: "high" },
     ],
     scripts: [
       {
