@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://samura-auto.ru/sitemap.xml
