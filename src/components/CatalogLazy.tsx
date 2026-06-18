@@ -28,7 +28,7 @@ export function CatalogLazy() {
   }, [show]);
 
   return (
-    <section id="catalog" ref={ref} className="py-24 lg:py-40">
+    <section id="catalog" ref={ref} className="pt-16 pb-24 lg:py-40">
       {show ? (
         <Suspense fallback={<CatalogSkeleton />}>
           <CatalogInner />
