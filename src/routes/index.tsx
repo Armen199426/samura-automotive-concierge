@@ -587,10 +587,10 @@ function Reviews() {
             </div>
           </div>
           <div className="flex flex-col justify-between gap-6">
-            <div className="space-y-4">
+            <div className="space-y-2">
               {REVIEWS.map((r, i) => (
                 <button key={i} onClick={() => setIdx(i)}
-                  className={`flex w-full items-center gap-4 border px-6 py-4 text-left transition-all ${
+                  className={`flex w-full items-center gap-4 border px-6 py-3 text-left transition-all ${
                     idx === i ? "border-blood bg-graphite/60" : "border-border hover:border-silver/40"
                   }`}>
                   <span className={`text-xs tracking-[0.3em] ${idx === i ? "text-blood" : "text-silver-dim"}`}>0{i+1}</span>
