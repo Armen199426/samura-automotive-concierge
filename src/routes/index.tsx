@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   ShieldCheck, Search, Banknote, Truck, FileLock2, Camera,
@@ -37,12 +37,38 @@ export const Route = createFileRoute("/")({
           "@type": "AutoDealer",
           name: "SAMURA AUTO",
           url: "https://samura-auto.ru",
-          logo: "https://samura-auto.ru/favicon.ico",
-          image: "https://samura-auto.ru/favicon.ico",
+          logo: "https://samura-auto.ru/logo.png",
+          image: "https://samura-auto.ru/logo.png",
           description: "Импорт и подбор автомобилей под заказ из Японии, Кореи, Китая, Европы и США. Подбор, проверка, выкуп и доставка под ключ.",
+          telephone: "+7 950 060 51 80",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Угольный проезд 68/3",
+            addressLocality: "Иркутск",
+            addressCountry: "RU",
+          },
           areaServed: "RU",
           priceRange: "$$",
           sameAs: [],
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            ["Как происходит процесс покупки автомобиля?", "Мы фиксируем задачу, подбираем варианты на зарубежных аукционах, проводим осмотр и согласование с вами, выкупаем автомобиль, оформляем документы и доставляем в ваш город."],
+            ["Сколько занимает доставка?", "От 21 дня. Точный срок зависит от страны происхождения, способа доставки и текущей загрузки логистики."],
+            ["Как происходит оплата?", "Все этапы фиксируются договором. Оплата производится поэтапно: предоплата за подбор, оплата за автомобиль и финальный расчёт за доставку и услуги."],
+            ["Можно ли заказать автомобиль в свой город?", "Да. Мы организуем доставку автомобиля до терминала или до адреса в любом городе России."],
+            ["Какие гарантии я получаю?", "Договор с фиксацией условий, отчёты на каждом этапе, проверка автомобиля профильным экспертом, прозрачная финансовая модель."],
+            ["Что входит в услугу под ключ?", "Подбор, проверка, выкуп, оплата, логистика, таможня, оформление документов и передача автомобиля клиенту."],
+          ].map(([q, a]) => ({
+            "@type": "Question",
+            name: q,
+            acceptedAnswer: { "@type": "Answer", text: a },
+          })),
         }),
       },
     ],
@@ -921,10 +947,77 @@ function Index() {
         <Risks />
         <Reviews />
         <Faq />
+        <SeoDirections />
         <FinalCta />
       </main>
       <Footer />
       <CookieBanner />
     </div>
+  );
+}
+
+const COUNTRY_LINKS = [
+  { to: "/auto-iz-yaponii", label: "Авто из Японии", text: "Toyota, Lexus, Honda, Nissan с японских аукционов USS, JU, TAA." },
+  { to: "/auto-iz-korei", label: "Авто из Кореи", text: "Genesis, Kia, Hyundai с площадок Encar и KB Chachacha." },
+  { to: "/auto-iz-kitaya", label: "Авто из Китая", text: "Li Auto, Zeekr, Tank, BYD, Voyah напрямую от дилеров." },
+  { to: "/auto-iz-evropy", label: "Авто из Европы", text: "BMW, Mercedes-Benz, Audi, Porsche с mobile.de и AutoScout24." },
+  { to: "/auto-iz-ssha", label: "Авто из США", text: "Tesla, Ford, Cadillac, Jeep с аукционов Copart и IAAI." },
+] as const;
+
+const SERVICE_LINKS = [
+  { to: "/uslugi/podbor-avto", label: "Подбор автомобиля", text: "Аналитика рынка, расшифровка аукционных листов, проверка по VIN." },
+  { to: "/uslugi/dostavka-i-rastamozhka", label: "Доставка и растаможка", text: "Морская и сухопутная логистика, СБКТС, ЭПТС, постановка на учёт." },
+] as const;
+
+function SeoDirections() {
+  return (
+    <section className="border-t border-border bg-background py-24 lg:py-32">
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+        <SectionHead eyebrow="НАПРАВЛЕНИЯ" title={<>Откуда мы привозим <span className="text-blood font-semibold">автомобили</span></>} />
+        <div className="reveal mt-12 grid gap-px bg-border md:grid-cols-2 lg:grid-cols-3">
+          {COUNTRY_LINKS.map((c) => (
+            <Link
+              key={c.to}
+              to={c.to}
+              className="group block bg-background p-8 transition-colors hover:bg-graphite/60"
+            >
+              <div className="flex items-center justify-between">
+                <h3 className="text-lg font-medium text-foreground group-hover:text-blood">{c.label}</h3>
+                <ArrowRight className="h-4 w-4 text-silver-dim transition-transform group-hover:translate-x-1 group-hover:text-blood" />
+              </div>
+              <p className="mt-3 text-sm leading-relaxed text-silver-dim">{c.text}</p>
+            </Link>
+          ))}
+        </div>
+
+        <div className="reveal mt-20">
+          <SectionHead eyebrow="УСЛУГИ" title={<>Что мы делаем <span className="text-blood font-semibold">под ключ</span></>} />
+          <div className="mt-12 grid gap-px bg-border md:grid-cols-2">
+            {SERVICE_LINKS.map((s) => (
+              <Link
+                key={s.to}
+                to={s.to}
+                className="group block bg-background p-8 transition-colors hover:bg-graphite/60"
+              >
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-medium text-foreground group-hover:text-blood">{s.label}</h3>
+                  <ArrowRight className="h-4 w-4 text-silver-dim transition-transform group-hover:translate-x-1 group-hover:text-blood" />
+                </div>
+                <p className="mt-3 text-sm leading-relaxed text-silver-dim">{s.text}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        <div className="reveal mt-20 max-w-3xl text-sm leading-relaxed text-silver-dim">
+          <p>
+            SAMURA AUTO — импорт автомобилей под заказ из Японии, Южной Кореи, Китая, Европы и США.
+            Работаем с аукционами USS, Encar, Copart, mobile.de и официальными дилерами. Берём на себя
+            подбор, проверку, выкуп, морскую и сухопутную доставку, растаможку, оформление СБКТС и ЭПТС.
+            География работы — вся Россия с центральным офисом в Иркутске.
+          </p>
+        </div>
+      </div>
+    </section>
   );
 }

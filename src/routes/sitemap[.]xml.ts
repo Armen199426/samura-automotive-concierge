@@ -17,6 +17,13 @@ export const Route = createFileRoute("/sitemap.xml")({
         const today = new Date().toISOString().split("T")[0];
         const entries: SitemapEntry[] = [
           { path: "/", lastmod: today, changefreq: "weekly", priority: "1.0" },
+          { path: "/auto-iz-yaponii", lastmod: today, changefreq: "monthly", priority: "0.8" },
+          { path: "/auto-iz-korei", lastmod: today, changefreq: "monthly", priority: "0.8" },
+          { path: "/auto-iz-kitaya", lastmod: today, changefreq: "monthly", priority: "0.8" },
+          { path: "/auto-iz-evropy", lastmod: today, changefreq: "monthly", priority: "0.8" },
+          { path: "/auto-iz-ssha", lastmod: today, changefreq: "monthly", priority: "0.8" },
+          { path: "/uslugi/podbor-avto", lastmod: today, changefreq: "monthly", priority: "0.7" },
+          { path: "/uslugi/dostavka-i-rastamozhka", lastmod: today, changefreq: "monthly", priority: "0.7" },
           { path: "/privacy", lastmod: today, changefreq: "yearly", priority: "0.3" },
         ];
 
