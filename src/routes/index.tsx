@@ -561,8 +561,8 @@ function Reviews() {
     <section id="reviews" className="py-24 lg:py-40">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <SectionHead eyebrow="ОТЗЫВЫ" title={<>Что говорят <span className="text-blood font-semibold">клиенты</span></>} />
-        <div className="reveal mt-16 grid gap-12 lg:grid-cols-[1.4fr_1fr]">
-          <div className="glass-card relative p-10 lg:p-16">
+        <div className="reveal mt-16 grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:items-start">
+          <div className="glass-card relative p-10 lg:p-12">
             <div className="absolute left-10 top-10 text-7xl font-light text-blood/30">"</div>
             <p className="relative text-2xl font-light leading-snug text-foreground md:text-3xl">
               {REVIEWS[idx].text}
