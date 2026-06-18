@@ -77,6 +77,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "SAMURA AUTO — подбор и доставка автомобилей из Японии, Кореи и Китая под ключ. Каталог проверенных авто, прозрачная цена, полное сопровождение сделки." },
       { name: "author", content: "SAMURA AUTO" },
       { name: "yandex-verification", content: "b341aaf75ac1d0a0" },
+      { name: "google-site-verification", content: "izdKR8VBty0nMwqvN5n5RXnWZ4eTRgfhPTeO_c3GjKQ" },
       { property: "og:title", content: "SAMURA AUTO — импорт автомобилей из Японии, Кореи и Китая" },
       { property: "og:description", content: "Подбор и доставка автомобилей из-за рубежа под ключ. Каталог проверенных авто и полное сопровождение сделки." },
       { property: "og:type", content: "website" },
