@@ -405,7 +405,7 @@ const STEPS = [
 
 function Process() {
   return (
-    <section id="process" className="relative overflow-hidden bg-graphite/40 py-24 lg:py-40">
+    <section id="process" className="relative overflow-hidden bg-graphite/40 pt-24 pb-16 lg:py-40">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <SectionHead eyebrow="ПРОЦЕСС" title={<>Семь этапов <span className="text-white font-semibold">до авто вашей мечты</span></>} />
         <div className="mt-20 grid gap-px bg-border lg:grid-cols-7">
@@ -561,8 +561,8 @@ function Reviews() {
     <section id="reviews" className="py-24 lg:py-40">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <SectionHead eyebrow="ОТЗЫВЫ" title={<>Что говорят <span className="text-blood font-semibold">клиенты</span></>} />
-        <div className="reveal mt-16 grid gap-12 lg:grid-cols-[1.4fr_1fr]">
-          <div className="glass-card relative p-10 lg:p-16">
+        <div className="reveal mt-16 grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:items-start">
+          <div className="glass-card relative p-10 lg:p-12">
             <div className="absolute left-10 top-10 text-7xl font-light text-blood/30">"</div>
             <p className="relative text-2xl font-light leading-snug text-foreground md:text-3xl">
               {REVIEWS[idx].text}
@@ -587,10 +587,10 @@ function Reviews() {
             </div>
           </div>
           <div className="flex flex-col justify-between gap-6">
-            <div className="space-y-4">
+            <div className="space-y-2">
               {REVIEWS.map((r, i) => (
                 <button key={i} onClick={() => setIdx(i)}
-                  className={`flex w-full items-center gap-4 border px-6 py-4 text-left transition-all ${
+                  className={`flex w-full items-center gap-4 border px-6 py-3 text-left transition-all ${
                     idx === i ? "border-blood bg-graphite/60" : "border-border hover:border-silver/40"
                   }`}>
                   <span className={`text-xs tracking-[0.3em] ${idx === i ? "text-blood" : "text-silver-dim"}`}>0{i+1}</span>
