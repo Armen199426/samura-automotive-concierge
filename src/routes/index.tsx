@@ -822,10 +822,10 @@ function FinalCta() {
             Оставьте заявку — рассчитаем стоимость, сроки и лучшие варианты под ваш бюджет.
           </p>
           <div className="mt-12 space-y-6">
-            <ContactRow icon={Phone} label="ТЕЛЕФОН" value="8 950 060 51 80" href="tel:+79500605180" />
+            <ContactRow icon={Phone} label="ТЕЛЕФОН" value="8 950 090 17 56" href="tel:+79500901756" />
             <ContactRow icon={Send} label="TELEGRAM" value="@samurauto" href="https://t.me/samurauto" />
-            <ContactRow icon={MessageCircle} label="MAX" value="8 950 060 51 80" href="tel:+79500605180" />
-            <ContactRow icon={MapPin} label="АДРЕС" value="г. Иркутск, ул. Угольный проезд 68/3" />
+            <ContactRow icon={MessageCircle} label="MAX" value="8 950 090 17 56" href="tel:+79500901756" />
+            <ContactRow icon={MapPin} label="АДРЕС" value="г. Иркутск" />
           </div>
         </div>
         <LeadForm
