@@ -12,7 +12,14 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as CrmRouteImport } from './routes/crm'
+import { Route as AutoIzYaponiiRouteImport } from './routes/auto-iz-yaponii'
+import { Route as AutoIzSshaRouteImport } from './routes/auto-iz-ssha'
+import { Route as AutoIzKoreiRouteImport } from './routes/auto-iz-korei'
+import { Route as AutoIzKitayaRouteImport } from './routes/auto-iz-kitaya'
+import { Route as AutoIzEvropyRouteImport } from './routes/auto-iz-evropy'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as UslugiPodborAvtoRouteImport } from './routes/uslugi.podbor-avto'
+import { Route as UslugiDostavkaIRastamozhkaRouteImport } from './routes/uslugi.dostavka-i-rastamozhka'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -29,44 +36,142 @@ const CrmRoute = CrmRouteImport.update({
   path: '/crm',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AutoIzYaponiiRoute = AutoIzYaponiiRouteImport.update({
+  id: '/auto-iz-yaponii',
+  path: '/auto-iz-yaponii',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AutoIzSshaRoute = AutoIzSshaRouteImport.update({
+  id: '/auto-iz-ssha',
+  path: '/auto-iz-ssha',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AutoIzKoreiRoute = AutoIzKoreiRouteImport.update({
+  id: '/auto-iz-korei',
+  path: '/auto-iz-korei',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AutoIzKitayaRoute = AutoIzKitayaRouteImport.update({
+  id: '/auto-iz-kitaya',
+  path: '/auto-iz-kitaya',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AutoIzEvropyRoute = AutoIzEvropyRouteImport.update({
+  id: '/auto-iz-evropy',
+  path: '/auto-iz-evropy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UslugiPodborAvtoRoute = UslugiPodborAvtoRouteImport.update({
+  id: '/uslugi/podbor-avto',
+  path: '/uslugi/podbor-avto',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UslugiDostavkaIRastamozhkaRoute =
+  UslugiDostavkaIRastamozhkaRouteImport.update({
+    id: '/uslugi/dostavka-i-rastamozhka',
+    path: '/uslugi/dostavka-i-rastamozhka',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auto-iz-evropy': typeof AutoIzEvropyRoute
+  '/auto-iz-kitaya': typeof AutoIzKitayaRoute
+  '/auto-iz-korei': typeof AutoIzKoreiRoute
+  '/auto-iz-ssha': typeof AutoIzSshaRoute
+  '/auto-iz-yaponii': typeof AutoIzYaponiiRoute
   '/crm': typeof CrmRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/uslugi/dostavka-i-rastamozhka': typeof UslugiDostavkaIRastamozhkaRoute
+  '/uslugi/podbor-avto': typeof UslugiPodborAvtoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auto-iz-evropy': typeof AutoIzEvropyRoute
+  '/auto-iz-kitaya': typeof AutoIzKitayaRoute
+  '/auto-iz-korei': typeof AutoIzKoreiRoute
+  '/auto-iz-ssha': typeof AutoIzSshaRoute
+  '/auto-iz-yaponii': typeof AutoIzYaponiiRoute
   '/crm': typeof CrmRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/uslugi/dostavka-i-rastamozhka': typeof UslugiDostavkaIRastamozhkaRoute
+  '/uslugi/podbor-avto': typeof UslugiPodborAvtoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auto-iz-evropy': typeof AutoIzEvropyRoute
+  '/auto-iz-kitaya': typeof AutoIzKitayaRoute
+  '/auto-iz-korei': typeof AutoIzKoreiRoute
+  '/auto-iz-ssha': typeof AutoIzSshaRoute
+  '/auto-iz-yaponii': typeof AutoIzYaponiiRoute
   '/crm': typeof CrmRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/uslugi/dostavka-i-rastamozhka': typeof UslugiDostavkaIRastamozhkaRoute
+  '/uslugi/podbor-avto': typeof UslugiPodborAvtoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/crm' | '/privacy' | '/sitemap.xml'
+  fullPaths:
+    | '/'
+    | '/auto-iz-evropy'
+    | '/auto-iz-kitaya'
+    | '/auto-iz-korei'
+    | '/auto-iz-ssha'
+    | '/auto-iz-yaponii'
+    | '/crm'
+    | '/privacy'
+    | '/sitemap.xml'
+    | '/uslugi/dostavka-i-rastamozhka'
+    | '/uslugi/podbor-avto'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/crm' | '/privacy' | '/sitemap.xml'
-  id: '__root__' | '/' | '/crm' | '/privacy' | '/sitemap.xml'
+  to:
+    | '/'
+    | '/auto-iz-evropy'
+    | '/auto-iz-kitaya'
+    | '/auto-iz-korei'
+    | '/auto-iz-ssha'
+    | '/auto-iz-yaponii'
+    | '/crm'
+    | '/privacy'
+    | '/sitemap.xml'
+    | '/uslugi/dostavka-i-rastamozhka'
+    | '/uslugi/podbor-avto'
+  id:
+    | '__root__'
+    | '/'
+    | '/auto-iz-evropy'
+    | '/auto-iz-kitaya'
+    | '/auto-iz-korei'
+    | '/auto-iz-ssha'
+    | '/auto-iz-yaponii'
+    | '/crm'
+    | '/privacy'
+    | '/sitemap.xml'
+    | '/uslugi/dostavka-i-rastamozhka'
+    | '/uslugi/podbor-avto'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AutoIzEvropyRoute: typeof AutoIzEvropyRoute
+  AutoIzKitayaRoute: typeof AutoIzKitayaRoute
+  AutoIzKoreiRoute: typeof AutoIzKoreiRoute
+  AutoIzSshaRoute: typeof AutoIzSshaRoute
+  AutoIzYaponiiRoute: typeof AutoIzYaponiiRoute
   CrmRoute: typeof CrmRoute
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  UslugiDostavkaIRastamozhkaRoute: typeof UslugiDostavkaIRastamozhkaRoute
+  UslugiPodborAvtoRoute: typeof UslugiPodborAvtoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -92,6 +197,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CrmRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auto-iz-yaponii': {
+      id: '/auto-iz-yaponii'
+      path: '/auto-iz-yaponii'
+      fullPath: '/auto-iz-yaponii'
+      preLoaderRoute: typeof AutoIzYaponiiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auto-iz-ssha': {
+      id: '/auto-iz-ssha'
+      path: '/auto-iz-ssha'
+      fullPath: '/auto-iz-ssha'
+      preLoaderRoute: typeof AutoIzSshaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auto-iz-korei': {
+      id: '/auto-iz-korei'
+      path: '/auto-iz-korei'
+      fullPath: '/auto-iz-korei'
+      preLoaderRoute: typeof AutoIzKoreiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auto-iz-kitaya': {
+      id: '/auto-iz-kitaya'
+      path: '/auto-iz-kitaya'
+      fullPath: '/auto-iz-kitaya'
+      preLoaderRoute: typeof AutoIzKitayaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auto-iz-evropy': {
+      id: '/auto-iz-evropy'
+      path: '/auto-iz-evropy'
+      fullPath: '/auto-iz-evropy'
+      preLoaderRoute: typeof AutoIzEvropyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -99,14 +239,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/uslugi/podbor-avto': {
+      id: '/uslugi/podbor-avto'
+      path: '/uslugi/podbor-avto'
+      fullPath: '/uslugi/podbor-avto'
+      preLoaderRoute: typeof UslugiPodborAvtoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/uslugi/dostavka-i-rastamozhka': {
+      id: '/uslugi/dostavka-i-rastamozhka'
+      path: '/uslugi/dostavka-i-rastamozhka'
+      fullPath: '/uslugi/dostavka-i-rastamozhka'
+      preLoaderRoute: typeof UslugiDostavkaIRastamozhkaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AutoIzEvropyRoute: AutoIzEvropyRoute,
+  AutoIzKitayaRoute: AutoIzKitayaRoute,
+  AutoIzKoreiRoute: AutoIzKoreiRoute,
+  AutoIzSshaRoute: AutoIzSshaRoute,
+  AutoIzYaponiiRoute: AutoIzYaponiiRoute,
   CrmRoute: CrmRoute,
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  UslugiDostavkaIRastamozhkaRoute: UslugiDostavkaIRastamozhkaRoute,
+  UslugiPodborAvtoRoute: UslugiPodborAvtoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
