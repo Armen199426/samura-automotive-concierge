@@ -884,14 +884,33 @@ function Footer() {
               Импорт автомобилей из Азии, Европы и США. Подбор, проверка, выкуп и доставка под ключ.
             </p>
           </div>
-          <FooterCol title="НАВИГАЦИЯ" items={NAV.map(n => n.label)} />
-          <FooterCol title="КОНТАКТЫ" items={["+7 (800) 555-00-00", "@samura_auto", "Иркутск"]} />
           <div>
-            <div className="text-[10px] tracking-[0.4em] text-silver">ДОКУМЕНТЫ</div>
+            <div className="text-[10px] tracking-[0.4em] text-silver">НАПРАВЛЕНИЯ</div>
             <ul className="mt-6 space-y-3">
+              {COUNTRY_LINKS.map((c) => (
+                <li key={c.to}>
+                  <Link to={c.to} className="text-sm text-silver-dim transition-colors hover:text-blood">{c.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <div className="text-[10px] tracking-[0.4em] text-silver">УСЛУГИ</div>
+            <ul className="mt-6 space-y-3">
+              {SERVICE_LINKS.map((s) => (
+                <li key={s.to}>
+                  <Link to={s.to} className="text-sm text-silver-dim transition-colors hover:text-blood">{s.label}</Link>
+                </li>
+              ))}
               <li><a href="/privacy" className="text-sm text-silver-dim transition-colors hover:text-blood">Политика конфиденциальности</a></li>
-              <li><a href="#" className="text-sm text-silver-dim transition-colors hover:text-blood">Реквизиты компании</a></li>
-              <li><a href="#" className="text-sm text-silver-dim transition-colors hover:text-blood">Договор оферты</a></li>
+            </ul>
+          </div>
+          <div>
+            <div className="text-[10px] tracking-[0.4em] text-silver">КОНТАКТЫ</div>
+            <ul className="mt-6 space-y-3">
+              <li><a href="tel:+79500901756" className="text-sm text-silver-dim transition-colors hover:text-blood">+7 950 090 17 56</a></li>
+              <li><a href="https://t.me/samurauto" target="_blank" rel="noopener noreferrer" className="text-sm text-silver-dim transition-colors hover:text-blood">@samurauto</a></li>
+              <li><span className="text-sm text-silver-dim">г. Иркутск</span></li>
             </ul>
           </div>
         </div>
