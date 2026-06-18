@@ -88,10 +88,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/93e899ab-7d23-4398-b0bf-d46e29b31faf/id-preview-ac3d90ec--c63d6045-dc18-44d6-ae27-fd525e0a9cd2.lovable.app-1779984882404.png" },
     ],
     links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
+      { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://mc.yandex.ru", crossOrigin: "anonymous" },
+      { rel: "preconnect", href: "https://zduftrhicuyyfjzbfjbi.supabase.co", crossOrigin: "anonymous" },
+      { rel: "dns-prefetch", href: "https://mc.yandex.ru" },
     ],
     scripts: [
       {
