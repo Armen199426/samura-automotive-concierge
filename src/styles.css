@@ -107,6 +107,9 @@
     border: 1px solid oklch(0.32 0.006 250 / 0.6);
     backdrop-filter: blur(12px);
   }
+  @media (max-width: 768px) {
+    .glass-card { backdrop-filter: none; }
+  }
   .red-line {
     background: linear-gradient(90deg, transparent, var(--blood), transparent);
     height: 1px;
