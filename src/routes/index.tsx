@@ -799,7 +799,7 @@ function Index() {
         <HeroForm />
         <Advantages />
         <Process />
-        <Catalog />
+        <CatalogLazy />
         <Numbers />
         <About />
         <Risks />
