@@ -6,12 +6,12 @@ import {
   AlertTriangle, Gauge, FileWarning, History, CreditCard, AlertOctagon,
   ChevronLeft, ChevronRight, Send,
 } from "lucide-react";
-import logo from "@/assets/logo.png";
-import heroCar from "@/assets/hero-car.jpg";
+import logo from "@/assets/logo.webp";
+import heroCar from "@/assets/hero-car.webp";
 import ctaCar from "@/assets/cta-car.jpg";
-import { CARS as ALL_CARS } from "@/data/cars";
 import { useReveal } from "@/hooks/use-reveal";
 import { CookieBanner } from "@/components/CookieBanner";
+import { CatalogLazy } from "@/components/CatalogLazy";
 
 export const Route = createFileRoute("/")({
   head: () => ({
