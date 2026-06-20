@@ -712,7 +712,7 @@ function Footer() {
   return (
     <footer className="border-t border-border bg-background">
       <div className="mx-auto max-w-[1400px] px-6 py-16 lg:px-10">
-        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-3">
               <img src={logo} alt="" className="h-10 w-10 object-contain" width={40} height={40} loading="lazy" />
@@ -752,6 +752,14 @@ function Footer() {
               <li><a href="tel:+79500901756" className="text-sm text-silver-dim transition-colors hover:text-blood">+7 950 090 17 56</a></li>
               <li><a href="https://t.me/samurauto" target="_blank" rel="noopener noreferrer" className="text-sm text-silver-dim transition-colors hover:text-blood">@samurauto</a></li>
               <li><span className="text-sm text-silver-dim">г. Иркутск</span></li>
+            </ul>
+          </div>
+          <div>
+            <div className="text-[10px] tracking-[0.4em] text-silver">СОЦИАЛЬНЫЕ СЕТИ</div>
+            <ul className="mt-6 space-y-3">
+              <li><a href="https://t.me/samuraauto" target="_blank" rel="noopener noreferrer" className="text-sm text-silver-dim transition-colors hover:text-blood">Telegram</a></li>
+              <li><a href="https://www.instagram.com/samura__auto" target="_blank" rel="noopener noreferrer" className="text-sm text-silver-dim transition-colors hover:text-blood">Instagram</a></li>
+              <li><a href="https://vk.ru/club239640500" target="_blank" rel="noopener noreferrer" className="text-sm text-silver-dim transition-colors hover:text-blood">VK</a></li>
             </ul>
           </div>
         </div>
