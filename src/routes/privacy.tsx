@@ -6,6 +6,10 @@ export const Route = createFileRoute("/privacy")({
     meta: [
       { title: "Политика конфиденциальности — SAMURA AUTO" },
       { name: "description", content: "Политика обработки персональных данных и использования файлов cookie SAMURA AUTO." },
+      { name: "robots", content: "noindex,follow" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://samura-auto.ru/privacy" },
     ],
   }),
   component: PrivacyPage,
