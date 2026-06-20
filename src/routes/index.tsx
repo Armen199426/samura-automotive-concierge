@@ -4,8 +4,25 @@ import {
   ShieldCheck, Search, Banknote, Truck, FileLock2, Camera,
   ArrowRight, Phone, MessageCircle, MapPin, Menu, X, Plus, Minus,
   AlertTriangle, Gauge, FileWarning, History, CreditCard, AlertOctagon,
-  ChevronLeft, ChevronRight, Send,
+  ChevronLeft, ChevronRight, Send, Instagram,
 } from "lucide-react";
+
+function VkIcon({ className, strokeWidth = 1.4 }: { className?: string; strokeWidth?: number }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M3 6.5C3.5 13 7 17 13 17h1v-3.2c1.8.2 3.2 1.6 3.8 3.2H20c-.7-2.3-2.3-3.9-3.7-4.5 1.4-.8 2.9-2.6 3.5-4.8h-2.2c-.7 1.9-2.1 3.5-3.6 3.9V6.5h-2.2v6.1c-1.6-.4-3.6-2.2-3.7-6.1H3z" />
+    </svg>
+  );
+}
 import logo from "@/assets/logo.webp";
 import heroCar from "@/assets/hero-car.webp";
 import ctaCar from "@/assets/cta-car.jpg";
