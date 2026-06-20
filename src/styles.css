@@ -65,7 +65,7 @@
   --silver-dim: oklch(0.62 0.005 250);
 
   /* Gradients & shadows */
-  --gradient-metal: linear-gradient(180deg, oklch(0.92 0.003 250) 0%, oklch(0.68 0.005 250) 50%, oklch(0.45 0.005 250) 100%);
+  --gradient-metal: linear-gradient(180deg, #e8e8ea 0%, #b4b4b8 50%, #8a8a8e 100%);
   --gradient-blood: linear-gradient(135deg, oklch(0.58 0.22 25) 0%, oklch(0.40 0.18 25) 100%);
   --gradient-dark: linear-gradient(180deg, oklch(0.10 0.005 250) 0%, oklch(0.15 0.006 250) 100%);
   --shadow-red: 0 10px 40px -10px oklch(0.55 0.21 25 / 0.45);
@@ -92,10 +92,14 @@
 
 @layer utilities {
   .text-metal {
-    background: var(--gradient-metal);
+    color: #c9c9cc; /* fallback for browsers without oklch / background-clip:text */
+    background: linear-gradient(180deg, #e8e8ea 0%, #b4b4b8 50%, #8a8a8e 100%);
     -webkit-background-clip: text;
     background-clip: text;
-    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+  @supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+    .text-metal { -webkit-text-fill-color: #c9c9cc; color: #c9c9cc; background: none; }
   }
   .bg-grain {
     background-image:
@@ -108,7 +112,7 @@
     backdrop-filter: blur(12px);
   }
   @media (max-width: 768px) {
-    .glass-card { backdrop-filter: none; }
+    .glass-card { backdrop-filter: blur(6px); }
   }
   .red-line {
     background: linear-gradient(90deg, transparent, var(--blood), transparent);
