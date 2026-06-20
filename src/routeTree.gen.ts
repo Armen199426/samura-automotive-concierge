@@ -21,6 +21,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as UslugiPodborAvtoRouteImport } from './routes/uslugi.podbor-avto'
 import { Route as UslugiDostavkaIRastamozhkaRouteImport } from './routes/uslugi.dostavka-i-rastamozhka'
 import { Route as UslugiAvtoPodZakazRouteImport } from './routes/uslugi.avto-pod-zakaz'
+import { Route as UslugiAvtoIzZaRubezhaRouteImport } from './routes/uslugi.avto-iz-za-rubezha'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -83,6 +84,11 @@ const UslugiAvtoPodZakazRoute = UslugiAvtoPodZakazRouteImport.update({
   path: '/uslugi/avto-pod-zakaz',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UslugiAvtoIzZaRubezhaRoute = UslugiAvtoIzZaRubezhaRouteImport.update({
+  id: '/uslugi/avto-iz-za-rubezha',
+  path: '/uslugi/avto-iz-za-rubezha',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -94,6 +100,7 @@ export interface FileRoutesByFullPath {
   '/crm': typeof CrmRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/uslugi/avto-iz-za-rubezha': typeof UslugiAvtoIzZaRubezhaRoute
   '/uslugi/avto-pod-zakaz': typeof UslugiAvtoPodZakazRoute
   '/uslugi/dostavka-i-rastamozhka': typeof UslugiDostavkaIRastamozhkaRoute
   '/uslugi/podbor-avto': typeof UslugiPodborAvtoRoute
@@ -108,6 +115,7 @@ export interface FileRoutesByTo {
   '/crm': typeof CrmRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/uslugi/avto-iz-za-rubezha': typeof UslugiAvtoIzZaRubezhaRoute
   '/uslugi/avto-pod-zakaz': typeof UslugiAvtoPodZakazRoute
   '/uslugi/dostavka-i-rastamozhka': typeof UslugiDostavkaIRastamozhkaRoute
   '/uslugi/podbor-avto': typeof UslugiPodborAvtoRoute
@@ -123,6 +131,7 @@ export interface FileRoutesById {
   '/crm': typeof CrmRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/uslugi/avto-iz-za-rubezha': typeof UslugiAvtoIzZaRubezhaRoute
   '/uslugi/avto-pod-zakaz': typeof UslugiAvtoPodZakazRoute
   '/uslugi/dostavka-i-rastamozhka': typeof UslugiDostavkaIRastamozhkaRoute
   '/uslugi/podbor-avto': typeof UslugiPodborAvtoRoute
@@ -139,6 +148,7 @@ export interface FileRouteTypes {
     | '/crm'
     | '/privacy'
     | '/sitemap.xml'
+    | '/uslugi/avto-iz-za-rubezha'
     | '/uslugi/avto-pod-zakaz'
     | '/uslugi/dostavka-i-rastamozhka'
     | '/uslugi/podbor-avto'
@@ -153,6 +163,7 @@ export interface FileRouteTypes {
     | '/crm'
     | '/privacy'
     | '/sitemap.xml'
+    | '/uslugi/avto-iz-za-rubezha'
     | '/uslugi/avto-pod-zakaz'
     | '/uslugi/dostavka-i-rastamozhka'
     | '/uslugi/podbor-avto'
@@ -167,6 +178,7 @@ export interface FileRouteTypes {
     | '/crm'
     | '/privacy'
     | '/sitemap.xml'
+    | '/uslugi/avto-iz-za-rubezha'
     | '/uslugi/avto-pod-zakaz'
     | '/uslugi/dostavka-i-rastamozhka'
     | '/uslugi/podbor-avto'
@@ -182,6 +194,7 @@ export interface RootRouteChildren {
   CrmRoute: typeof CrmRoute
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  UslugiAvtoIzZaRubezhaRoute: typeof UslugiAvtoIzZaRubezhaRoute
   UslugiAvtoPodZakazRoute: typeof UslugiAvtoPodZakazRoute
   UslugiDostavkaIRastamozhkaRoute: typeof UslugiDostavkaIRastamozhkaRoute
   UslugiPodborAvtoRoute: typeof UslugiPodborAvtoRoute
@@ -273,6 +286,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UslugiAvtoPodZakazRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/uslugi/avto-iz-za-rubezha': {
+      id: '/uslugi/avto-iz-za-rubezha'
+      path: '/uslugi/avto-iz-za-rubezha'
+      fullPath: '/uslugi/avto-iz-za-rubezha'
+      preLoaderRoute: typeof UslugiAvtoIzZaRubezhaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -286,6 +306,7 @@ const rootRouteChildren: RootRouteChildren = {
   CrmRoute: CrmRoute,
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  UslugiAvtoIzZaRubezhaRoute: UslugiAvtoIzZaRubezhaRoute,
   UslugiAvtoPodZakazRoute: UslugiAvtoPodZakazRoute,
   UslugiDostavkaIRastamozhkaRoute: UslugiDostavkaIRastamozhkaRoute,
   UslugiPodborAvtoRoute: UslugiPodborAvtoRoute,
