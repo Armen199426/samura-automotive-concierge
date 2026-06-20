@@ -20,6 +20,7 @@ import { Route as AutoIzEvropyRouteImport } from './routes/auto-iz-evropy'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as UslugiRastamozhkaAvtoRouteImport } from './routes/uslugi.rastamozhka-avto'
 import { Route as UslugiProverkaAvtoRouteImport } from './routes/uslugi.proverka-avto'
+import { Route as UslugiPokupkaAvtoNaAuktsioneYaponiiRouteImport } from './routes/uslugi.pokupka-avto-na-auktsione-yaponii'
 import { Route as UslugiPodborAvtoRouteImport } from './routes/uslugi.podbor-avto'
 import { Route as UslugiParallelnyyImportAvtoRouteImport } from './routes/uslugi.parallelnyy-import-avto'
 import { Route as UslugiDostavkaIRastamozhkaRouteImport } from './routes/uslugi.dostavka-i-rastamozhka'
@@ -81,6 +82,12 @@ const UslugiProverkaAvtoRoute = UslugiProverkaAvtoRouteImport.update({
   path: '/uslugi/proverka-avto',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UslugiPokupkaAvtoNaAuktsioneYaponiiRoute =
+  UslugiPokupkaAvtoNaAuktsioneYaponiiRouteImport.update({
+    id: '/uslugi/pokupka-avto-na-auktsione-yaponii',
+    path: '/uslugi/pokupka-avto-na-auktsione-yaponii',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const UslugiPodborAvtoRoute = UslugiPodborAvtoRouteImport.update({
   id: '/uslugi/podbor-avto',
   path: '/uslugi/podbor-avto',
@@ -124,6 +131,7 @@ export interface FileRoutesByFullPath {
   '/uslugi/dostavka-i-rastamozhka': typeof UslugiDostavkaIRastamozhkaRoute
   '/uslugi/parallelnyy-import-avto': typeof UslugiParallelnyyImportAvtoRoute
   '/uslugi/podbor-avto': typeof UslugiPodborAvtoRoute
+  '/uslugi/pokupka-avto-na-auktsione-yaponii': typeof UslugiPokupkaAvtoNaAuktsioneYaponiiRoute
   '/uslugi/proverka-avto': typeof UslugiProverkaAvtoRoute
   '/uslugi/rastamozhka-avto': typeof UslugiRastamozhkaAvtoRoute
 }
@@ -142,6 +150,7 @@ export interface FileRoutesByTo {
   '/uslugi/dostavka-i-rastamozhka': typeof UslugiDostavkaIRastamozhkaRoute
   '/uslugi/parallelnyy-import-avto': typeof UslugiParallelnyyImportAvtoRoute
   '/uslugi/podbor-avto': typeof UslugiPodborAvtoRoute
+  '/uslugi/pokupka-avto-na-auktsione-yaponii': typeof UslugiPokupkaAvtoNaAuktsioneYaponiiRoute
   '/uslugi/proverka-avto': typeof UslugiProverkaAvtoRoute
   '/uslugi/rastamozhka-avto': typeof UslugiRastamozhkaAvtoRoute
 }
@@ -161,6 +170,7 @@ export interface FileRoutesById {
   '/uslugi/dostavka-i-rastamozhka': typeof UslugiDostavkaIRastamozhkaRoute
   '/uslugi/parallelnyy-import-avto': typeof UslugiParallelnyyImportAvtoRoute
   '/uslugi/podbor-avto': typeof UslugiPodborAvtoRoute
+  '/uslugi/pokupka-avto-na-auktsione-yaponii': typeof UslugiPokupkaAvtoNaAuktsioneYaponiiRoute
   '/uslugi/proverka-avto': typeof UslugiProverkaAvtoRoute
   '/uslugi/rastamozhka-avto': typeof UslugiRastamozhkaAvtoRoute
 }
@@ -181,6 +191,7 @@ export interface FileRouteTypes {
     | '/uslugi/dostavka-i-rastamozhka'
     | '/uslugi/parallelnyy-import-avto'
     | '/uslugi/podbor-avto'
+    | '/uslugi/pokupka-avto-na-auktsione-yaponii'
     | '/uslugi/proverka-avto'
     | '/uslugi/rastamozhka-avto'
   fileRoutesByTo: FileRoutesByTo
@@ -199,6 +210,7 @@ export interface FileRouteTypes {
     | '/uslugi/dostavka-i-rastamozhka'
     | '/uslugi/parallelnyy-import-avto'
     | '/uslugi/podbor-avto'
+    | '/uslugi/pokupka-avto-na-auktsione-yaponii'
     | '/uslugi/proverka-avto'
     | '/uslugi/rastamozhka-avto'
   id:
@@ -217,6 +229,7 @@ export interface FileRouteTypes {
     | '/uslugi/dostavka-i-rastamozhka'
     | '/uslugi/parallelnyy-import-avto'
     | '/uslugi/podbor-avto'
+    | '/uslugi/pokupka-avto-na-auktsione-yaponii'
     | '/uslugi/proverka-avto'
     | '/uslugi/rastamozhka-avto'
   fileRoutesById: FileRoutesById
@@ -236,6 +249,7 @@ export interface RootRouteChildren {
   UslugiDostavkaIRastamozhkaRoute: typeof UslugiDostavkaIRastamozhkaRoute
   UslugiParallelnyyImportAvtoRoute: typeof UslugiParallelnyyImportAvtoRoute
   UslugiPodborAvtoRoute: typeof UslugiPodborAvtoRoute
+  UslugiPokupkaAvtoNaAuktsioneYaponiiRoute: typeof UslugiPokupkaAvtoNaAuktsioneYaponiiRoute
   UslugiProverkaAvtoRoute: typeof UslugiProverkaAvtoRoute
   UslugiRastamozhkaAvtoRoute: typeof UslugiRastamozhkaAvtoRoute
 }
@@ -319,6 +333,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UslugiProverkaAvtoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/uslugi/pokupka-avto-na-auktsione-yaponii': {
+      id: '/uslugi/pokupka-avto-na-auktsione-yaponii'
+      path: '/uslugi/pokupka-avto-na-auktsione-yaponii'
+      fullPath: '/uslugi/pokupka-avto-na-auktsione-yaponii'
+      preLoaderRoute: typeof UslugiPokupkaAvtoNaAuktsioneYaponiiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/uslugi/podbor-avto': {
       id: '/uslugi/podbor-avto'
       path: '/uslugi/podbor-avto'
@@ -372,6 +393,8 @@ const rootRouteChildren: RootRouteChildren = {
   UslugiDostavkaIRastamozhkaRoute: UslugiDostavkaIRastamozhkaRoute,
   UslugiParallelnyyImportAvtoRoute: UslugiParallelnyyImportAvtoRoute,
   UslugiPodborAvtoRoute: UslugiPodborAvtoRoute,
+  UslugiPokupkaAvtoNaAuktsioneYaponiiRoute:
+    UslugiPokupkaAvtoNaAuktsioneYaponiiRoute,
   UslugiProverkaAvtoRoute: UslugiProverkaAvtoRoute,
   UslugiRastamozhkaAvtoRoute: UslugiRastamozhkaAvtoRoute,
 }

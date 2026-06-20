@@ -24,6 +24,12 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/auto-iz-ssha", lastmod: today, changefreq: "monthly", priority: "0.8" },
           { path: "/uslugi/podbor-avto", lastmod: today, changefreq: "monthly", priority: "0.7" },
           { path: "/uslugi/dostavka-i-rastamozhka", lastmod: today, changefreq: "monthly", priority: "0.7" },
+          { path: "/uslugi/avto-pod-zakaz", lastmod: today, changefreq: "monthly", priority: "0.7" },
+          { path: "/uslugi/avto-iz-za-rubezha", lastmod: today, changefreq: "monthly", priority: "0.7" },
+          { path: "/uslugi/parallelnyy-import-avto", lastmod: today, changefreq: "monthly", priority: "0.7" },
+          { path: "/uslugi/proverka-avto", lastmod: today, changefreq: "monthly", priority: "0.7" },
+          { path: "/uslugi/rastamozhka-avto", lastmod: today, changefreq: "monthly", priority: "0.7" },
+          { path: "/uslugi/pokupka-avto-na-auktsione-yaponii", lastmod: today, changefreq: "monthly", priority: "0.7" },
           { path: "/privacy", lastmod: today, changefreq: "yearly", priority: "0.3" },
         ];
 
