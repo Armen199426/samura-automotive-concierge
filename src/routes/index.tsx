@@ -767,10 +767,6 @@ function Footer() {
               <li><Link to="/uslugi/avto-pod-zakaz" className="text-sm text-silver-dim transition-colors hover:text-blood">Авто под заказ</Link></li>
               <li><Link to="/uslugi/avto-iz-za-rubezha" className="text-sm text-silver-dim transition-colors hover:text-blood">Авто из-за рубежа</Link></li>
               <li><Link to="/uslugi/parallelnyy-import-avto" className="text-sm text-silver-dim transition-colors hover:text-blood">Параллельный импорт</Link></li>
-              <li><Link to="/uslugi/proverka-avto" className="text-sm text-silver-dim transition-colors hover:text-blood">Проверка авто</Link></li>
-              <li><Link to="/uslugi/rastamozhka-avto" className="text-sm text-silver-dim transition-colors hover:text-blood">Растаможка авто</Link></li>
-              <li><Link to="/uslugi/pokupka-avto-na-auktsione-yaponii" className="text-sm text-silver-dim transition-colors hover:text-blood">Аукционы Японии</Link></li>
-              <li><a href="/privacy" className="text-sm text-silver-dim transition-colors hover:text-blood">Политика конфиденциальности</a></li>
             </ul>
           </div>
           <div>
