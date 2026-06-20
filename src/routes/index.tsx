@@ -833,12 +833,14 @@ function SeoDirections() {
     <section className="border-t border-border bg-background py-24 lg:py-32">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <SectionHead eyebrow="НАПРАВЛЕНИЯ" title={<>Откуда мы привозим <span className="text-blood font-semibold">автомобили</span></>} />
-        <div className="reveal mt-12 grid gap-px bg-border md:grid-cols-2 lg:grid-cols-3">
-          {COUNTRY_LINKS.map((c) => (
+        <div className="reveal mt-12 grid gap-4 md:grid-cols-2 md:gap-px md:bg-border lg:grid-cols-6">
+          {COUNTRY_LINKS.map((c, i) => (
             <Link
               key={c.to}
               to={c.to}
-              className="group block bg-background p-8 transition-colors hover:bg-graphite/60"
+              className={`group block border border-border bg-background p-8 transition-colors hover:bg-graphite/60 md:border-0 lg:col-span-2 ${
+                i === 4 ? "md:col-span-2 lg:col-span-2" : ""
+              } ${i === 3 ? "lg:col-start-2" : ""}`}
             >
               <div className="flex items-center justify-between">
                 <h3 className="text-lg font-medium text-foreground group-hover:text-blood">{c.label}</h3>
