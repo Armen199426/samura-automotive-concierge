@@ -11,6 +11,7 @@ import heroCar from "@/assets/hero-car.webp";
 import ctaCar from "@/assets/cta-car.jpg";
 import { useReveal } from "@/hooks/use-reveal";
 import { CookieBanner } from "@/components/CookieBanner";
+import { ContactPopup } from "@/components/ContactPopup";
 import CatalogInner from "@/components/CatalogInner";
 
 export const Route = createFileRoute("/")({
