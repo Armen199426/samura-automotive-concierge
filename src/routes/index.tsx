@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import type * as React from "react";
 import { useEffect, useState } from "react";
 import {
   ShieldCheck, Search, Banknote, Truck, FileLock2, Camera,
