@@ -19,6 +19,7 @@ import { Route as AutoIzKitayaRouteImport } from './routes/auto-iz-kitaya'
 import { Route as AutoIzEvropyRouteImport } from './routes/auto-iz-evropy'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as UslugiPodborAvtoRouteImport } from './routes/uslugi.podbor-avto'
+import { Route as UslugiParallelnyyImportAvtoRouteImport } from './routes/uslugi.parallelnyy-import-avto'
 import { Route as UslugiDostavkaIRastamozhkaRouteImport } from './routes/uslugi.dostavka-i-rastamozhka'
 import { Route as UslugiAvtoPodZakazRouteImport } from './routes/uslugi.avto-pod-zakaz'
 import { Route as UslugiAvtoIzZaRubezhaRouteImport } from './routes/uslugi.avto-iz-za-rubezha'
@@ -73,6 +74,12 @@ const UslugiPodborAvtoRoute = UslugiPodborAvtoRouteImport.update({
   path: '/uslugi/podbor-avto',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UslugiParallelnyyImportAvtoRoute =
+  UslugiParallelnyyImportAvtoRouteImport.update({
+    id: '/uslugi/parallelnyy-import-avto',
+    path: '/uslugi/parallelnyy-import-avto',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const UslugiDostavkaIRastamozhkaRoute =
   UslugiDostavkaIRastamozhkaRouteImport.update({
     id: '/uslugi/dostavka-i-rastamozhka',
@@ -103,6 +110,7 @@ export interface FileRoutesByFullPath {
   '/uslugi/avto-iz-za-rubezha': typeof UslugiAvtoIzZaRubezhaRoute
   '/uslugi/avto-pod-zakaz': typeof UslugiAvtoPodZakazRoute
   '/uslugi/dostavka-i-rastamozhka': typeof UslugiDostavkaIRastamozhkaRoute
+  '/uslugi/parallelnyy-import-avto': typeof UslugiParallelnyyImportAvtoRoute
   '/uslugi/podbor-avto': typeof UslugiPodborAvtoRoute
 }
 export interface FileRoutesByTo {
@@ -118,6 +126,7 @@ export interface FileRoutesByTo {
   '/uslugi/avto-iz-za-rubezha': typeof UslugiAvtoIzZaRubezhaRoute
   '/uslugi/avto-pod-zakaz': typeof UslugiAvtoPodZakazRoute
   '/uslugi/dostavka-i-rastamozhka': typeof UslugiDostavkaIRastamozhkaRoute
+  '/uslugi/parallelnyy-import-avto': typeof UslugiParallelnyyImportAvtoRoute
   '/uslugi/podbor-avto': typeof UslugiPodborAvtoRoute
 }
 export interface FileRoutesById {
@@ -134,6 +143,7 @@ export interface FileRoutesById {
   '/uslugi/avto-iz-za-rubezha': typeof UslugiAvtoIzZaRubezhaRoute
   '/uslugi/avto-pod-zakaz': typeof UslugiAvtoPodZakazRoute
   '/uslugi/dostavka-i-rastamozhka': typeof UslugiDostavkaIRastamozhkaRoute
+  '/uslugi/parallelnyy-import-avto': typeof UslugiParallelnyyImportAvtoRoute
   '/uslugi/podbor-avto': typeof UslugiPodborAvtoRoute
 }
 export interface FileRouteTypes {
@@ -151,6 +161,7 @@ export interface FileRouteTypes {
     | '/uslugi/avto-iz-za-rubezha'
     | '/uslugi/avto-pod-zakaz'
     | '/uslugi/dostavka-i-rastamozhka'
+    | '/uslugi/parallelnyy-import-avto'
     | '/uslugi/podbor-avto'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -166,6 +177,7 @@ export interface FileRouteTypes {
     | '/uslugi/avto-iz-za-rubezha'
     | '/uslugi/avto-pod-zakaz'
     | '/uslugi/dostavka-i-rastamozhka'
+    | '/uslugi/parallelnyy-import-avto'
     | '/uslugi/podbor-avto'
   id:
     | '__root__'
@@ -181,6 +193,7 @@ export interface FileRouteTypes {
     | '/uslugi/avto-iz-za-rubezha'
     | '/uslugi/avto-pod-zakaz'
     | '/uslugi/dostavka-i-rastamozhka'
+    | '/uslugi/parallelnyy-import-avto'
     | '/uslugi/podbor-avto'
   fileRoutesById: FileRoutesById
 }
@@ -197,6 +210,7 @@ export interface RootRouteChildren {
   UslugiAvtoIzZaRubezhaRoute: typeof UslugiAvtoIzZaRubezhaRoute
   UslugiAvtoPodZakazRoute: typeof UslugiAvtoPodZakazRoute
   UslugiDostavkaIRastamozhkaRoute: typeof UslugiDostavkaIRastamozhkaRoute
+  UslugiParallelnyyImportAvtoRoute: typeof UslugiParallelnyyImportAvtoRoute
   UslugiPodborAvtoRoute: typeof UslugiPodborAvtoRoute
 }
 
@@ -272,6 +286,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UslugiPodborAvtoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/uslugi/parallelnyy-import-avto': {
+      id: '/uslugi/parallelnyy-import-avto'
+      path: '/uslugi/parallelnyy-import-avto'
+      fullPath: '/uslugi/parallelnyy-import-avto'
+      preLoaderRoute: typeof UslugiParallelnyyImportAvtoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/uslugi/dostavka-i-rastamozhka': {
       id: '/uslugi/dostavka-i-rastamozhka'
       path: '/uslugi/dostavka-i-rastamozhka'
@@ -309,6 +330,7 @@ const rootRouteChildren: RootRouteChildren = {
   UslugiAvtoIzZaRubezhaRoute: UslugiAvtoIzZaRubezhaRoute,
   UslugiAvtoPodZakazRoute: UslugiAvtoPodZakazRoute,
   UslugiDostavkaIRastamozhkaRoute: UslugiDostavkaIRastamozhkaRoute,
+  UslugiParallelnyyImportAvtoRoute: UslugiParallelnyyImportAvtoRoute,
   UslugiPodborAvtoRoute: UslugiPodborAvtoRoute,
 }
 export const routeTree = rootRouteImport
