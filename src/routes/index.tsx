@@ -162,7 +162,7 @@ function Hero() {
   return (
     <section id="top" className="relative min-h-screen overflow-hidden bg-grain">
       <div className="absolute inset-0">
-        <img src={heroCar} alt="" fetchPriority="high" decoding="async" className="absolute inset-0 h-full w-full object-cover opacity-50" width={1920} height={1080} />
+        <img src={heroCar} alt="Автомобили под заказ из Японии, Китая, Кореи, Европы и США — SAMURA AUTO" fetchPriority="high" decoding="async" className="absolute inset-0 h-full w-full object-cover opacity-50" width={1920} height={1080} />
         <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
       </div>
