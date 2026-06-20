@@ -94,7 +94,7 @@ export function ContactPopup() {
         <div className="mt-6 grid grid-cols-2 gap-2">
           <PopupLink href="https://t.me/samuraauto" icon={Send} label="Telegram" />
           <PopupLink href="https://www.instagram.com/samura__auto" icon={Instagram} label="Instagram" />
-          <PopupLink href="https://vk.ru/club239640500" label="VK" />
+          <PopupLink href="https://vk.ru/club239640500" icon={VkIcon} label="VK" />
           <PopupLink href="tel:+79500901756" icon={Phone} label="Позвонить" primary />
         </div>
 
