@@ -101,11 +101,15 @@
   @supports not ((-webkit-background-clip: text) or (background-clip: text)) {
     .text-metal { -webkit-text-fill-color: #c9c9cc; color: #c9c9cc; background: none; }
   }
-  @media (max-width: 768px), (pointer: coarse) {
-    .text-metal {
-      color: #d8d8dc;
-      -webkit-text-fill-color: #d8d8dc;
-      background: none;
+  /* Android / non-WebKit mobile browsers only: drop gradient text, use flat light color.
+     iOS Safari supports -webkit-touch-callout, so @supports not (...) excludes iPhone/iPad. */
+  @media (max-width: 768px) {
+    @supports not (-webkit-touch-callout: none) {
+      .text-metal {
+        color: #d8d8dc;
+        -webkit-text-fill-color: #d8d8dc;
+        background: none;
+      }
     }
   }
   .bg-grain {
