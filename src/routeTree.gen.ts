@@ -18,6 +18,7 @@ import { Route as AutoIzKoreiRouteImport } from './routes/auto-iz-korei'
 import { Route as AutoIzKitayaRouteImport } from './routes/auto-iz-kitaya'
 import { Route as AutoIzEvropyRouteImport } from './routes/auto-iz-evropy'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as UslugiProverkaAvtoRouteImport } from './routes/uslugi.proverka-avto'
 import { Route as UslugiPodborAvtoRouteImport } from './routes/uslugi.podbor-avto'
 import { Route as UslugiParallelnyyImportAvtoRouteImport } from './routes/uslugi.parallelnyy-import-avto'
 import { Route as UslugiDostavkaIRastamozhkaRouteImport } from './routes/uslugi.dostavka-i-rastamozhka'
@@ -69,6 +70,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UslugiProverkaAvtoRoute = UslugiProverkaAvtoRouteImport.update({
+  id: '/uslugi/proverka-avto',
+  path: '/uslugi/proverka-avto',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UslugiPodborAvtoRoute = UslugiPodborAvtoRouteImport.update({
   id: '/uslugi/podbor-avto',
   path: '/uslugi/podbor-avto',
@@ -112,6 +118,7 @@ export interface FileRoutesByFullPath {
   '/uslugi/dostavka-i-rastamozhka': typeof UslugiDostavkaIRastamozhkaRoute
   '/uslugi/parallelnyy-import-avto': typeof UslugiParallelnyyImportAvtoRoute
   '/uslugi/podbor-avto': typeof UslugiPodborAvtoRoute
+  '/uslugi/proverka-avto': typeof UslugiProverkaAvtoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -128,6 +135,7 @@ export interface FileRoutesByTo {
   '/uslugi/dostavka-i-rastamozhka': typeof UslugiDostavkaIRastamozhkaRoute
   '/uslugi/parallelnyy-import-avto': typeof UslugiParallelnyyImportAvtoRoute
   '/uslugi/podbor-avto': typeof UslugiPodborAvtoRoute
+  '/uslugi/proverka-avto': typeof UslugiProverkaAvtoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -145,6 +153,7 @@ export interface FileRoutesById {
   '/uslugi/dostavka-i-rastamozhka': typeof UslugiDostavkaIRastamozhkaRoute
   '/uslugi/parallelnyy-import-avto': typeof UslugiParallelnyyImportAvtoRoute
   '/uslugi/podbor-avto': typeof UslugiPodborAvtoRoute
+  '/uslugi/proverka-avto': typeof UslugiProverkaAvtoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -163,6 +172,7 @@ export interface FileRouteTypes {
     | '/uslugi/dostavka-i-rastamozhka'
     | '/uslugi/parallelnyy-import-avto'
     | '/uslugi/podbor-avto'
+    | '/uslugi/proverka-avto'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -179,6 +189,7 @@ export interface FileRouteTypes {
     | '/uslugi/dostavka-i-rastamozhka'
     | '/uslugi/parallelnyy-import-avto'
     | '/uslugi/podbor-avto'
+    | '/uslugi/proverka-avto'
   id:
     | '__root__'
     | '/'
@@ -195,6 +206,7 @@ export interface FileRouteTypes {
     | '/uslugi/dostavka-i-rastamozhka'
     | '/uslugi/parallelnyy-import-avto'
     | '/uslugi/podbor-avto'
+    | '/uslugi/proverka-avto'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -212,6 +224,7 @@ export interface RootRouteChildren {
   UslugiDostavkaIRastamozhkaRoute: typeof UslugiDostavkaIRastamozhkaRoute
   UslugiParallelnyyImportAvtoRoute: typeof UslugiParallelnyyImportAvtoRoute
   UslugiPodborAvtoRoute: typeof UslugiPodborAvtoRoute
+  UslugiProverkaAvtoRoute: typeof UslugiProverkaAvtoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -279,6 +292,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/uslugi/proverka-avto': {
+      id: '/uslugi/proverka-avto'
+      path: '/uslugi/proverka-avto'
+      fullPath: '/uslugi/proverka-avto'
+      preLoaderRoute: typeof UslugiProverkaAvtoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/uslugi/podbor-avto': {
       id: '/uslugi/podbor-avto'
       path: '/uslugi/podbor-avto'
@@ -332,6 +352,7 @@ const rootRouteChildren: RootRouteChildren = {
   UslugiDostavkaIRastamozhkaRoute: UslugiDostavkaIRastamozhkaRoute,
   UslugiParallelnyyImportAvtoRoute: UslugiParallelnyyImportAvtoRoute,
   UslugiPodborAvtoRoute: UslugiPodborAvtoRoute,
+  UslugiProverkaAvtoRoute: UslugiProverkaAvtoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
