@@ -126,6 +126,48 @@ export function FeatureGrid({ items }: { items: { title: string; text: string }[
   );
 }
 
+export function Steps({ items }: { items: { title: string; text: string }[] }) {
+  return (
+    <ol className="reveal mb-16 grid gap-px bg-border md:grid-cols-2">
+      {items.map((it, i) => (
+        <li key={i} className="bg-background p-8">
+          <div className="text-[10px] tracking-[0.4em] text-blood">ЭТАП {String(i + 1).padStart(2, "0")}</div>
+          <h3 className="mt-4 text-lg font-medium text-foreground">{it.title}</h3>
+          <p className="mt-3 text-sm leading-relaxed text-silver-dim">{it.text}</p>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+export function FaqList({ items }: { items: { q: string; a: string }[] }) {
+  return (
+    <div className="reveal mb-16 divide-y divide-border border-y border-border">
+      {items.map((it, i) => (
+        <details key={i} className="group py-6">
+          <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-base font-medium text-foreground md:text-lg">
+            <span>{it.q}</span>
+            <span className="mt-1 shrink-0 text-blood transition-transform group-open:rotate-45 text-xl leading-none">+</span>
+          </summary>
+          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-silver-dim md:text-base">{it.a}</p>
+        </details>
+      ))}
+    </div>
+  );
+}
+
+export function buildFaqJsonLd(items: { q: string; a: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((it) => ({
+      "@type": "Question",
+      name: it.q,
+      acceptedAnswer: { "@type": "Answer", text: it.a },
+    })),
+  };
+}
+
 export function buildBreadcrumbJsonLd(items: { name: string; url: string }[]) {
   return {
     "@context": "https://schema.org",

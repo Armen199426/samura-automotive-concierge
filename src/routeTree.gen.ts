@@ -18,8 +18,14 @@ import { Route as AutoIzKoreiRouteImport } from './routes/auto-iz-korei'
 import { Route as AutoIzKitayaRouteImport } from './routes/auto-iz-kitaya'
 import { Route as AutoIzEvropyRouteImport } from './routes/auto-iz-evropy'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as UslugiRastamozhkaAvtoRouteImport } from './routes/uslugi.rastamozhka-avto'
+import { Route as UslugiProverkaAvtoRouteImport } from './routes/uslugi.proverka-avto'
+import { Route as UslugiPokupkaAvtoNaAuktsioneYaponiiRouteImport } from './routes/uslugi.pokupka-avto-na-auktsione-yaponii'
 import { Route as UslugiPodborAvtoRouteImport } from './routes/uslugi.podbor-avto'
+import { Route as UslugiParallelnyyImportAvtoRouteImport } from './routes/uslugi.parallelnyy-import-avto'
 import { Route as UslugiDostavkaIRastamozhkaRouteImport } from './routes/uslugi.dostavka-i-rastamozhka'
+import { Route as UslugiAvtoPodZakazRouteImport } from './routes/uslugi.avto-pod-zakaz'
+import { Route as UslugiAvtoIzZaRubezhaRouteImport } from './routes/uslugi.avto-iz-za-rubezha'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -66,17 +72,49 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UslugiRastamozhkaAvtoRoute = UslugiRastamozhkaAvtoRouteImport.update({
+  id: '/uslugi/rastamozhka-avto',
+  path: '/uslugi/rastamozhka-avto',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UslugiProverkaAvtoRoute = UslugiProverkaAvtoRouteImport.update({
+  id: '/uslugi/proverka-avto',
+  path: '/uslugi/proverka-avto',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UslugiPokupkaAvtoNaAuktsioneYaponiiRoute =
+  UslugiPokupkaAvtoNaAuktsioneYaponiiRouteImport.update({
+    id: '/uslugi/pokupka-avto-na-auktsione-yaponii',
+    path: '/uslugi/pokupka-avto-na-auktsione-yaponii',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const UslugiPodborAvtoRoute = UslugiPodborAvtoRouteImport.update({
   id: '/uslugi/podbor-avto',
   path: '/uslugi/podbor-avto',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UslugiParallelnyyImportAvtoRoute =
+  UslugiParallelnyyImportAvtoRouteImport.update({
+    id: '/uslugi/parallelnyy-import-avto',
+    path: '/uslugi/parallelnyy-import-avto',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const UslugiDostavkaIRastamozhkaRoute =
   UslugiDostavkaIRastamozhkaRouteImport.update({
     id: '/uslugi/dostavka-i-rastamozhka',
     path: '/uslugi/dostavka-i-rastamozhka',
     getParentRoute: () => rootRouteImport,
   } as any)
+const UslugiAvtoPodZakazRoute = UslugiAvtoPodZakazRouteImport.update({
+  id: '/uslugi/avto-pod-zakaz',
+  path: '/uslugi/avto-pod-zakaz',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UslugiAvtoIzZaRubezhaRoute = UslugiAvtoIzZaRubezhaRouteImport.update({
+  id: '/uslugi/avto-iz-za-rubezha',
+  path: '/uslugi/avto-iz-za-rubezha',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -88,8 +126,14 @@ export interface FileRoutesByFullPath {
   '/crm': typeof CrmRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/uslugi/avto-iz-za-rubezha': typeof UslugiAvtoIzZaRubezhaRoute
+  '/uslugi/avto-pod-zakaz': typeof UslugiAvtoPodZakazRoute
   '/uslugi/dostavka-i-rastamozhka': typeof UslugiDostavkaIRastamozhkaRoute
+  '/uslugi/parallelnyy-import-avto': typeof UslugiParallelnyyImportAvtoRoute
   '/uslugi/podbor-avto': typeof UslugiPodborAvtoRoute
+  '/uslugi/pokupka-avto-na-auktsione-yaponii': typeof UslugiPokupkaAvtoNaAuktsioneYaponiiRoute
+  '/uslugi/proverka-avto': typeof UslugiProverkaAvtoRoute
+  '/uslugi/rastamozhka-avto': typeof UslugiRastamozhkaAvtoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -101,8 +145,14 @@ export interface FileRoutesByTo {
   '/crm': typeof CrmRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/uslugi/avto-iz-za-rubezha': typeof UslugiAvtoIzZaRubezhaRoute
+  '/uslugi/avto-pod-zakaz': typeof UslugiAvtoPodZakazRoute
   '/uslugi/dostavka-i-rastamozhka': typeof UslugiDostavkaIRastamozhkaRoute
+  '/uslugi/parallelnyy-import-avto': typeof UslugiParallelnyyImportAvtoRoute
   '/uslugi/podbor-avto': typeof UslugiPodborAvtoRoute
+  '/uslugi/pokupka-avto-na-auktsione-yaponii': typeof UslugiPokupkaAvtoNaAuktsioneYaponiiRoute
+  '/uslugi/proverka-avto': typeof UslugiProverkaAvtoRoute
+  '/uslugi/rastamozhka-avto': typeof UslugiRastamozhkaAvtoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -115,8 +165,14 @@ export interface FileRoutesById {
   '/crm': typeof CrmRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/uslugi/avto-iz-za-rubezha': typeof UslugiAvtoIzZaRubezhaRoute
+  '/uslugi/avto-pod-zakaz': typeof UslugiAvtoPodZakazRoute
   '/uslugi/dostavka-i-rastamozhka': typeof UslugiDostavkaIRastamozhkaRoute
+  '/uslugi/parallelnyy-import-avto': typeof UslugiParallelnyyImportAvtoRoute
   '/uslugi/podbor-avto': typeof UslugiPodborAvtoRoute
+  '/uslugi/pokupka-avto-na-auktsione-yaponii': typeof UslugiPokupkaAvtoNaAuktsioneYaponiiRoute
+  '/uslugi/proverka-avto': typeof UslugiProverkaAvtoRoute
+  '/uslugi/rastamozhka-avto': typeof UslugiRastamozhkaAvtoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -130,8 +186,14 @@ export interface FileRouteTypes {
     | '/crm'
     | '/privacy'
     | '/sitemap.xml'
+    | '/uslugi/avto-iz-za-rubezha'
+    | '/uslugi/avto-pod-zakaz'
     | '/uslugi/dostavka-i-rastamozhka'
+    | '/uslugi/parallelnyy-import-avto'
     | '/uslugi/podbor-avto'
+    | '/uslugi/pokupka-avto-na-auktsione-yaponii'
+    | '/uslugi/proverka-avto'
+    | '/uslugi/rastamozhka-avto'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -143,8 +205,14 @@ export interface FileRouteTypes {
     | '/crm'
     | '/privacy'
     | '/sitemap.xml'
+    | '/uslugi/avto-iz-za-rubezha'
+    | '/uslugi/avto-pod-zakaz'
     | '/uslugi/dostavka-i-rastamozhka'
+    | '/uslugi/parallelnyy-import-avto'
     | '/uslugi/podbor-avto'
+    | '/uslugi/pokupka-avto-na-auktsione-yaponii'
+    | '/uslugi/proverka-avto'
+    | '/uslugi/rastamozhka-avto'
   id:
     | '__root__'
     | '/'
@@ -156,8 +224,14 @@ export interface FileRouteTypes {
     | '/crm'
     | '/privacy'
     | '/sitemap.xml'
+    | '/uslugi/avto-iz-za-rubezha'
+    | '/uslugi/avto-pod-zakaz'
     | '/uslugi/dostavka-i-rastamozhka'
+    | '/uslugi/parallelnyy-import-avto'
     | '/uslugi/podbor-avto'
+    | '/uslugi/pokupka-avto-na-auktsione-yaponii'
+    | '/uslugi/proverka-avto'
+    | '/uslugi/rastamozhka-avto'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -170,8 +244,14 @@ export interface RootRouteChildren {
   CrmRoute: typeof CrmRoute
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  UslugiAvtoIzZaRubezhaRoute: typeof UslugiAvtoIzZaRubezhaRoute
+  UslugiAvtoPodZakazRoute: typeof UslugiAvtoPodZakazRoute
   UslugiDostavkaIRastamozhkaRoute: typeof UslugiDostavkaIRastamozhkaRoute
+  UslugiParallelnyyImportAvtoRoute: typeof UslugiParallelnyyImportAvtoRoute
   UslugiPodborAvtoRoute: typeof UslugiPodborAvtoRoute
+  UslugiPokupkaAvtoNaAuktsioneYaponiiRoute: typeof UslugiPokupkaAvtoNaAuktsioneYaponiiRoute
+  UslugiProverkaAvtoRoute: typeof UslugiProverkaAvtoRoute
+  UslugiRastamozhkaAvtoRoute: typeof UslugiRastamozhkaAvtoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -239,6 +319,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/uslugi/rastamozhka-avto': {
+      id: '/uslugi/rastamozhka-avto'
+      path: '/uslugi/rastamozhka-avto'
+      fullPath: '/uslugi/rastamozhka-avto'
+      preLoaderRoute: typeof UslugiRastamozhkaAvtoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/uslugi/proverka-avto': {
+      id: '/uslugi/proverka-avto'
+      path: '/uslugi/proverka-avto'
+      fullPath: '/uslugi/proverka-avto'
+      preLoaderRoute: typeof UslugiProverkaAvtoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/uslugi/pokupka-avto-na-auktsione-yaponii': {
+      id: '/uslugi/pokupka-avto-na-auktsione-yaponii'
+      path: '/uslugi/pokupka-avto-na-auktsione-yaponii'
+      fullPath: '/uslugi/pokupka-avto-na-auktsione-yaponii'
+      preLoaderRoute: typeof UslugiPokupkaAvtoNaAuktsioneYaponiiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/uslugi/podbor-avto': {
       id: '/uslugi/podbor-avto'
       path: '/uslugi/podbor-avto'
@@ -246,11 +347,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UslugiPodborAvtoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/uslugi/parallelnyy-import-avto': {
+      id: '/uslugi/parallelnyy-import-avto'
+      path: '/uslugi/parallelnyy-import-avto'
+      fullPath: '/uslugi/parallelnyy-import-avto'
+      preLoaderRoute: typeof UslugiParallelnyyImportAvtoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/uslugi/dostavka-i-rastamozhka': {
       id: '/uslugi/dostavka-i-rastamozhka'
       path: '/uslugi/dostavka-i-rastamozhka'
       fullPath: '/uslugi/dostavka-i-rastamozhka'
       preLoaderRoute: typeof UslugiDostavkaIRastamozhkaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/uslugi/avto-pod-zakaz': {
+      id: '/uslugi/avto-pod-zakaz'
+      path: '/uslugi/avto-pod-zakaz'
+      fullPath: '/uslugi/avto-pod-zakaz'
+      preLoaderRoute: typeof UslugiAvtoPodZakazRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/uslugi/avto-iz-za-rubezha': {
+      id: '/uslugi/avto-iz-za-rubezha'
+      path: '/uslugi/avto-iz-za-rubezha'
+      fullPath: '/uslugi/avto-iz-za-rubezha'
+      preLoaderRoute: typeof UslugiAvtoIzZaRubezhaRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -266,8 +388,15 @@ const rootRouteChildren: RootRouteChildren = {
   CrmRoute: CrmRoute,
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  UslugiAvtoIzZaRubezhaRoute: UslugiAvtoIzZaRubezhaRoute,
+  UslugiAvtoPodZakazRoute: UslugiAvtoPodZakazRoute,
   UslugiDostavkaIRastamozhkaRoute: UslugiDostavkaIRastamozhkaRoute,
+  UslugiParallelnyyImportAvtoRoute: UslugiParallelnyyImportAvtoRoute,
   UslugiPodborAvtoRoute: UslugiPodborAvtoRoute,
+  UslugiPokupkaAvtoNaAuktsioneYaponiiRoute:
+    UslugiPokupkaAvtoNaAuktsioneYaponiiRoute,
+  UslugiProverkaAvtoRoute: UslugiProverkaAvtoRoute,
+  UslugiRastamozhkaAvtoRoute: UslugiRastamozhkaAvtoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
