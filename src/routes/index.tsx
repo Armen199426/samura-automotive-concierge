@@ -707,7 +707,7 @@ function FinalCta() {
   );
 }
 
-function ContactRow({ icon: Icon, label, value, href }: { icon: typeof Phone; label: string; value: string; href?: string }) {
+function ContactRow({ icon: Icon, label, value, href }: { icon: React.ComponentType<{ className?: string; strokeWidth?: number }>; label: string; value: string; href?: string }) {
   const content = (
     <>
       <Icon className="h-5 w-5 text-blood" strokeWidth={1.4} />
