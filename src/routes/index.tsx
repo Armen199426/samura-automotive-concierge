@@ -11,6 +11,7 @@ import heroCar from "@/assets/hero-car.webp";
 import ctaCar from "@/assets/cta-car.jpg";
 import { useReveal } from "@/hooks/use-reveal";
 import { CookieBanner } from "@/components/CookieBanner";
+import { ContactPopup } from "@/components/ContactPopup";
 import CatalogInner from "@/components/CatalogInner";
 
 export const Route = createFileRoute("/")({
@@ -407,7 +408,7 @@ function Process() {
   return (
     <section id="process" className="relative overflow-hidden bg-graphite/40 py-24 lg:py-40">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-        <SectionHead eyebrow="ПРОЦЕСС" title={<>Семь этапов <span className="text-white font-semibold">до авто вашей мечты</span></>} />
+        <SectionHead eyebrow="ПРОЦЕСС" title={<>Семь этапов до авто <span className="text-blood font-semibold">вашей мечты</span></>} />
         <div className="mt-20 grid gap-px bg-border lg:grid-cols-7">
           {STEPS.map(([title, text], i) => (
             <div key={i} className="reveal relative bg-background p-8 transition-colors hover:bg-graphite/60">
@@ -712,7 +713,7 @@ function Footer() {
   return (
     <footer className="border-t border-border bg-background">
       <div className="mx-auto max-w-[1400px] px-6 py-16 lg:px-10">
-        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-3">
               <img src={logo} alt="" className="h-10 w-10 object-contain" width={40} height={40} loading="lazy" />
@@ -752,6 +753,14 @@ function Footer() {
               <li><a href="tel:+79500901756" className="text-sm text-silver-dim transition-colors hover:text-blood">+7 950 090 17 56</a></li>
               <li><a href="https://t.me/samurauto" target="_blank" rel="noopener noreferrer" className="text-sm text-silver-dim transition-colors hover:text-blood">@samurauto</a></li>
               <li><span className="text-sm text-silver-dim">г. Иркутск</span></li>
+            </ul>
+          </div>
+          <div>
+            <div className="text-[10px] tracking-[0.4em] text-silver">СОЦИАЛЬНЫЕ СЕТИ</div>
+            <ul className="mt-6 space-y-3">
+              <li><a href="https://t.me/samuraauto" target="_blank" rel="noopener noreferrer" className="text-sm text-silver-dim transition-colors hover:text-blood">Telegram</a></li>
+              <li><a href="https://www.instagram.com/samura__auto" target="_blank" rel="noopener noreferrer" className="text-sm text-silver-dim transition-colors hover:text-blood">Instagram</a></li>
+              <li><a href="https://vk.ru/club239640500" target="_blank" rel="noopener noreferrer" className="text-sm text-silver-dim transition-colors hover:text-blood">VK</a></li>
             </ul>
           </div>
         </div>
@@ -811,16 +820,17 @@ function Index() {
       </main>
       <Footer />
       <CookieBanner />
+      <ContactPopup />
     </div>
   );
 }
 
 const COUNTRY_LINKS = [
-  { to: "/auto-iz-yaponii", label: "Авто из Японии", text: "Toyota, Lexus, Honda, Nissan с японских аукционов USS, JU, TAA." },
-  { to: "/auto-iz-korei", label: "Авто из Кореи", text: "Genesis, Kia, Hyundai с площадок Encar и KB Chachacha." },
-  { to: "/auto-iz-kitaya", label: "Авто из Китая", text: "Li Auto, Zeekr, Tank, BYD, Voyah напрямую от дилеров." },
-  { to: "/auto-iz-evropy", label: "Авто из Европы", text: "BMW, Mercedes-Benz, Audi, Porsche с mobile.de и AutoScout24." },
-  { to: "/auto-iz-ssha", label: "Авто из США", text: "Tesla, Ford, Cadillac, Jeep с аукционов Copart и IAAI." },
+  { to: "/auto-iz-yaponii", label: "Авто из Японии", text: "Автомобили с правым рулём с крупнейших японских аукционов USS, TAA, JU и других. Toyota, Honda, Nissan, Volkswagen и другие марки." },
+  { to: "/auto-iz-korei", label: "Авто из Кореи", text: "Автомобили с внутренних площадок Южной Кореи Encar и KB Chachacha. Mercedes-Benz, BMW, Kia, Genesis, Hyundai и другие." },
+  { to: "/auto-iz-kitaya", label: "Авто из Китая", text: "Автомобили с внутренних китайских площадок и дилерских сетей. Toyota, Volkswagen, Audi, BMW, Mercedes-Benz, Li Auto, Zeekr и другие." },
+  { to: "/auto-iz-evropy", label: "Авто из Европы", text: "Автомобили с европейских площадок mobile.de и AutoScout24. BMW, Audi, Mercedes-Benz, Porsche, Volkswagen и другие." },
+  { to: "/auto-iz-ssha", label: "Авто из США", text: "Автомобили с аукционов Copart, IAAI и Manheim. Ford, Tesla, Jeep, Cadillac, BMW, Mercedes-Benz и другие." },
 ] as const;
 
 const SERVICE_LINKS = [
@@ -833,12 +843,14 @@ function SeoDirections() {
     <section className="border-t border-border bg-background py-24 lg:py-32">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <SectionHead eyebrow="НАПРАВЛЕНИЯ" title={<>Откуда мы привозим <span className="text-blood font-semibold">автомобили</span></>} />
-        <div className="reveal mt-12 grid gap-px bg-border md:grid-cols-2 lg:grid-cols-3">
-          {COUNTRY_LINKS.map((c) => (
+        <div className="reveal mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-6">
+          {COUNTRY_LINKS.map((c, i) => (
             <Link
               key={c.to}
               to={c.to}
-              className="group block bg-background p-8 transition-colors hover:bg-graphite/60"
+              className={`group block border border-border bg-background p-8 transition-colors hover:bg-graphite/60 hover:border-blood/40 lg:col-span-2 ${
+                i === 4 ? "md:col-span-2 lg:col-span-2" : ""
+              } ${i === 3 ? "lg:col-start-2" : ""}`}
             >
               <div className="flex items-center justify-between">
                 <h3 className="text-lg font-medium text-foreground group-hover:text-blood">{c.label}</h3>
