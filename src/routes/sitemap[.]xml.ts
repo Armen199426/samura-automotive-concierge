@@ -36,6 +36,9 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/region/krasnoyarsk", lastmod: today, changefreq: "monthly", priority: "0.7" },
           { path: "/region/irkutsk", lastmod: today, changefreq: "monthly", priority: "0.7" },
           { path: "/region/vladivostok", lastmod: today, changefreq: "monthly", priority: "0.7" },
+          { path: "/region/ekaterinburg", lastmod: today, changefreq: "monthly", priority: "0.7" },
+          { path: "/region/kazan", lastmod: today, changefreq: "monthly", priority: "0.7" },
+          { path: "/region/ufa", lastmod: today, changefreq: "monthly", priority: "0.7" },
           { path: "/privacy", lastmod: today, changefreq: "yearly", priority: "0.3" },
         ];
 
