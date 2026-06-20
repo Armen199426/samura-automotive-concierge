@@ -685,7 +685,7 @@ function FinalCta() {
             <ContactRow icon={Phone} label="ТЕЛЕФОН" value="8 950 090 17 56" href="tel:+79500901756" />
             <ContactRow icon={Send} label="TELEGRAM" value="@samuraauto" href="https://t.me/samuraauto" />
             <ContactRow icon={Instagram} label="INSTAGRAM" value="@samura__auto" href="https://www.instagram.com/samura__auto" />
-            <ContactRow icon={VkIcon} label="VK" value="vk.ru/club239640500" href="https://vk.ru/club239640500" />
+            <ContactRow icon={VkIcon} label="VK" value="ВКонтакте" href="https://vk.ru/club239640500" />
             <ContactRow icon={MessageCircle} label="MAX" value="8 950 090 17 56" href="tel:+79500901756" />
             <ContactRow icon={MapPin} label="АДРЕС" value="г. Иркутск" />
           </div>
