@@ -11,7 +11,7 @@ import heroCar from "@/assets/hero-car.webp";
 import ctaCar from "@/assets/cta-car.jpg";
 import { useReveal } from "@/hooks/use-reveal";
 import { CookieBanner } from "@/components/CookieBanner";
-import { CatalogLazy } from "@/components/CatalogLazy";
+import CatalogInner from "@/components/CatalogInner";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -800,7 +800,7 @@ function Index() {
         <HeroForm />
         <Advantages />
         <Process />
-        <CatalogLazy />
+        <section id="catalog" className="py-24 lg:py-40"><CatalogInner /></section>
         <Numbers />
         <About />
         <Risks />
