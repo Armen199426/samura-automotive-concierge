@@ -820,6 +820,7 @@ function Index() {
       </main>
       <Footer />
       <CookieBanner />
+      <ContactPopup />
     </div>
   );
 }
