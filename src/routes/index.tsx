@@ -816,11 +816,11 @@ function Index() {
 }
 
 const COUNTRY_LINKS = [
-  { to: "/auto-iz-yaponii", label: "Авто из Японии", text: "Toyota, Lexus, Honda, Nissan с японских аукционов USS, JU, TAA." },
-  { to: "/auto-iz-korei", label: "Авто из Кореи", text: "Genesis, Kia, Hyundai с площадок Encar и KB Chachacha." },
-  { to: "/auto-iz-kitaya", label: "Авто из Китая", text: "Li Auto, Zeekr, Tank, BYD, Voyah напрямую от дилеров." },
-  { to: "/auto-iz-evropy", label: "Авто из Европы", text: "BMW, Mercedes-Benz, Audi, Porsche с mobile.de и AutoScout24." },
-  { to: "/auto-iz-ssha", label: "Авто из США", text: "Tesla, Ford, Cadillac, Jeep с аукционов Copart и IAAI." },
+  { to: "/auto-iz-yaponii", label: "Авто из Японии", text: "Автомобили с правым рулём с крупнейших японских аукционов USS, TAA, JU и других. Toyota, Honda, Nissan, Volkswagen и другие марки." },
+  { to: "/auto-iz-korei", label: "Авто из Кореи", text: "Автомобили с внутренних площадок Южной Кореи Encar и KB Chachacha. Mercedes-Benz, BMW, Kia, Genesis, Hyundai и другие." },
+  { to: "/auto-iz-kitaya", label: "Авто из Китая", text: "Автомобили с внутренних китайских площадок и дилерских сетей. Toyota, Volkswagen, Audi, BMW, Mercedes-Benz, Li Auto, Zeekr и другие." },
+  { to: "/auto-iz-evropy", label: "Авто из Европы", text: "Автомобили с европейских площадок mobile.de и AutoScout24. BMW, Audi, Mercedes-Benz, Porsche, Volkswagen и другие." },
+  { to: "/auto-iz-ssha", label: "Авто из США", text: "Автомобили с аукционов Copart, IAAI и Manheim. Ford, Tesla, Jeep, Cadillac, BMW, Mercedes-Benz и другие." },
 ] as const;
 
 const SERVICE_LINKS = [
