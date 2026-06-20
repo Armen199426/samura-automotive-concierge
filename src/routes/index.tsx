@@ -788,7 +788,10 @@ function Footer() {
         </div>
         <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-border pt-8 text-xs text-silver-dim md:flex-row md:items-center">
           <div>© {new Date().getFullYear()} SAMURA AUTO. Все права защищены.</div>
-          <div className="tracking-[0.3em]">ИМПОРТ · УВЕРЕННОСТЬ · ПОД КЛЮЧ</div>
+          <div className="flex flex-col items-start gap-3 md:flex-row md:items-center md:gap-6">
+            <a href="/privacy" className="transition-colors hover:text-blood">Политика конфиденциальности</a>
+            <span className="tracking-[0.3em]">ИМПОРТ · УВЕРЕННОСТЬ · ПОД КЛЮЧ</span>
+          </div>
         </div>
       </div>
     </footer>
