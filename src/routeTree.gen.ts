@@ -27,11 +27,14 @@ import { Route as UslugiDostavkaIRastamozhkaRouteImport } from './routes/uslugi.
 import { Route as UslugiAvtoPodZakazRouteImport } from './routes/uslugi.avto-pod-zakaz'
 import { Route as UslugiAvtoIzZaRubezhaRouteImport } from './routes/uslugi.avto-iz-za-rubezha'
 import { Route as RegionVladivostokRouteImport } from './routes/region.vladivostok'
+import { Route as RegionUfaRouteImport } from './routes/region.ufa'
 import { Route as RegionSanktPeterburgRouteImport } from './routes/region.sankt-peterburg'
 import { Route as RegionNovosibirskRouteImport } from './routes/region.novosibirsk'
 import { Route as RegionMoskvaRouteImport } from './routes/region.moskva'
 import { Route as RegionKrasnoyarskRouteImport } from './routes/region.krasnoyarsk'
+import { Route as RegionKazanRouteImport } from './routes/region.kazan'
 import { Route as RegionIrkutskRouteImport } from './routes/region.irkutsk'
+import { Route as RegionEkaterinburgRouteImport } from './routes/region.ekaterinburg'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -126,6 +129,11 @@ const RegionVladivostokRoute = RegionVladivostokRouteImport.update({
   path: '/region/vladivostok',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RegionUfaRoute = RegionUfaRouteImport.update({
+  id: '/region/ufa',
+  path: '/region/ufa',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RegionSanktPeterburgRoute = RegionSanktPeterburgRouteImport.update({
   id: '/region/sankt-peterburg',
   path: '/region/sankt-peterburg',
@@ -146,9 +154,19 @@ const RegionKrasnoyarskRoute = RegionKrasnoyarskRouteImport.update({
   path: '/region/krasnoyarsk',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RegionKazanRoute = RegionKazanRouteImport.update({
+  id: '/region/kazan',
+  path: '/region/kazan',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RegionIrkutskRoute = RegionIrkutskRouteImport.update({
   id: '/region/irkutsk',
   path: '/region/irkutsk',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegionEkaterinburgRoute = RegionEkaterinburgRouteImport.update({
+  id: '/region/ekaterinburg',
+  path: '/region/ekaterinburg',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -162,11 +180,14 @@ export interface FileRoutesByFullPath {
   '/crm': typeof CrmRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/region/ekaterinburg': typeof RegionEkaterinburgRoute
   '/region/irkutsk': typeof RegionIrkutskRoute
+  '/region/kazan': typeof RegionKazanRoute
   '/region/krasnoyarsk': typeof RegionKrasnoyarskRoute
   '/region/moskva': typeof RegionMoskvaRoute
   '/region/novosibirsk': typeof RegionNovosibirskRoute
   '/region/sankt-peterburg': typeof RegionSanktPeterburgRoute
+  '/region/ufa': typeof RegionUfaRoute
   '/region/vladivostok': typeof RegionVladivostokRoute
   '/uslugi/avto-iz-za-rubezha': typeof UslugiAvtoIzZaRubezhaRoute
   '/uslugi/avto-pod-zakaz': typeof UslugiAvtoPodZakazRoute
@@ -187,11 +208,14 @@ export interface FileRoutesByTo {
   '/crm': typeof CrmRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/region/ekaterinburg': typeof RegionEkaterinburgRoute
   '/region/irkutsk': typeof RegionIrkutskRoute
+  '/region/kazan': typeof RegionKazanRoute
   '/region/krasnoyarsk': typeof RegionKrasnoyarskRoute
   '/region/moskva': typeof RegionMoskvaRoute
   '/region/novosibirsk': typeof RegionNovosibirskRoute
   '/region/sankt-peterburg': typeof RegionSanktPeterburgRoute
+  '/region/ufa': typeof RegionUfaRoute
   '/region/vladivostok': typeof RegionVladivostokRoute
   '/uslugi/avto-iz-za-rubezha': typeof UslugiAvtoIzZaRubezhaRoute
   '/uslugi/avto-pod-zakaz': typeof UslugiAvtoPodZakazRoute
@@ -213,11 +237,14 @@ export interface FileRoutesById {
   '/crm': typeof CrmRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/region/ekaterinburg': typeof RegionEkaterinburgRoute
   '/region/irkutsk': typeof RegionIrkutskRoute
+  '/region/kazan': typeof RegionKazanRoute
   '/region/krasnoyarsk': typeof RegionKrasnoyarskRoute
   '/region/moskva': typeof RegionMoskvaRoute
   '/region/novosibirsk': typeof RegionNovosibirskRoute
   '/region/sankt-peterburg': typeof RegionSanktPeterburgRoute
+  '/region/ufa': typeof RegionUfaRoute
   '/region/vladivostok': typeof RegionVladivostokRoute
   '/uslugi/avto-iz-za-rubezha': typeof UslugiAvtoIzZaRubezhaRoute
   '/uslugi/avto-pod-zakaz': typeof UslugiAvtoPodZakazRoute
@@ -240,11 +267,14 @@ export interface FileRouteTypes {
     | '/crm'
     | '/privacy'
     | '/sitemap.xml'
+    | '/region/ekaterinburg'
     | '/region/irkutsk'
+    | '/region/kazan'
     | '/region/krasnoyarsk'
     | '/region/moskva'
     | '/region/novosibirsk'
     | '/region/sankt-peterburg'
+    | '/region/ufa'
     | '/region/vladivostok'
     | '/uslugi/avto-iz-za-rubezha'
     | '/uslugi/avto-pod-zakaz'
@@ -265,11 +295,14 @@ export interface FileRouteTypes {
     | '/crm'
     | '/privacy'
     | '/sitemap.xml'
+    | '/region/ekaterinburg'
     | '/region/irkutsk'
+    | '/region/kazan'
     | '/region/krasnoyarsk'
     | '/region/moskva'
     | '/region/novosibirsk'
     | '/region/sankt-peterburg'
+    | '/region/ufa'
     | '/region/vladivostok'
     | '/uslugi/avto-iz-za-rubezha'
     | '/uslugi/avto-pod-zakaz'
@@ -290,11 +323,14 @@ export interface FileRouteTypes {
     | '/crm'
     | '/privacy'
     | '/sitemap.xml'
+    | '/region/ekaterinburg'
     | '/region/irkutsk'
+    | '/region/kazan'
     | '/region/krasnoyarsk'
     | '/region/moskva'
     | '/region/novosibirsk'
     | '/region/sankt-peterburg'
+    | '/region/ufa'
     | '/region/vladivostok'
     | '/uslugi/avto-iz-za-rubezha'
     | '/uslugi/avto-pod-zakaz'
@@ -316,11 +352,14 @@ export interface RootRouteChildren {
   CrmRoute: typeof CrmRoute
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  RegionEkaterinburgRoute: typeof RegionEkaterinburgRoute
   RegionIrkutskRoute: typeof RegionIrkutskRoute
+  RegionKazanRoute: typeof RegionKazanRoute
   RegionKrasnoyarskRoute: typeof RegionKrasnoyarskRoute
   RegionMoskvaRoute: typeof RegionMoskvaRoute
   RegionNovosibirskRoute: typeof RegionNovosibirskRoute
   RegionSanktPeterburgRoute: typeof RegionSanktPeterburgRoute
+  RegionUfaRoute: typeof RegionUfaRoute
   RegionVladivostokRoute: typeof RegionVladivostokRoute
   UslugiAvtoIzZaRubezhaRoute: typeof UslugiAvtoIzZaRubezhaRoute
   UslugiAvtoPodZakazRoute: typeof UslugiAvtoPodZakazRoute
@@ -460,6 +499,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegionVladivostokRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/region/ufa': {
+      id: '/region/ufa'
+      path: '/region/ufa'
+      fullPath: '/region/ufa'
+      preLoaderRoute: typeof RegionUfaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/region/sankt-peterburg': {
       id: '/region/sankt-peterburg'
       path: '/region/sankt-peterburg'
@@ -488,11 +534,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegionKrasnoyarskRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/region/kazan': {
+      id: '/region/kazan'
+      path: '/region/kazan'
+      fullPath: '/region/kazan'
+      preLoaderRoute: typeof RegionKazanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/region/irkutsk': {
       id: '/region/irkutsk'
       path: '/region/irkutsk'
       fullPath: '/region/irkutsk'
       preLoaderRoute: typeof RegionIrkutskRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/region/ekaterinburg': {
+      id: '/region/ekaterinburg'
+      path: '/region/ekaterinburg'
+      fullPath: '/region/ekaterinburg'
+      preLoaderRoute: typeof RegionEkaterinburgRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -508,11 +568,14 @@ const rootRouteChildren: RootRouteChildren = {
   CrmRoute: CrmRoute,
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  RegionEkaterinburgRoute: RegionEkaterinburgRoute,
   RegionIrkutskRoute: RegionIrkutskRoute,
+  RegionKazanRoute: RegionKazanRoute,
   RegionKrasnoyarskRoute: RegionKrasnoyarskRoute,
   RegionMoskvaRoute: RegionMoskvaRoute,
   RegionNovosibirskRoute: RegionNovosibirskRoute,
   RegionSanktPeterburgRoute: RegionSanktPeterburgRoute,
+  RegionUfaRoute: RegionUfaRoute,
   RegionVladivostokRoute: RegionVladivostokRoute,
   UslugiAvtoIzZaRubezhaRoute: UslugiAvtoIzZaRubezhaRoute,
   UslugiAvtoPodZakazRoute: UslugiAvtoPodZakazRoute,
@@ -527,13 +590,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
