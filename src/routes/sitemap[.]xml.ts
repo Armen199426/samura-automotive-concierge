@@ -30,6 +30,12 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/uslugi/proverka-avto", lastmod: today, changefreq: "monthly", priority: "0.7" },
           { path: "/uslugi/rastamozhka-avto", lastmod: today, changefreq: "monthly", priority: "0.7" },
           { path: "/uslugi/pokupka-avto-na-auktsione-yaponii", lastmod: today, changefreq: "monthly", priority: "0.7" },
+          { path: "/region/moskva", lastmod: today, changefreq: "monthly", priority: "0.7" },
+          { path: "/region/sankt-peterburg", lastmod: today, changefreq: "monthly", priority: "0.7" },
+          { path: "/region/novosibirsk", lastmod: today, changefreq: "monthly", priority: "0.7" },
+          { path: "/region/krasnoyarsk", lastmod: today, changefreq: "monthly", priority: "0.7" },
+          { path: "/region/irkutsk", lastmod: today, changefreq: "monthly", priority: "0.7" },
+          { path: "/region/vladivostok", lastmod: today, changefreq: "monthly", priority: "0.7" },
           { path: "/privacy", lastmod: today, changefreq: "yearly", priority: "0.3" },
         ];
 
