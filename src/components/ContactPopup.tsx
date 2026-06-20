@@ -1,5 +1,14 @@
+import type * as React from "react";
 import { useEffect, useState } from "react";
 import { X, Phone, Send, Instagram } from "lucide-react";
+
+function VkIcon({ className, strokeWidth = 1.5 }: { className?: string; strokeWidth?: number }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <path d="M3 6.5C3.5 13 7 17 13 17h1v-3.2c1.8.2 3.2 1.6 3.8 3.2H20c-.7-2.3-2.3-3.9-3.7-4.5 1.4-.8 2.9-2.6 3.5-4.8h-2.2c-.7 1.9-2.1 3.5-3.6 3.9V6.5h-2.2v6.1c-1.6-.4-3.6-2.2-3.7-6.1H3z" />
+    </svg>
+  );
+}
 
 const SESSION_KEY = "samura_contact_popup_shown";
 const MIN_DELAY_MS = 50_000; // ~45-60s
@@ -86,7 +95,7 @@ export function ContactPopup() {
         <div className="mt-6 grid grid-cols-2 gap-2">
           <PopupLink href="https://t.me/samuraauto" icon={Send} label="Telegram" />
           <PopupLink href="https://www.instagram.com/samura__auto" icon={Instagram} label="Instagram" />
-          <PopupLink href="https://vk.ru/club239640500" label="VK" />
+          <PopupLink href="https://vk.ru/club239640500" icon={VkIcon} label="VK" />
           <PopupLink href="tel:+79500901756" icon={Phone} label="Позвонить" primary />
         </div>
 
@@ -105,7 +114,7 @@ function PopupLink({
   primary,
 }: {
   href: string;
-  icon?: typeof Phone;
+  icon?: React.ComponentType<{ className?: string; strokeWidth?: number }>;
   label: string;
   primary?: boolean;
 }) {

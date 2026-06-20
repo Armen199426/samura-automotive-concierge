@@ -1,11 +1,29 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import type * as React from "react";
 import { useEffect, useState } from "react";
 import {
   ShieldCheck, Search, Banknote, Truck, FileLock2, Camera,
   ArrowRight, Phone, MessageCircle, MapPin, Menu, X, Plus, Minus,
   AlertTriangle, Gauge, FileWarning, History, CreditCard, AlertOctagon,
-  ChevronLeft, ChevronRight, Send,
+  ChevronLeft, ChevronRight, Send, Instagram,
 } from "lucide-react";
+
+function VkIcon({ className, strokeWidth = 1.4 }: { className?: string; strokeWidth?: number }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M3 6.5C3.5 13 7 17 13 17h1v-3.2c1.8.2 3.2 1.6 3.8 3.2H20c-.7-2.3-2.3-3.9-3.7-4.5 1.4-.8 2.9-2.6 3.5-4.8h-2.2c-.7 1.9-2.1 3.5-3.6 3.9V6.5h-2.2v6.1c-1.6-.4-3.6-2.2-3.7-6.1H3z" />
+    </svg>
+  );
+}
 import logo from "@/assets/logo.webp";
 import heroCar from "@/assets/hero-car.webp";
 import ctaCar from "@/assets/cta-car.jpg";
@@ -665,7 +683,9 @@ function FinalCta() {
           </p>
           <div className="mt-12 space-y-6">
             <ContactRow icon={Phone} label="ТЕЛЕФОН" value="8 950 090 17 56" href="tel:+79500901756" />
-            <ContactRow icon={Send} label="TELEGRAM" value="@samurauto" href="https://t.me/samurauto" />
+            <ContactRow icon={Send} label="TELEGRAM" value="@samuraauto" href="https://t.me/samuraauto" />
+            <ContactRow icon={Instagram} label="INSTAGRAM" value="@samura__auto" href="https://www.instagram.com/samura__auto" />
+            <ContactRow icon={VkIcon} label="VK" value="vk.ru/club239640500" href="https://vk.ru/club239640500" />
             <ContactRow icon={MessageCircle} label="MAX" value="8 950 090 17 56" href="tel:+79500901756" />
             <ContactRow icon={MapPin} label="АДРЕС" value="г. Иркутск" />
           </div>
@@ -688,7 +708,7 @@ function FinalCta() {
   );
 }
 
-function ContactRow({ icon: Icon, label, value, href }: { icon: typeof Phone; label: string; value: string; href?: string }) {
+function ContactRow({ icon: Icon, label, value, href }: { icon: React.ComponentType<{ className?: string; strokeWidth?: number }>; label: string; value: string; href?: string }) {
   const content = (
     <>
       <Icon className="h-5 w-5 text-blood" strokeWidth={1.4} />
@@ -751,7 +771,7 @@ function Footer() {
             <div className="text-[10px] tracking-[0.4em] text-silver">КОНТАКТЫ</div>
             <ul className="mt-6 space-y-3">
               <li><a href="tel:+79500901756" className="text-sm text-silver-dim transition-colors hover:text-blood">+7 950 090 17 56</a></li>
-              <li><a href="https://t.me/samurauto" target="_blank" rel="noopener noreferrer" className="text-sm text-silver-dim transition-colors hover:text-blood">@samurauto</a></li>
+              <li><a href="https://t.me/samuraauto" target="_blank" rel="noopener noreferrer" className="text-sm text-silver-dim transition-colors hover:text-blood">@samuraauto</a></li>
               <li><span className="text-sm text-silver-dim">г. Иркутск</span></li>
             </ul>
           </div>
