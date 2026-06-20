@@ -1,3 +1,4 @@
+import type * as React from "react";
 import { useEffect, useState } from "react";
 import { X, Phone, Send, Instagram } from "lucide-react";
 
