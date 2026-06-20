@@ -113,7 +113,7 @@ function PopupLink({
   primary,
 }: {
   href: string;
-  icon?: typeof Phone;
+  icon?: React.ComponentType<{ className?: string; strokeWidth?: number }>;
   label: string;
   primary?: boolean;
 }) {
