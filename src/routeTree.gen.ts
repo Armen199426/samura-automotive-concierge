@@ -20,6 +20,7 @@ import { Route as AutoIzEvropyRouteImport } from './routes/auto-iz-evropy'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as UslugiPodborAvtoRouteImport } from './routes/uslugi.podbor-avto'
 import { Route as UslugiDostavkaIRastamozhkaRouteImport } from './routes/uslugi.dostavka-i-rastamozhka'
+import { Route as UslugiAvtoPodZakazRouteImport } from './routes/uslugi.avto-pod-zakaz'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -77,6 +78,11 @@ const UslugiDostavkaIRastamozhkaRoute =
     path: '/uslugi/dostavka-i-rastamozhka',
     getParentRoute: () => rootRouteImport,
   } as any)
+const UslugiAvtoPodZakazRoute = UslugiAvtoPodZakazRouteImport.update({
+  id: '/uslugi/avto-pod-zakaz',
+  path: '/uslugi/avto-pod-zakaz',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -88,6 +94,7 @@ export interface FileRoutesByFullPath {
   '/crm': typeof CrmRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/uslugi/avto-pod-zakaz': typeof UslugiAvtoPodZakazRoute
   '/uslugi/dostavka-i-rastamozhka': typeof UslugiDostavkaIRastamozhkaRoute
   '/uslugi/podbor-avto': typeof UslugiPodborAvtoRoute
 }
@@ -101,6 +108,7 @@ export interface FileRoutesByTo {
   '/crm': typeof CrmRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/uslugi/avto-pod-zakaz': typeof UslugiAvtoPodZakazRoute
   '/uslugi/dostavka-i-rastamozhka': typeof UslugiDostavkaIRastamozhkaRoute
   '/uslugi/podbor-avto': typeof UslugiPodborAvtoRoute
 }
@@ -115,6 +123,7 @@ export interface FileRoutesById {
   '/crm': typeof CrmRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/uslugi/avto-pod-zakaz': typeof UslugiAvtoPodZakazRoute
   '/uslugi/dostavka-i-rastamozhka': typeof UslugiDostavkaIRastamozhkaRoute
   '/uslugi/podbor-avto': typeof UslugiPodborAvtoRoute
 }
@@ -130,6 +139,7 @@ export interface FileRouteTypes {
     | '/crm'
     | '/privacy'
     | '/sitemap.xml'
+    | '/uslugi/avto-pod-zakaz'
     | '/uslugi/dostavka-i-rastamozhka'
     | '/uslugi/podbor-avto'
   fileRoutesByTo: FileRoutesByTo
@@ -143,6 +153,7 @@ export interface FileRouteTypes {
     | '/crm'
     | '/privacy'
     | '/sitemap.xml'
+    | '/uslugi/avto-pod-zakaz'
     | '/uslugi/dostavka-i-rastamozhka'
     | '/uslugi/podbor-avto'
   id:
@@ -156,6 +167,7 @@ export interface FileRouteTypes {
     | '/crm'
     | '/privacy'
     | '/sitemap.xml'
+    | '/uslugi/avto-pod-zakaz'
     | '/uslugi/dostavka-i-rastamozhka'
     | '/uslugi/podbor-avto'
   fileRoutesById: FileRoutesById
@@ -170,6 +182,7 @@ export interface RootRouteChildren {
   CrmRoute: typeof CrmRoute
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  UslugiAvtoPodZakazRoute: typeof UslugiAvtoPodZakazRoute
   UslugiDostavkaIRastamozhkaRoute: typeof UslugiDostavkaIRastamozhkaRoute
   UslugiPodborAvtoRoute: typeof UslugiPodborAvtoRoute
 }
@@ -253,6 +266,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UslugiDostavkaIRastamozhkaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/uslugi/avto-pod-zakaz': {
+      id: '/uslugi/avto-pod-zakaz'
+      path: '/uslugi/avto-pod-zakaz'
+      fullPath: '/uslugi/avto-pod-zakaz'
+      preLoaderRoute: typeof UslugiAvtoPodZakazRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -266,6 +286,7 @@ const rootRouteChildren: RootRouteChildren = {
   CrmRoute: CrmRoute,
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  UslugiAvtoPodZakazRoute: UslugiAvtoPodZakazRoute,
   UslugiDostavkaIRastamozhkaRoute: UslugiDostavkaIRastamozhkaRoute,
   UslugiPodborAvtoRoute: UslugiPodborAvtoRoute,
 }
