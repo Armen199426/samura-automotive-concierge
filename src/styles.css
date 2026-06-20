@@ -101,6 +101,13 @@
   @supports not ((-webkit-background-clip: text) or (background-clip: text)) {
     .text-metal { -webkit-text-fill-color: #c9c9cc; color: #c9c9cc; background: none; }
   }
+  @media (max-width: 768px), (pointer: coarse) {
+    .text-metal {
+      color: #d8d8dc;
+      -webkit-text-fill-color: #d8d8dc;
+      background: none;
+    }
+  }
   .bg-grain {
     background-image:
       radial-gradient(ellipse at top, oklch(0.55 0.21 25 / 0.08), transparent 60%),
