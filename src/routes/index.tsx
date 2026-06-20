@@ -771,7 +771,7 @@ function Footer() {
             <div className="text-[10px] tracking-[0.4em] text-silver">КОНТАКТЫ</div>
             <ul className="mt-6 space-y-3">
               <li><a href="tel:+79500901756" className="text-sm text-silver-dim transition-colors hover:text-blood">+7 950 090 17 56</a></li>
-              <li><a href="https://t.me/samurauto" target="_blank" rel="noopener noreferrer" className="text-sm text-silver-dim transition-colors hover:text-blood">@samurauto</a></li>
+              <li><a href="https://t.me/samuraauto" target="_blank" rel="noopener noreferrer" className="text-sm text-silver-dim transition-colors hover:text-blood">@samuraauto</a></li>
               <li><span className="text-sm text-silver-dim">г. Иркутск</span></li>
             </ul>
           </div>
